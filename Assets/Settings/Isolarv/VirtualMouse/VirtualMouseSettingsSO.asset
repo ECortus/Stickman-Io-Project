@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c5e40d2234b2cb1e6ef91687865e8, type: 3}
+  m_Name: VirtualMouseSettingsSO
+  m_EditorClassIdentifier: VirtualMouse.Runtime::VirtualMouse.Runtime.Cursor.Settings.VirtualMouseSettingsSO
+  keyboardMouseVirtualMouse: {fileID: 4962075707714180335, guid: b516d8f178bfd3547897b21138f485fa, type: 3}
+  gamepadVirtualMouse: {fileID: 7753373539522639235, guid: b18d74b60c57b04479c9c4e449d0cec7, type: 3}
+  virtualMouseCursorCanvas: {fileID: -4893127434380460937, guid: 8ccc4e14d7c581744a520fe2e457a0b7, type: 3}

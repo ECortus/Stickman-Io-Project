@@ -1,0 +1,14 @@
+{
+    "name": "stickman-io.runtime.ui",
+    "rootNamespace": "Stickman-Io.Runtime.UI",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
