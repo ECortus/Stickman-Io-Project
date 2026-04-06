@@ -1,27 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
     public class PlayerRig : MonoBehaviour
     {
-        private PlayerHeader Header { get; set; }
+        PlayerHeader header;
+
+        PlayerHealth health;
         
-        public PlayerHealth Health { get; private set; }
-        private PlayerMovement Movement { get; set; }
+        PlayerCamera cam;
+        PlayerMovement movement;
+
+        PlayerInputEvents inputEvents;
+
+        List<RigComponent> components = new List<RigComponent>();
         
-        public PlayerInputEvents InputEvents { get; private set; }
+        public IHealth Health => health;
+        
+        public ICamera Camera => cam;
+        public IMovement Movement => movement;
+        
+        public IInputEvents InputEvents => inputEvents;
         
         public void Initialize(PlayerHeader hdr)
         {
-            Header = hdr;
+            header = hdr;
             InitializeComponents();
+        }
+        
+        public void OnDestroy()
+        {
+            DestroyComponents();
         }
         
         void InitializeComponents()
         {
-            Health = AddComponent<PlayerHealth>();
-            Movement = AddComponent<PlayerMovement>();
+            health = AddComponent<PlayerHealth>();
+            
+            cam = AddComponent<PlayerCamera>();
+            movement = AddComponent<PlayerMovement>();
+            
+            inputEvents = AddComponent<PlayerInputEvents>();
             
             OnAllComponentsAdded?.Invoke();
             OnAllComponentsAdded = null;
@@ -30,7 +51,9 @@ namespace StickmanIo.Runtime.Player
         T AddComponent<T>() where T : RigComponent
         {
             var component = gameObject.AddComponent<T>();
-            var data = Header.Data;
+            var data = header.Data;
+            
+            components.Add(component);
 
             OnAllComponentsAdded += () =>
             {
@@ -41,5 +64,15 @@ namespace StickmanIo.Runtime.Player
         }
         
         event Action OnAllComponentsAdded;
+        
+        void DestroyComponents()
+        {
+            foreach (var c in components)
+            {
+                c.OnRigDestroy();
+            }
+            
+            components.Clear();
+        }
     }
 }

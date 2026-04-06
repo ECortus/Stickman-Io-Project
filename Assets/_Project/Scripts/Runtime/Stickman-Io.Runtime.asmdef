@@ -2,7 +2,9 @@
     "name": "stickman-io.runtime",
     "rootNamespace": "Stickman-Io.Runtime",
     "references": [
-        "GUID:4307f53044263cf4b835bd812fc161a4"
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:1078a85b23c6f9348ad1940c33461d92"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -20,5 +20,15 @@ namespace StickmanIo.Runtime.Player
         {
             
         }
+        
+        public void OnRigDestroy()
+        {
+            OnDestroyed();
+        }
+        
+        protected virtual void OnDestroyed()
+        {
+            
+        }
     }
 }
