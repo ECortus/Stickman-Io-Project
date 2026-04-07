@@ -17,12 +17,15 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine.005' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -30,7 +33,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -83,7 +86,137 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Body Type 23@Head Hit(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Plane.001
+      parentName: Body Type 23@Head Hit(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: metarig.001
+      parentName: Body Type 23@Head Hit(Clone)
+      position: {x: -0.0047309976, y: -0.15959293, z: 0.067994185}
+      rotation: {x: -0.6799849, y: 0.2902959, z: 0.26483247, w: 0.6190417}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine
+      parentName: metarig.001
+      position: {x: 0.009107253, y: 0.0011047125, z: 1.0154964}
+      rotation: {x: 0.7524687, y: -0.32131013, z: -0.22620307, w: 0.5285668}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: spine.001
+      parentName: spine
+      position: {x: 1.110223e-15, y: 0.1257614, z: 0.0000000027939677}
+      rotation: {x: -0.07459244, y: 0.000000029802322, z: 0.000000014901161, w: 0.9972142}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
+    - name: spine.002
+      parentName: spine.001
+      position: {x: -3.9463006e-16, y: 0.13501519, z: -0.0000000036670826}
+      rotation: {x: -0.06520932, y: 0.00000013602319, z: -0.000000006685158, w: 0.99787164}
+      scale: {x: 1, y: 0.99999994, z: 0.9999998}
+    - name: spine.003
+      parentName: spine.002
+      position: {x: -1.1911401e-22, y: 0.16509658, z: 0}
+      rotation: {x: 0.0018909047, y: -0.000000042231417, z: -0.000000020682986, w: 0.9999982}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: spine.004
+      parentName: spine.003
+      position: {x: -7.987463e-23, y: 0.19138502, z: -9.313226e-10}
+      rotation: {x: 0.29803145, y: -0.00000008153694, z: 0.000000008815066, w: 0.9545561}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: spine.005
+      parentName: spine.004
+      position: {x: -2.473996e-14, y: 0.016887274, z: -0.00000004810863}
+      rotation: {x: -0.13499661, y: -0.0000000019619433, z: 0.0000000110763345, w: 0.99084604}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: spine.006
+      parentName: spine.005
+      position: {x: 6.381131e-15, y: 0.016335934, z: -0.000000006519258}
+      rotation: {x: -0.13233204, y: -0.000000031182697, z: 0.000000011741508, w: 0.99120545}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: shoulder.L
+      parentName: spine.003
+      position: {x: -0.015119181, y: 0.14596161, z: 0.06486935}
+      rotation: {x: -0.59347403, y: 0.36879757, z: 0.3778692, w: 0.60744685}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000002}
+    - name: upper_arm.L
+      parentName: shoulder.L
+      position: {x: -0.038285863, y: 0.15233733, z: -0.003110678}
+      rotation: {x: 0.13965334, y: -0.73242205, z: 0.1272561, w: 0.6541107}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1}
+    - name: forearm.L
+      parentName: upper_arm.L
+      position: {x: 0.00000013425597, y: 0.26258394, z: -0.000000027008355}
+      rotation: {x: 0.04272559, y: 0.09431325, z: 0.021796389, w: 0.9943865}
+      scale: {x: 1.0000008, y: 0.9999996, z: 1.0000011}
+    - name: hand.L
+      parentName: forearm.L
+      position: {x: 0.000000071071554, y: 0.2872909, z: 0.0000000062864274}
+      rotation: {x: 0.10864723, y: -0.012522099, z: 0.13090958, w: 0.98534346}
+      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+    - name: shoulder.R
+      parentName: spine.003
+      position: {x: 0.015119181, y: 0.14596161, z: 0.06486935}
+      rotation: {x: -0.59347403, y: -0.36879763, z: -0.37786928, w: 0.60744685}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: upper_arm.R
+      parentName: shoulder.R
+      position: {x: 0.038285863, y: 0.15233733, z: -0.003110678}
+      rotation: {x: 0.13965322, y: 0.7324221, z: -0.12725604, w: 0.6541108}
+      scale: {x: 0.99999976, y: 0.9999995, z: 0.9999999}
+    - name: forearm.R
+      parentName: upper_arm.R
+      position: {x: -0.00000013425597, y: 0.26258394, z: -0.000000027008355}
+      rotation: {x: 0.04272559, y: -0.09431333, z: -0.02179631, w: 0.99438643}
+      scale: {x: 1.0000004, y: 1.0000001, z: 0.9999999}
+    - name: hand.R
+      parentName: forearm.R
+      position: {x: -0.000000071071554, y: 0.2872909, z: 0.0000000062864274}
+      rotation: {x: 0.10864726, y: 0.012522203, z: -0.13090955, w: 0.9853434}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000006}
+    - name: pelvis.L
+      parentName: spine
+      position: {x: 2.6645353e-15, y: -0.000000004656613, z: 0.0000000037252903}
+      rotation: {x: -0.15245521, y: 0.7933308, z: 0.28550392, w: 0.5156269}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.99999976}
+    - name: pelvis.R
+      parentName: spine
+      position: {x: 2.6645353e-15, y: -0.000000004656613, z: 0.0000000037252903}
+      rotation: {x: -0.15245529, y: -0.79333067, z: -0.28550386, w: 0.5156272}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1}
+    - name: thigh.L
+      parentName: spine
+      position: {x: -0.10871036, y: 0.017344145, z: 0.035861183}
+      rotation: {x: 0.9865149, y: 0.000000044703484, z: -0, w: 0.16367155}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.99999857}
+    - name: shin.L
+      parentName: thigh.L
+      position: {x: -0.0000000029098555, y: 0.39258438, z: -0.0000000017042154}
+      rotation: {x: 0.0825479, y: -0.000000118814135, z: 0.000000010342732, w: 0.9965871}
+      scale: {x: 0.9999999, y: 0.99999934, z: 1.0000012}
+    - name: foot.L
+      parentName: shin.L
+      position: {x: -0.0000000074293314, y: 0.3698744, z: 1.7775945e-10}
+      rotation: {x: -0.54635787, y: 0.00000041190344, z: -0.00000025467438, w: 0.8375519}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000006}
+    - name: thigh.R
+      parentName: spine
+      position: {x: 0.10871038, y: 0.017344145, z: 0.03586113}
+      rotation: {x: 0.9865149, y: 0.00000004470348, z: -0.0000002533197, w: 0.16367154}
+      scale: {x: 0.99999976, y: 1, z: 0.9999986}
+    - name: shin.R
+      parentName: thigh.R
+      position: {x: 0.000000009559643, y: 0.39258438, z: -0.0000000035667913}
+      rotation: {x: 0.08254789, y: 0.00000013365916, z: 0.000000031033426, w: 0.9965871}
+      scale: {x: 1.0000001, y: 0.99999917, z: 1.0000012}
+    - name: foot.R
+      parentName: shin.R
+      position: {x: 0.000000007471819, y: 0.3698744, z: -2.941823e-10}
+      rotation: {x: -0.5463578, y: -0.00000040783476, z: 0.0000002612399, w: 0.83755183}
+      scale: {x: 1, y: 1, z: 1.0000005}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -94,13 +227,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

@@ -14,6 +14,8 @@ namespace StickmanIo.Runtime.Player
         PlayerMovement movement;
 
         PlayerInputEvents inputEvents;
+        
+        IPlayerGroundCheck groundCheck;
 
         List<RigComponent> components = new List<RigComponent>();
         
@@ -21,6 +23,8 @@ namespace StickmanIo.Runtime.Player
         
         public ICamera Camera => cam;
         public IMovement Movement => movement;
+        
+        public IPlayerGroundCheck GroundCheck => groundCheck;
         
         public IInputEvents InputEvents => inputEvents;
         
@@ -43,6 +47,8 @@ namespace StickmanIo.Runtime.Player
             movement = AddComponent<PlayerMovement>();
             
             inputEvents = AddComponent<PlayerInputEvents>();
+
+            groundCheck = GetComponentInChildren<IPlayerGroundCheck>();
             
             OnAllComponentsAdded?.Invoke();
             OnAllComponentsAdded = null;

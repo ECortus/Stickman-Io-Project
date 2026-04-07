@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 168912271}
   - component: {fileID: 168912270}
   - component: {fileID: 168912269}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 420559638}
   - component: {fileID: 420559637}
   - component: {fileID: 420559636}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 678709860}
   - component: {fileID: 678709859}
   - component: {fileID: 678709858}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 1094693733}
   - component: {fileID: 1094693732}
   - component: {fileID: 1094693731}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1296,7 +1296,7 @@ Transform:
   m_GameObject: {fileID: 2125107495}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.976296}
-  m_LocalPosition: {x: -1.5256001, y: 3.6077597, z: -0.15144825}
+  m_LocalPosition: {x: -1.5256001, y: 4.030378, z: -1.0577562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1362,7 +1362,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0.4, y: -0.5, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
-  CameraDistance: 2
+  CameraDistance: 3
   AvoidObstacles:
     Enabled: 1
     CollisionFilter:

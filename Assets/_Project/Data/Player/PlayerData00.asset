@@ -15,7 +15,7 @@ MonoBehaviour:
   Mass: 5
   Speed: 5
   RotationSpeed: 15
-  JumpForce: 25
+  JumpForce: 45
   CameraPositionOffset: {x: 0, y: 1.5, z: 0}
   CameraRotationOffset: {x: 25, y: 0, z: 0}
   CameraVerticalAnglesRange: {x: -30, y: 15}

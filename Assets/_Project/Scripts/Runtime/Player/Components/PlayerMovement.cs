@@ -52,10 +52,11 @@ namespace StickmanIo.Runtime.Player
 
         private void Update()
         {
-            WriteCurrentPosition();
-            CalculateSpeed();
-
             var delta = Time.deltaTime;
+            
+            WriteCurrentPosition();
+            CalculateSpeed(delta);
+            
             UpdateRotation(delta);
             
             UpdateMove();
@@ -109,17 +110,23 @@ namespace StickmanIo.Runtime.Player
 
         void WriteLastPosition()
         {
-            lastPosition = currentPosition;
+            var pos = transform.position;
+            pos.y = 0;
+            
+            lastPosition = pos;
         }
         
         void WriteCurrentPosition()
         {
-            currentPosition = transform.position;
+            var pos = transform.position;
+            pos.y = 0;
+            
+            currentPosition = pos;
         }
         
-        void CalculateSpeed()
+        void CalculateSpeed(float delta)
         {
-            speed = (currentPosition - lastPosition).sqrMagnitude;
+            speed = (currentPosition - lastPosition).magnitude / delta;
         }
     }
 }

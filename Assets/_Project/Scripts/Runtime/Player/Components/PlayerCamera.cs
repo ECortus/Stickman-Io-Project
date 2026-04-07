@@ -64,7 +64,7 @@ namespace StickmanIo.Runtime.Player
         {
             if (lookDirection != Vector2.zero)
             {
-                var anglesDelta = new Vector3(lookDirection.y * data.LookVerticalSensitivity, 
+                var anglesDelta = new Vector3(-lookDirection.y * data.LookVerticalSensitivity, 
                     lookDirection.x * data.LookHorizontalSensitivity, 0) * delta;
                 
                 var angles = cameraTarget.GetRotationAngles();

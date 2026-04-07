@@ -1,4 +1,5 @@
 ﻿using System;
+using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Player.Data;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ namespace StickmanIo.Runtime.Player
         {
             var rig = gameObject.AddComponent<PlayerRig>();
             rig.Initialize(this);
+            
+            OnRigInitialize?.Invoke();
         }
+
+        public readonly FireEvent OnRigInitialize = new FireEvent();
     }
 }

@@ -15,8 +15,9 @@ namespace StickmanIo.Runtime.Player
     public class PlayerInputEvents : RigComponent, IInputEvents
     {
         StickmanInputActions inputActions;
-        
         StickmanInputActions.PlayerActions playerActions;
+        
+        IPlayerGroundCheck groundCheck;
         
         protected override void OnInitialize()
         {
@@ -24,6 +25,8 @@ namespace StickmanIo.Runtime.Player
             playerActions = inputActions.Player;
             
             playerActions.Enable();
+            
+            groundCheck = Rig.GroundCheck;
         }
         
         protected override void OnDestroyed()
@@ -71,6 +74,11 @@ namespace StickmanIo.Runtime.Player
 
         void CheckJumpTriggered()
         {
+            if (!groundCheck.IsOnGround)
+            {
+                return;
+            }
+            
             var jump = playerActions.Jump.WasPerformedThisFrame();
             if (jump)
             {
