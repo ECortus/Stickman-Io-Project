@@ -8,12 +8,15 @@ namespace StickmanIo.Runtime.Player
         readonly int SpeedHash = Animator.StringToHash("Speed");
         readonly int JumpHash = Animator.StringToHash("Jump");
         readonly int OnGroundHash = Animator.StringToHash("OnGround");
+
+        [SerializeField] private Rigidbody parentBody;
         
         Animator animator;
 
         PlayerHeader header;
         PlayerRig rig;
         
+        IMovement movement;
         IPlayerGroundCheck groundCheck;
         
         void Start()
@@ -27,6 +30,8 @@ namespace StickmanIo.Runtime.Player
         void OnRigInitialize()
         {
             rig = GetComponentInParent<PlayerRig>();
+            
+            movement = rig.Movement;
             groundCheck = rig.GroundCheck;
             
             var inputEvents = rig.InputEvents;
@@ -44,9 +49,14 @@ namespace StickmanIo.Runtime.Player
             UpdateOnGround();
         }
 
+        private void LateUpdate()
+        {
+            SyncPositionsWithBody();
+        }
+
         void UpdateMoveSpeed()
         {
-            var speed = rig.Movement.Speed;
+            var speed = movement.Speed;
             SetSpeed(speed);
         }
         
@@ -69,6 +79,20 @@ namespace StickmanIo.Runtime.Player
         void SetOnGround(bool onGround)
         {
             animator.SetBool(OnGroundHash, onGround);
+        }
+
+        void SyncPositionsWithBody()
+        {
+            var bodyPosition = parentBody.position;
+            var bodyRotation = parentBody.rotation;
+            
+            var localPosition = transform.localPosition;
+            localPosition = bodyRotation * localPosition;
+            
+            bodyPosition += localPosition;
+            
+            transform.localPosition = Vector3.zero;
+            parentBody.MovePosition(bodyPosition);
         }
     }
 }

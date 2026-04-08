@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed04fc0ad9940a78d6412ae4ad69004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerAnimationController
+  parentBody: {fileID: 5267682047118564956}
 --- !u!4 &7304492769583951804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7835208700696182326, guid: 752a3a6182125564fb88deb219ff5813, type: 3}

@@ -7,6 +7,9 @@ namespace StickmanIo.Runtime.Player
     public interface IMovement
     {
         public float Speed { get; }
+        
+        public bool IsRolling { get; }
+        public void SetRolling(bool rolling);
     }
     
     public class PlayerMovement : RigComponent, IMovement
@@ -59,7 +62,10 @@ namespace StickmanIo.Runtime.Player
             
             UpdateRotation(delta);
             
-            UpdateMove();
+            if (!IsRolling)
+            {
+                UpdateMove();
+            }
             
             WriteLastPosition();
         }
@@ -126,7 +132,19 @@ namespace StickmanIo.Runtime.Player
         
         void CalculateSpeed(float delta)
         {
+            if (moveDirection == Vector3.zero)
+            {
+                speed = 0f;
+                return;
+            }
+            
             speed = (currentPosition - lastPosition).magnitude / delta;
+        }
+        
+        public bool IsRolling { get; private set; }
+        public void SetRolling(bool rolling)
+        {
+            IsRolling = rolling;
         }
     }
 }

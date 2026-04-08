@@ -17,6 +17,7 @@ namespace StickmanIo.Runtime.Player
         StickmanInputActions inputActions;
         StickmanInputActions.PlayerActions playerActions;
         
+        IMovement movement;
         IPlayerGroundCheck groundCheck;
         
         protected override void OnInitialize()
@@ -26,6 +27,7 @@ namespace StickmanIo.Runtime.Player
             
             playerActions.Enable();
             
+            movement = Rig.Movement;
             groundCheck = Rig.GroundCheck;
         }
         
@@ -74,6 +76,11 @@ namespace StickmanIo.Runtime.Player
 
         void CheckJumpTriggered()
         {
+            if (movement.IsRolling)
+            {
+                return;
+            }
+            
             if (!groundCheck.IsOnGround)
             {
                 return;
