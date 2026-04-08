@@ -9,6 +9,7 @@ namespace StickmanIo.Runtime.Player
         PlayerHeader header;
 
         PlayerHealth health;
+        PlayerAttacker attacker;
         
         PlayerCamera cam;
         PlayerMovement movement;
@@ -20,6 +21,7 @@ namespace StickmanIo.Runtime.Player
         List<RigComponent> components = new List<RigComponent>();
         
         public IHealth Health => health;
+        public IAttacker Attacker => attacker;
         
         public ICamera Camera => cam;
         public IMovement Movement => movement;
@@ -42,6 +44,7 @@ namespace StickmanIo.Runtime.Player
         void InitializeComponents()
         {
             health = AddComponent<PlayerHealth>();
+            attacker = AddComponent<PlayerAttacker>();
             
             cam = AddComponent<PlayerCamera>();
             movement = AddComponent<PlayerMovement>();

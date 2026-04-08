@@ -36,6 +36,11 @@ namespace StickmanIo.Runtime.Player
             inputEvents.OnLookAction += UpdateLookDirection;
         }
         
+        protected override void OnDestroyed()
+        {
+            
+        }
+        
         void UpdateLookDirection(Vector2 dir)
         {
             lookDirection = dir;

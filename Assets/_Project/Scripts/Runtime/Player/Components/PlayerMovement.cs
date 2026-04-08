@@ -41,6 +41,11 @@ namespace StickmanIo.Runtime.Player
             inputEvents.OnJumpTriggered += Jump;
         }
         
+        protected override void OnDestroyed()
+        {
+            
+        }
+        
         void UpdateMoveDirection(Vector2 dir)
         {
             if (dir != Vector2.zero)

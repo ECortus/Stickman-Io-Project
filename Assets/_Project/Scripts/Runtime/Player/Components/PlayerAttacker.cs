@@ -1,11 +1,11 @@
 ﻿namespace StickmanIo.Runtime.Player
 {
-    public interface IHealth
+    public interface IAttacker
     {
         
     }
     
-    public class PlayerHealth : RigComponent, IHealth
+    public class PlayerAttacker : RigComponent, IAttacker
     {
         protected override void OnInitialize()
         {
