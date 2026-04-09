@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData00
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.Data.PlayerData
   Mass: 5
-  Speed: 5
+  Speed: 6
   RotationSpeed: 15
   JumpForce: 25
   CameraPositionOffset: {x: 0, y: 1.5, z: 0}

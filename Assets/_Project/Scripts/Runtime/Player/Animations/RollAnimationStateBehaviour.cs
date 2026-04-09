@@ -4,21 +4,20 @@ namespace StickmanIo.Runtime.Player
 {
     public class RollAnimationStateBehaviour : StateMachineBehaviour
     {
-        readonly float rollDuration = 0.55f;
+        [SerializeField] float prepareDuration = 0.05f;
+        [SerializeField] float rollDuration = 0.5f;
 
         float timer;
         
         IMovement movement;
 
-        bool isEnded;
+        bool isSetOff = true;
+        bool isEnded = true;
         
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             movement ??= animator.GetComponentInParent<IMovement>();
-            movement.SetRolling(true);
-            
-            timer = rollDuration;
-            isEnded = false;
+            StartRolling();
         }
         
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,8 +27,13 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
             
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
+            timer += Time.deltaTime;
+
+            if (timer >= prepareDuration && isSetOff)
+            {
+                SetOn();
+            }
+            else if (timer >= rollDuration)
             {
                 StopRolling();
             }
@@ -45,9 +49,32 @@ namespace StickmanIo.Runtime.Player
             StopRolling();
         }
         
-        void StopRolling()
+        void StartRolling()
+        {
+            if (prepareDuration <= 0f)
+            {
+                SetOn();
+            }
+            
+            timer = 0;
+            isEnded = false;
+        }
+
+        void SetOn()
+        {
+            movement.SetRolling(true);
+            isSetOff = false;
+        }
+        
+        void SetOff()
         {
             movement.SetRolling(false);
+            isSetOff = true;
+        }
+        
+        void StopRolling()
+        {
+            SetOff();
             isEnded = true;
         }
     }
