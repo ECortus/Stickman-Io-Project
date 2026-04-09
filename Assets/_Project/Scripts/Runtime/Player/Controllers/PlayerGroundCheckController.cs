@@ -24,6 +24,14 @@ namespace StickmanIo.Runtime.Player
             }
         }
         
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.IsSameMask(groundLayer))
+            {
+                isOnGround = true;
+            }
+        }
+        
         private void OnTriggerExit(Collider other)
         {
             if (other.IsSameMask(groundLayer))
