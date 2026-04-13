@@ -1,0 +1,18 @@
+{
+    "dotnet.preferCSharpExtension": true,
+    "files.exclude": {
+        "**/*.vsconfig": true,
+        "**/*.meta": true,
+        "**/*.cs.meta": true,
+        "**/Library": true,
+        "**/Temp": true,
+        "**/obj": true,
+        "**/Logs": true,
+        "**/MemoryCaptures": true,
+        "**/Build": true,
+        "**/ProjectSettings": true,
+        "**/UserSettings": true,
+        "**/.idea": true
+    },
+    "dotnet.defaultSolution": "Stickman-Io-Project.slnx"
+}
