@@ -8,29 +8,35 @@ namespace StickmanIo.Runtime.Player
     {
         event Action<Vector2> OnLookAction;
         event Action<Vector2> OnMoveAction;
-        
+
         event Action OnJumpTriggered;
+
+        event Action OnAttackAction;
     }
-    
+
     public class PlayerInputEvents : RigComponent, IInputEvents
     {
         StickmanInputActions inputActions;
         StickmanInputActions.PlayerActions playerActions;
-        
+
         IMovement movement;
+        IAttacker attacker;
+
         IPlayerGroundCheck groundCheck;
-        
+
         protected override void OnInitialize()
         {
             inputActions = new StickmanInputActions();
             playerActions = inputActions.Player;
-            
+
             playerActions.Enable();
-            
+
             movement = Rig.Movement;
+            attacker = Rig.Attacker;
+
             groundCheck = Rig.GroundCheck;
         }
-        
+
         protected override void OnDestroyed()
         {
             playerActions.Disable();
@@ -41,7 +47,8 @@ namespace StickmanIo.Runtime.Player
             OnLookUpdate();
             OnMoveUpdate();
 
-            CheckJumpTriggered();
+            OnJumpUpdate();
+            OnAttackUpdate();
         }
 
         void OnMoveUpdate()
@@ -56,9 +63,9 @@ namespace StickmanIo.Runtime.Player
                 OnMoveAction?.Invoke(Vector2.zero);
             }
         }
-        
+
         public event Action<Vector2> OnMoveAction;
-        
+
         void OnLookUpdate()
         {
             var look = playerActions.Look.ReadValue<Vector2>();
@@ -71,28 +78,49 @@ namespace StickmanIo.Runtime.Player
                 OnLookAction?.Invoke(Vector2.zero);
             }
         }
-        
+
         public event Action<Vector2> OnLookAction;
 
-        void CheckJumpTriggered()
+        void OnJumpUpdate()
         {
-            if (movement.IsRolling)
+            if (movement.IsDisabled)
             {
                 return;
             }
-            
+
             if (!groundCheck.IsOnGround)
             {
                 return;
             }
-            
+
             var jump = playerActions.Jump.WasPerformedThisFrame();
             if (jump)
             {
                 OnJumpTriggered?.Invoke();
             }
         }
-        
+
         public event Action OnJumpTriggered;
+
+        void OnAttackUpdate()
+        {
+            if (movement.IsDisabled)
+            {
+                return;
+            }
+
+            if (!groundCheck.IsOnGround)
+            {
+                return;
+            }
+
+            var attack = playerActions.Attack.WasPerformedThisFrame();
+            if (attack)
+            {
+                OnAttackAction?.Invoke();
+            }
+        }
+
+        public event Action OnAttackAction;
     }
 }

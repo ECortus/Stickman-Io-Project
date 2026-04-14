@@ -9,6 +9,11 @@ namespace StickmanIo.Runtime.Player
         readonly int JumpHash = Animator.StringToHash("Jump");
         readonly int OnGroundHash = Animator.StringToHash("OnGround");
 
+        readonly int NonAttackHash = Animator.StringToHash("NonAttack");
+        readonly int AttackOneHash = Animator.StringToHash("Attack1");
+        readonly int AttackTwoHash = Animator.StringToHash("Attack2");
+        readonly int AttackThreeHash = Animator.StringToHash("Attack3");
+
         [SerializeField] private Rigidbody parentBody;
 
         Animator animator;
@@ -17,6 +22,7 @@ namespace StickmanIo.Runtime.Player
         PlayerRig rig;
 
         IMovement movement;
+        IAttacker attacker;
         IPlayerGroundCheck groundCheck;
 
         void Start()
@@ -32,10 +38,11 @@ namespace StickmanIo.Runtime.Player
             rig = GetComponentInParent<PlayerRig>();
 
             movement = rig.Movement;
+            attacker = rig.Attacker;
             groundCheck = rig.GroundCheck;
 
-            var inputEvents = rig.InputEvents;
-            inputEvents.OnJumpTriggered += TriggerJump;
+            movement.OnJump += TriggerJump;
+            attacker.OnAttackAction += OnAttack;
         }
 
         private void Update()
@@ -80,6 +87,32 @@ namespace StickmanIo.Runtime.Player
         void SetOnGround(bool onGround)
         {
             animator.SetBool(OnGroundHash, onGround);
+        }
+
+        void OnAttack(int attackIndex)
+        {
+            bool isAttacking = attackIndex > 0;
+            if (!isAttacking)
+            {
+                animator.SetTrigger(NonAttackHash);
+            }
+            else
+            {
+                switch (attackIndex)
+                {
+                    case 1:
+                        animator.SetTrigger(AttackOneHash);
+                        break;
+                    case 2:
+                        animator.SetTrigger(AttackTwoHash);
+                        break;
+                    case 3:
+                        animator.SetTrigger(AttackThreeHash);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(attackIndex), $"Invalid attack index: {attackIndex}");
+                }
+            }
         }
 
         void SyncPositionsWithBody()

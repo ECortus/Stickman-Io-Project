@@ -9,8 +9,10 @@ namespace StickmanIo.Runtime.Player
         public float InputSpeed { get; }
         public float ActualSpeed { get; }
 
-        public bool IsRolling { get; }
-        public void SetRolling(bool rolling);
+        public bool IsDisabled { get; }
+        public void SetTemporalyDisabled(bool state);
+
+        public event Action OnJump;
     }
 
     public class PlayerMovement : RigComponent, IMovement
@@ -35,7 +37,7 @@ namespace StickmanIo.Runtime.Player
                 return velocity.magnitude;
             }
         }
-        
+
         public float ActualSpeed => speed;
 
         protected override void OnInitialize()
@@ -77,7 +79,7 @@ namespace StickmanIo.Runtime.Player
 
             UpdateRotation(delta);
 
-            if (!IsRolling)
+            if (!IsDisabled)
             {
                 UpdateMove();
             }
@@ -127,6 +129,7 @@ namespace StickmanIo.Runtime.Player
         void Jump()
         {
             rb.AddForce(Vector3.up * data.JumpForce, ForceMode.Impulse);
+            OnJump?.Invoke();
         }
 
         void WriteLastPosition()
@@ -156,10 +159,12 @@ namespace StickmanIo.Runtime.Player
             speed = (currentPosition - lastPosition).magnitude / delta;
         }
 
-        public bool IsRolling { get; private set; }
-        public void SetRolling(bool rolling)
+        public bool IsDisabled { get; private set; }
+        public void SetTemporalyDisabled(bool state)
         {
-            IsRolling = rolling;
+            IsDisabled = state;
         }
+
+        public event Action OnJump;
     }
 }
