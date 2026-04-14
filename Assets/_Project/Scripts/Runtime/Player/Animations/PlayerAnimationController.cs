@@ -10,19 +10,19 @@ namespace StickmanIo.Runtime.Player
         readonly int OnGroundHash = Animator.StringToHash("OnGround");
 
         [SerializeField] private Rigidbody parentBody;
-        
+
         Animator animator;
 
         PlayerHeader header;
         PlayerRig rig;
-        
+
         IMovement movement;
         IPlayerGroundCheck groundCheck;
-        
+
         void Start()
         {
             animator = GetComponent<Animator>();
-            
+
             header = GetComponentInParent<PlayerHeader>();
             header.OnRigInitialize.AddListener(OnRigInitialize);
         }
@@ -30,10 +30,10 @@ namespace StickmanIo.Runtime.Player
         void OnRigInitialize()
         {
             rig = GetComponentInParent<PlayerRig>();
-            
+
             movement = rig.Movement;
             groundCheck = rig.GroundCheck;
-            
+
             var inputEvents = rig.InputEvents;
             inputEvents.OnJumpTriggered += TriggerJump;
         }
@@ -44,7 +44,7 @@ namespace StickmanIo.Runtime.Player
             {
                 return;
             }
-            
+
             UpdateMoveSpeed();
             UpdateOnGround();
         }
@@ -56,10 +56,11 @@ namespace StickmanIo.Runtime.Player
 
         void UpdateMoveSpeed()
         {
-            var speed = movement.Speed;
+            /* var speed = movement.ActualSpeed; */
+            var speed = movement.InputSpeed;
             SetSpeed(speed);
         }
-        
+
         void UpdateOnGround()
         {
             var onGround = groundCheck.IsOnGround;
@@ -75,7 +76,7 @@ namespace StickmanIo.Runtime.Player
         {
             animator.SetTrigger(JumpHash);
         }
-        
+
         void SetOnGround(bool onGround)
         {
             animator.SetBool(OnGroundHash, onGround);
@@ -85,12 +86,12 @@ namespace StickmanIo.Runtime.Player
         {
             var bodyPosition = parentBody.position;
             var bodyRotation = parentBody.rotation;
-            
+
             var localPosition = transform.localPosition;
             localPosition = bodyRotation * localPosition;
-            
+
             bodyPosition += localPosition;
-            
+
             transform.localPosition = Vector3.zero;
             parentBody.MovePosition(bodyPosition);
         }

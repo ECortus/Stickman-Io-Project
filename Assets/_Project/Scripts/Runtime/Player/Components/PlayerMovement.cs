@@ -6,12 +6,13 @@ namespace StickmanIo.Runtime.Player
 {
     public interface IMovement
     {
-        public float Speed { get; }
-        
+        public float InputSpeed { get; }
+        public float ActualSpeed { get; }
+
         public bool IsRolling { get; }
         public void SetRolling(bool rolling);
     }
-    
+
     public class PlayerMovement : RigComponent, IMovement
     {
         Vector3 lastPosition;
@@ -25,27 +26,36 @@ namespace StickmanIo.Runtime.Player
         ICamera cam;
 
         Rigidbody rb;
+
+        public float InputSpeed
+        {
+            get
+            {
+                var velocity = moveDirection * data.Speed;
+                return velocity.magnitude;
+            }
+        }
         
-        public float Speed => speed;
-        
+        public float ActualSpeed => speed;
+
         protected override void OnInitialize()
         {
             data = Data;
             cam = Rig.Camera;
-            
+
             rb = GetComponent<Rigidbody>();
             rb.mass = data.Mass;
-            
+
             var inputEvents = Rig.InputEvents;
             inputEvents.OnMoveAction += UpdateMoveDirection;
             inputEvents.OnJumpTriggered += Jump;
         }
-        
+
         protected override void OnDestroyed()
         {
-            
+
         }
-        
+
         void UpdateMoveDirection(Vector2 dir)
         {
             if (dir != Vector2.zero)
@@ -61,17 +71,17 @@ namespace StickmanIo.Runtime.Player
         private void Update()
         {
             var delta = Time.deltaTime;
-            
+
             WriteCurrentPosition();
             CalculateSpeed(delta);
-            
+
             UpdateRotation(delta);
-            
+
             if (!IsRolling)
             {
                 UpdateMove();
             }
-            
+
             WriteLastPosition();
         }
 
@@ -89,7 +99,7 @@ namespace StickmanIo.Runtime.Player
 
             var cameraRotation = Quaternion.Euler(new Vector3(0, cam.RotationHorizontalAngle, 0));
             velocity = cameraRotation * velocity;
-            
+
             velocity.y = rb.linearVelocity.y;
             rb.linearVelocity = velocity;
         }
@@ -97,14 +107,14 @@ namespace StickmanIo.Runtime.Player
         void UpdateRotation(float delta)
         {
             rb.angularVelocity = Vector3.zero;
-            
+
             var direction = moveDirection;
             direction.y = 0;
-            
+
             if (direction != Vector3.zero)
             {
                 var rotation = Quaternion.LookRotation(direction);
-                
+
                 var angles = rotation.eulerAngles;
                 angles.y += cam.RotationHorizontalAngle;
                 rotation = Quaternion.Euler(angles);
@@ -123,18 +133,18 @@ namespace StickmanIo.Runtime.Player
         {
             var pos = transform.position;
             pos.y = 0;
-            
+
             lastPosition = pos;
         }
-        
+
         void WriteCurrentPosition()
         {
             var pos = transform.position;
             pos.y = 0;
-            
+
             currentPosition = pos;
         }
-        
+
         void CalculateSpeed(float delta)
         {
             if (moveDirection == Vector3.zero)
@@ -142,10 +152,10 @@ namespace StickmanIo.Runtime.Player
                 speed = 0f;
                 return;
             }
-            
+
             speed = (currentPosition - lastPosition).magnitude / delta;
         }
-        
+
         public bool IsRolling { get; private set; }
         public void SetRolling(bool rolling)
         {
