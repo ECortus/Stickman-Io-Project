@@ -1,4 +1,5 @@
 ﻿using System;
+using GameDevUtils.Runtime;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
@@ -30,6 +31,12 @@ namespace StickmanIo.Runtime.Player
             animator = GetComponent<Animator>();
 
             header = GetComponentInParent<PlayerHeader>();
+            if (!header)
+            {
+                DebugHelper.LogWarning($"AnimationController on {gameObject.name} requires a Header in its parents.");
+                return;
+            }
+
             header.OnRigInitialize.AddListener(OnRigInitialize);
         }
 
@@ -42,7 +49,7 @@ namespace StickmanIo.Runtime.Player
             groundCheck = rig.GroundCheck;
 
             movement.OnJump += TriggerJump;
-            attacker.OnAttackAction += OnAttack;
+            attacker.OnAttackStarted += OnAttack;
         }
 
         private void Update()

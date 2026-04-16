@@ -7,8 +7,10 @@ namespace StickmanIo.Runtime.Player
 {
     public class PlayerHeader : MonoBehaviour
     {
+        [SerializeField] private bool isOwner = true;
         [SerializeField] private PlayerData data;
         
+        public bool IsOwner => isOwner;
         public PlayerData Data => data;
         
         private void Awake()

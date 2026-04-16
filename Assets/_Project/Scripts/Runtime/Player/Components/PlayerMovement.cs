@@ -24,7 +24,7 @@ namespace StickmanIo.Runtime.Player
 
         float speed;
 
-        PlayerData data;
+        GlobalPlayerSettings settings;
         ICamera cam;
 
         Rigidbody rb;
@@ -33,7 +33,7 @@ namespace StickmanIo.Runtime.Player
         {
             get
             {
-                var velocity = moveDirection * data.Speed;
+                var velocity = moveDirection * settings.Speed;
                 return velocity.magnitude;
             }
         }
@@ -42,11 +42,11 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
-            data = Data;
+            settings = Data.Settings;
             cam = Rig.Camera;
 
             rb = GetComponent<Rigidbody>();
-            rb.mass = data.Mass;
+            rb.mass = settings.Mass;
 
             var inputEvents = Rig.InputEvents;
             inputEvents.OnMoveAction += UpdateMoveDirection;
@@ -92,7 +92,7 @@ namespace StickmanIo.Runtime.Player
             Vector3 velocity;
             if (moveDirection != Vector3.zero)
             {
-                velocity = moveDirection * data.Speed;
+                velocity = moveDirection * settings.Speed;
             }
             else
             {
@@ -121,14 +121,14 @@ namespace StickmanIo.Runtime.Player
                 angles.y += cam.RotationHorizontalAngle;
                 rotation = Quaternion.Euler(angles);
 
-                var lerp = Quaternion.Lerp(rb.rotation, rotation, data.RotationSpeed * delta);
+                var lerp = Quaternion.Lerp(rb.rotation, rotation, settings.RotationSpeed * delta);
                 rb.MoveRotation(lerp);
             }
         }
 
         void Jump()
         {
-            rb.AddForce(Vector3.up * data.JumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * settings.JumpForce, ForceMode.Impulse);
             OnJump?.Invoke();
         }
 

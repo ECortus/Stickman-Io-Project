@@ -12,12 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f43d2172e4f70a969ed622929359c, type: 3}
   m_Name: PlayerData00
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.Data.PlayerData
-  Mass: 5
-  Speed: 6
-  RotationSpeed: 15
-  JumpForce: 25
-  CameraPositionOffset: {x: 0, y: 1.5, z: 0}
-  CameraRotationOffset: {x: 25, y: 0, z: 0}
-  CameraVerticalAnglesRange: {x: -30, y: 15}
-  LookVerticalSensitivity: 5
-  LookHorizontalSensitivity: 25
+  Settings: {fileID: 11400000, guid: d61fe29b76399e6459ad8c6363e548ef, type: 2}

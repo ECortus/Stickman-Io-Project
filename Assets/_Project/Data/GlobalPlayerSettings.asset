@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c80b19ce5514740a3acf214aaf52c1, type: 3}
+  m_Name: GlobalPlayerSettings
+  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.Data.GlobalPlayerSettings
+  Mass: 5
+  Speed: 7
+  RotationSpeed: 45
+  JumpForce: 15
+  CameraPositionOffset: {x: 0, y: 1.5, z: 0}
+  CameraRotationOffset: {x: 25, y: 0, z: 0}
+  CameraVerticalAnglesRange: {x: -25, y: 15}
+  LookVerticalSensitivity: 5
+  LookHorizontalSensitivity: 25
+  AttackBaseDamage: 5
+  AttackInputsDelay: 0.8
+  AttacksData:
+  - PrepareDuration: 0.25
+    AttackDuration: 0.5
+    PostDuration: 0.2
+    DamageModificator: 1.1
+  - PrepareDuration: 0.4
+    AttackDuration: 0.6
+    PostDuration: 0.2
+    DamageModificator: 1.4

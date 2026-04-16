@@ -16,18 +16,36 @@ namespace StickmanIo.Runtime.Player
         CameraTarget cameraTarget;
         Vector2 lookDirection;
         
-        PlayerData data;
+        GlobalPlayerSettings settings;
         
-        public float RotationHorizontalAngle => cameraTarget.GetRotation().eulerAngles.y;
+        public float RotationHorizontalAngle
+        {
+            get
+            {
+                if (cameraTarget != null)
+                {
+                    var angles = cameraTarget.GetRotationAngles();
+                    return angles.y;
+                }
+
+                return 0f;
+            }
+        }
         
         protected override void OnInitialize()
         {
-            data = Data;
+            if (!Rig.IsOwner)
+            {
+                enabled = false;
+                return;
+            }
+
+            settings = Data.Settings;
             
             var targetGroup = FindAnyObjectByType<CinemachineTargetGroup>();
             
             cameraTarget = ObjectInstantiator.InstantiateComponentOnNewGameObject<CameraTarget>($"{gameObject.name} Camera Target");
-            cameraTarget.SetRotation(Data.CameraRotationOffset);
+            cameraTarget.SetRotation(settings.CameraRotationOffset);
             
             targetGroup.Targets.Clear();
             targetGroup.AddMember(cameraTarget.Target, 1f, 1f);
@@ -56,7 +74,7 @@ namespace StickmanIo.Runtime.Player
 
         void UpdateCameraTargetPosition()
         {
-            var pos = Rig.transform.position + Data.CameraPositionOffset;
+            var pos = Rig.transform.position + settings.CameraPositionOffset;
             SetCameraTargetPosition(pos);
         }
 
@@ -69,16 +87,16 @@ namespace StickmanIo.Runtime.Player
         {
             if (lookDirection != Vector2.zero)
             {
-                var anglesDelta = new Vector3(-lookDirection.y * data.LookVerticalSensitivity, 
-                    lookDirection.x * data.LookHorizontalSensitivity, 0) * delta;
+                var anglesDelta = new Vector3(-lookDirection.y * settings.LookVerticalSensitivity, 
+                    lookDirection.x * settings.LookHorizontalSensitivity, 0) * delta;
                 
                 var angles = cameraTarget.GetRotationAngles();
                 angles = NormalizeEulesAngles(angles);
                 
                 angles += anglesDelta;
 
-                var minX = data.CameraVerticalAnglesRange.x + data.CameraRotationOffset.x;
-                var maxX = data.CameraVerticalAnglesRange.y + data.CameraRotationOffset.x;
+                var minX = settings.CameraVerticalAnglesRange.x + settings.CameraRotationOffset.x;
+                var maxX = settings.CameraVerticalAnglesRange.y + settings.CameraRotationOffset.x;
 
                 angles.x = Mathf.Clamp(angles.x, minX, maxX);
                 

@@ -26,6 +26,12 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
+            if (!Rig.IsOwner)
+            {
+                enabled = false;
+                return;
+            }
+
             inputActions = new StickmanInputActions();
             playerActions = inputActions.Player;
 
@@ -39,6 +45,11 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnDestroyed()
         {
+            if (!Rig.IsOwner)
+            {
+                return;
+            }
+
             playerActions.Disable();
         }
 

@@ -19,6 +19,8 @@ namespace StickmanIo.Runtime.Player
         IPlayerGroundCheck groundCheck;
 
         List<RigComponent> components = new List<RigComponent>();
+
+        public bool IsOwner => header.IsOwner;
         
         public IHealth Health => health;
         public IAttacker Attacker => attacker;
