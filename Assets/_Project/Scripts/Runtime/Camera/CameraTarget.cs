@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace StickmanIo.Runtime.Camera
+namespace StickmanIo.Runtime
 {
     public class CameraTarget : MonoBehaviour
     {

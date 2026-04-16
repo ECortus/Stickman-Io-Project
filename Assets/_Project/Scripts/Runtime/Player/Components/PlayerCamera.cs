@@ -2,7 +2,6 @@
 using StickmanIo.Runtime.Player.Data;
 using Unity.Cinemachine;
 using UnityEngine;
-using CameraTarget = StickmanIo.Runtime.Camera.CameraTarget;
 
 namespace StickmanIo.Runtime.Player
 {

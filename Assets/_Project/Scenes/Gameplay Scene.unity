@@ -8377,6 +8377,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2984836697174705123, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984836697174705123, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994054685415093840, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994054685415093840, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6198282532187504312, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -12519,6 +12535,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1079993797964048275, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984836697174705123, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984836697174705123, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994054685415093840, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994054685415093840, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6198282532187504312, guid: 98e5e384b57125b4db6c2e777a7756c8, type: 3}

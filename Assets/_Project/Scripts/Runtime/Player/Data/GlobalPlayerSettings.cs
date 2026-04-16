@@ -22,8 +22,11 @@ namespace StickmanIo.Runtime.Player.Data
         public float LookVerticalSensitivity = 5f;
         public float LookHorizontalSensitivity = 25f;
 
+        [Header("Health parameters")]
+        public float BaseMaxHealth = 100f;
+
         [Header("Attack parameters")]
-        public float AttackBaseDamage = 0.5f;
+        public float BaseAttackDamage = 0.5f;
         public float AttackInputsDelay = 0.4f;
         public AttackData[] AttacksData;
 

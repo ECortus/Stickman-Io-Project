@@ -60,7 +60,7 @@ namespace StickmanIo.Runtime.Player
             int attackIndex = 1;
             int maxAttacks = attacks.Length;
 
-            var baseDamage = settings.AttackBaseDamage;
+            var baseDamage = settings.BaseAttackDamage;
 
             float maxDelayBetweenInputs = settings.AttackInputsDelay;
             while (Time.time - lastInputTime < maxDelayBetweenInputs)

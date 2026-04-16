@@ -9,9 +9,16 @@ namespace StickmanIo.Runtime.Player
 
     public class HitBoxReceiverController : HitBoxController, IHitBoxReceiver
     {
+        IHealth health;
+
+        protected override void OnInitialize()
+        {
+            health = GetComponentInParent<IHealth>();
+        }
+
         public void Damage(float damage)
         {
-            Debug.Log("Damage received by " + gameObject.name + " by " + damage + "!");  
+            health.TakeDamage(damage);
         }
     }
 }

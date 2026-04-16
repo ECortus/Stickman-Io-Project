@@ -1,9 +1,18 @@
 {
     "name": "stickman-io.runtime.ui",
     "rootNamespace": "Stickman-Io.Runtime.UI",
-    "references": [],
+    "references": [
+        "GUID:c66b278d67893b74ab973413e52565a3",
+        "GUID:1078a85b23c6f9348ad1940c33461d92",
+        "GUID:d5e2bed74676e3f489d26c16400e22e2",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:41a7148883c7c1a4ebe4baeba6fc35b5",
+        "GUID:5ef2a96e51afd0947ac1491508021f0b"
+    ],
     "includePlatforms": [],
-    "excludePlatforms": [],
+    "excludePlatforms": [
+        "PS4"
+    ],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],

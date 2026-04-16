@@ -21,7 +21,8 @@ MonoBehaviour:
   CameraVerticalAnglesRange: {x: -25, y: 15}
   LookVerticalSensitivity: 5
   LookHorizontalSensitivity: 25
-  AttackBaseDamage: 5
+  BaseMaxHealth: 100
+  BaseAttackDamage: 20
   AttackInputsDelay: 0.8
   AttacksData:
   - PrepareDuration: 0.25

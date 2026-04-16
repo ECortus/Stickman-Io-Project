@@ -124,6 +124,7 @@
   <Project Path="multiscenecontroller.editor.csproj" />
   <Project Path="Unity.Services.DeploymentApi.csproj" />
   <Project Path="userinterfacedevutils.tests.csproj" />
+  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="saveableextension.tests.csproj" />
   <Project Path="Unity.Services.Core.Registration.csproj" />
   <Project Path="Unity.PathTracing.Editor.csproj" />
