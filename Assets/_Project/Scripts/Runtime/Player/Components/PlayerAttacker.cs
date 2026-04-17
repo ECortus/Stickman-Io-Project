@@ -63,8 +63,19 @@ namespace StickmanIo.Runtime.Player
             var baseDamage = settings.BaseAttackDamage;
 
             float maxDelayBetweenInputs = settings.AttackInputsDelay;
-            while (Time.time - lastInputTime < maxDelayBetweenInputs)
+            while (true)
             {
+                if (Time.time - lastInputTime > maxDelayBetweenInputs)
+                {
+                    await UniTask.Yield();
+                    if (Time.time - lastInputTime > maxDelayBetweenInputs * 2f)
+                    {
+                        break;
+                    }
+
+                    continue;
+                }
+
                 inputReaded = true;
 
                 if (attackIndex > maxAttacks)

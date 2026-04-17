@@ -26,6 +26,7 @@ namespace StickmanIo.Runtime.Player
 
         GlobalPlayerSettings settings;
         ICamera cam;
+        IAttacker attacker;
 
         Rigidbody rb;
 
@@ -43,7 +44,9 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             settings = Data.Settings;
+
             cam = Rig.Camera;
+            attacker = Rig.Attacker;
 
             rb = GetComponent<Rigidbody>();
             rb.mass = settings.Mass;

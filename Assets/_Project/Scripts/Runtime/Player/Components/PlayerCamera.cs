@@ -39,6 +39,9 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+
             settings = Data.Settings;
             
             var targetGroup = FindAnyObjectByType<CinemachineTargetGroup>();

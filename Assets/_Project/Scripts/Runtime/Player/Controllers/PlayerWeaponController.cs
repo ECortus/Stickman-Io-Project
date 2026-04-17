@@ -54,7 +54,7 @@ namespace StickmanIo.Runtime.Player
                 instance = weapon.gameObject;
             }
 
-            hitBox = instance.GetComponentInChildren<IHitBoxDamageDealer>();
+            hitBox = GetComponentInChildren<IHitBoxDamageDealer>();
             initialized = true;
         }
 

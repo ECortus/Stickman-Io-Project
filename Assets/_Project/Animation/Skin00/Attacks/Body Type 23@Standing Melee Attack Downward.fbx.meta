@@ -37,8 +37,8 @@ ModelImporter:
       name: Standing Melee Attack Downward
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 18
-      lastFrame: 83
+      firstFrame: 22
+      lastFrame: 91
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

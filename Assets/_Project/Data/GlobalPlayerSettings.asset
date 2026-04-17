@@ -22,14 +22,14 @@ MonoBehaviour:
   LookVerticalSensitivity: 5
   LookHorizontalSensitivity: 25
   BaseMaxHealth: 100
-  BaseAttackDamage: 20
-  AttackInputsDelay: 0.8
+  BaseAttackDamage: 5
+  AttackInputsDelay: 0.3
   AttacksData:
-  - PrepareDuration: 0.25
-    AttackDuration: 0.5
-    PostDuration: 0.2
+  - PrepareDuration: 0.2
+    AttackDuration: 0.2
+    PostDuration: 0.05
     DamageModificator: 1.1
-  - PrepareDuration: 0.4
-    AttackDuration: 0.6
-    PostDuration: 0.2
+  - PrepareDuration: 0.25
+    AttackDuration: 0.15
+    PostDuration: 0.05
     DamageModificator: 1.4
