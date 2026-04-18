@@ -13,7 +13,6 @@ namespace StickmanIo.Runtime.Player
         readonly int NonAttackHash = Animator.StringToHash("NonAttack");
         readonly int AttackOneHash = Animator.StringToHash("Attack1");
         readonly int AttackTwoHash = Animator.StringToHash("Attack2");
-        readonly int AttackThreeHash = Animator.StringToHash("Attack3");
 
         [SerializeField] private Rigidbody parentBody;
 
@@ -22,13 +21,17 @@ namespace StickmanIo.Runtime.Player
         PlayerHeader header;
         PlayerRig rig;
 
+        IHealth health;
         IMovement movement;
         IAttacker attacker;
         IPlayerGroundCheck groundCheck;
 
+        RagdollController ragdoll;
+
         void Start()
         {
             animator = GetComponent<Animator>();
+            ragdoll = GetComponent<RagdollController>();
 
             header = GetComponentInParent<PlayerHeader>();
             if (!header)
@@ -38,16 +41,20 @@ namespace StickmanIo.Runtime.Player
             }
 
             header.OnRigInitialize.AddListener(OnRigInitialize);
+
+            ragdoll.OffRagdoll();
         }
 
         void OnRigInitialize()
         {
             rig = GetComponentInParent<PlayerRig>();
 
+            health = rig.Health;
             movement = rig.Movement;
             attacker = rig.Attacker;
             groundCheck = rig.GroundCheck;
 
+            health.OnDied += OnDied;
             movement.OnJump += TriggerJump;
             attacker.OnAttackStarted += OnAttack;
         }
@@ -113,9 +120,6 @@ namespace StickmanIo.Runtime.Player
                     case 2:
                         animator.SetTrigger(AttackTwoHash);
                         break;
-                    case 3:
-                        animator.SetTrigger(AttackThreeHash);
-                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(attackIndex), $"Invalid attack index: {attackIndex}");
                 }
@@ -134,6 +138,16 @@ namespace StickmanIo.Runtime.Player
 
             transform.localPosition = Vector3.zero;
             parentBody.MovePosition(bodyPosition);
+        }
+
+        void OnDied()
+        {
+            transform.SetParent(null);
+
+            ragdoll.SetToRagdoll();
+
+            animator.enabled = false;
+            ObjectHelper.Destroy(this);
         }
     }
 }

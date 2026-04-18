@@ -4,7 +4,7 @@ namespace StickmanIo.Runtime.Player
 {
     public interface IHitBoxReceiver : IHitBox
     {
-        void Damage(float damage);
+        void Damage(float damage, out bool isKilled);
     }
 
     public class HitBoxReceiverController : HitBoxController, IHitBoxReceiver
@@ -16,9 +16,9 @@ namespace StickmanIo.Runtime.Player
             health = GetComponentInParent<IHealth>();
         }
 
-        public void Damage(float damage)
+        public void Damage(float damage, out bool isKilled)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, out isKilled);
         }
     }
 }

@@ -5,18 +5,19 @@ namespace StickmanIo.Runtime.Player
 {
     public interface IHitBoxDamageDealer : IHitBox
     {
-        void UpdateDamage(float damage, float mod = 1f);
+        
     }
 
     public class HitBoxDamageDealerController : HitBoxController, IHitBoxDamageDealer
     {
         List<IHitBox> excludedHitBox;
 
-        float damage = -1f;
-        float damageMod = 1f;
+        IAttacker attacker;
 
         protected override void OnInitialize()
         {
+            attacker = GetComponentInParent<IAttacker>();
+
             excludedHitBox = new List<IHitBox>();
 
             var hitBoxes = GetComponentsInParent<IHitBox>();
@@ -28,12 +29,6 @@ namespace StickmanIo.Runtime.Player
             SetHitBoxActive(false);
         }
 
-        public void UpdateDamage(float damage, float mod = 1f)
-        {
-            this.damage = damage;
-            this.damageMod = mod;
-        }
-
         protected override void OnHitBoxTriggered(IHitBox hitBox)
         {
             if (excludedHitBox.Contains(hitBox))
@@ -43,8 +38,7 @@ namespace StickmanIo.Runtime.Player
 
             if (hitBox is IHitBoxReceiver receiver)
             {
-                var dmg = damage * damageMod;
-                receiver.Damage(dmg);
+                attacker.DamageUnit(receiver);
             }
         }
     }

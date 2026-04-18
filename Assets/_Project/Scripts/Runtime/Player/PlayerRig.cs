@@ -10,6 +10,7 @@ namespace StickmanIo.Runtime.Player
 
         PlayerHealth health;
         PlayerAttacker attacker;
+        PlayerLevel level;
         
         PlayerCamera cam;
         PlayerMovement movement;
@@ -24,6 +25,7 @@ namespace StickmanIo.Runtime.Player
         
         public IHealth Health => health;
         public IAttacker Attacker => attacker;
+        public ILevel Level => level;
         
         public ICamera Camera => cam;
         public IMovement Movement => movement;
@@ -47,6 +49,7 @@ namespace StickmanIo.Runtime.Player
         {
             health = AddComponent<PlayerHealth>();
             attacker = AddComponent<PlayerAttacker>();
+            level = AddComponent<PlayerLevel>();
             
             cam = AddComponent<PlayerCamera>();
             movement = AddComponent<PlayerMovement>();

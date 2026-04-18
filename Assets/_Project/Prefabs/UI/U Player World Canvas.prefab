@@ -45,6 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3233159501764479458}
+  - component: {fileID: 2835618461236765881}
   m_Layer: 13
   m_Name: Level Counter
   m_TagString: Untagged
@@ -73,6 +74,21 @@ RectTransform:
   m_AnchoredPosition: {x: 35, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2835618461236765881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002977311725514739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5ddf74ddcea1b4183c1280e8c05e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.Player.ULevelCounter
+  updateMethod: 1
+  invokeDelay: 1
+  text: {fileID: 6178702936219077788}
 --- !u!1 &1705211505162991031
 GameObject:
   m_ObjectHideFlags: 0

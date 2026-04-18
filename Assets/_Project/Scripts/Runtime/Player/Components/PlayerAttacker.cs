@@ -8,6 +8,9 @@ namespace StickmanIo.Runtime.Player
     public interface IAttacker
     {
         bool IsAttacking { get; }
+
+        void DamageUnit(IHitBoxReceiver unit);
+
         event Action<int> OnAttackStarted;
     }
 
@@ -18,7 +21,12 @@ namespace StickmanIo.Runtime.Player
         bool inputReaded;
         float lastInputTime;
 
+        float damage = -1f;
+        float damageMod = 1f;
+
         IMovement movement;
+        ILevel level;
+
         IPlayerWeaponController weaponController;
 
         public bool IsAttacking => isAttacking;
@@ -26,6 +34,8 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             movement = Rig.Movement;
+            level = Rig.Level;
+
             movement.OnJump += ResetAttack;
 
             weaponController = GetComponentInChildren<IPlayerWeaponController>();
@@ -37,6 +47,17 @@ namespace StickmanIo.Runtime.Player
         protected override void OnDestroyed()
         {
 
+        }
+
+        public void DamageUnit(IHitBoxReceiver unit)
+        {
+            var dmg = damage * damageMod;
+            unit.Damage(dmg, out bool isKilled);
+
+            if (isKilled)
+            {
+                level.AddLevel();
+            }
         }
 
         void TryAttack()
@@ -60,7 +81,7 @@ namespace StickmanIo.Runtime.Player
             int attackIndex = 1;
             int maxAttacks = attacks.Length;
 
-            var baseDamage = settings.BaseAttackDamage;
+            damage = settings.BaseAttackDamage;
 
             float maxDelayBetweenInputs = settings.AttackInputsDelay;
             while (true)
@@ -84,11 +105,11 @@ namespace StickmanIo.Runtime.Player
                 }
 
                 var currentAttack = attacks[attackIndex - 1];
-                var damageMod = currentAttack.DamageModificator;
+                damageMod = currentAttack.DamageModificator;
 
                 AttackStart(attackIndex);
 
-                PreAttack(baseDamage, damageMod);
+                PreAttack();
 
                 var prepareDuration = currentAttack.PrepareDuration;
                 await UniTask.Delay(TimeSpan.FromSeconds(prepareDuration));
@@ -124,11 +145,9 @@ namespace StickmanIo.Runtime.Player
             OnAttackStarted?.Invoke(attackIndex);
         }
 
-        void PreAttack(float baseDamage, float damageMod)
+        void PreAttack()
         {
             isAttacking = true;
-            weaponController.SetUpdatedDamage(baseDamage, damageMod);
-
             weaponController.SetWeaponActive(true);
         }
 

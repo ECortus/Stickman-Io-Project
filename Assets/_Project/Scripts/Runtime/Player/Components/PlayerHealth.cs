@@ -1,4 +1,5 @@
 ﻿using System;
+using GameDevUtils.Runtime;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -8,7 +9,7 @@ namespace StickmanIo.Runtime.Player
         float MaxHealth { get; }
 
         void Heal(float amount);
-        void TakeDamage(float damage);
+        void TakeDamage(float damage, out bool isKilled);
 
         event Action OnDied;
     }
@@ -40,14 +41,19 @@ namespace StickmanIo.Runtime.Player
             ClampHealth();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, out bool isKilled)
         {
             currentHealth -= damage;
             ClampHealth();
 
             if (currentHealth <= 0f)
             {
+                isKilled = true;
                 OnDeath();
+            }
+            else
+            {
+                isKilled = false;
             }
         }
 
@@ -66,6 +72,7 @@ namespace StickmanIo.Runtime.Player
         void OnDeath()
         {
             OnDied?.Invoke();
+            ObjectHelper.Destroy(this.gameObject);
         }
 
         public event Action OnDied;

@@ -10,8 +10,6 @@ namespace StickmanIo.Runtime.Player
 
         void SetCollidersActive(bool active);
         void SetWeaponActive(bool active);
-
-        void SetUpdatedDamage(float damage, float mod = 1f);
     }
 
     public class PlayerWeaponController : MonoBehaviour, IPlayerWeaponController
@@ -56,16 +54,6 @@ namespace StickmanIo.Runtime.Player
 
             hitBox = GetComponentInChildren<IHitBoxDamageDealer>();
             initialized = true;
-        }
-
-        public void SetUpdatedDamage(float damage, float mod = 1f)
-        {
-            if (!initialized)
-            {
-                Initialize();
-            }
-
-            hitBox.UpdateDamage(damage, mod);
         }
 
         public void SetCollidersActive(bool active)
