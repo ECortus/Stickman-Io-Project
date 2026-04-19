@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.Player
         event Action<int> OnAttackStarted;
     }
 
-    public class PlayerAttacker : RigComponent, IAttacker
+    public class PlayerAttacker : PlayerRigComponent, IAttacker
     {
         bool isAttacking;
 
@@ -33,6 +33,8 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+
             movement = Rig.Movement;
             level = Rig.Level;
 

@@ -1,18 +1,16 @@
-﻿using StickmanIo.Runtime.Player.Data;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace StickmanIo.Runtime.Player
+namespace StickmanIo.Runtime.Units
 {
     public abstract class RigComponent : MonoBehaviour
     {
-        protected PlayerRig Rig { get; private set; }
-        protected PlayerData Data { get; private set; }
+        protected UnitRig BaseRig { get; private set; }
 
-        public void Initialize(PlayerRig rig, PlayerData data)
+        protected T ConvertRig<T>() where T : UnitRig => BaseRig as T;
+
+        public void Initialize(UnitRig rig)
         {
-            Rig = rig;
-            Data = data;
-            
+            BaseRig = rig;
             OnInitialize();
         }
 

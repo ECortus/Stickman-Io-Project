@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.Data.GlobalPlayerSettings
   Mass: 5
   Speed: 7
+  SpeedInAir: 5.5
   RotationSpeed: 45
   JumpForce: 15
   CameraPositionOffset: {x: 0, y: 1.5, z: 0}

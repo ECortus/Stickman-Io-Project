@@ -7,7 +7,7 @@ namespace StickmanIo.Runtime.Player
         void AddLevel();
     }
 
-    public class PlayerLevel : RigComponent, ILevel
+    public class PlayerLevel : PlayerRigComponent, ILevel
     {
         int level = 1;
 
@@ -15,7 +15,7 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
-            
+            base.OnInitialize();
         }
 
         protected override void OnDestroyed()

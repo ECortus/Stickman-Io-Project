@@ -15,7 +15,7 @@ namespace StickmanIo.Runtime.Player
         public event Action OnJump;
     }
 
-    public class PlayerMovement : RigComponent, IMovement
+    public class PlayerMovement : PlayerRigComponent, IMovement
     {
         Vector3 lastPosition;
         Vector3 currentPosition;
@@ -25,16 +25,20 @@ namespace StickmanIo.Runtime.Player
         float speed;
 
         GlobalPlayerSettings settings;
+        
         ICamera cam;
         IAttacker attacker;
+        IPlayerGroundCheck groundCheck;
 
         Rigidbody rb;
+
+        float Speed => groundCheck.IsOnGround ? settings.Speed : settings.SpeedInAir;
 
         public float InputSpeed
         {
             get
             {
-                var velocity = moveDirection * settings.Speed;
+                var velocity = moveDirection * Speed;
                 return velocity.magnitude;
             }
         }
@@ -43,10 +47,13 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+
             settings = Data.Settings;
 
             cam = Rig.Camera;
             attacker = Rig.Attacker;
+            groundCheck = Rig.GroundCheck;
 
             rb = GetComponent<Rigidbody>();
             rb.mass = settings.Mass;
@@ -95,7 +102,7 @@ namespace StickmanIo.Runtime.Player
             Vector3 velocity;
             if (moveDirection != Vector3.zero)
             {
-                velocity = moveDirection * settings.Speed;
+                velocity = moveDirection * Speed;
             }
             else
             {

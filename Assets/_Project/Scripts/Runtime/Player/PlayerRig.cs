@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameDevUtils.Runtime;
+using StickmanIo.Runtime.Player.Data;
+using StickmanIo.Runtime.Units;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public class PlayerRig : MonoBehaviour
+    public class PlayerRig : UnitRig
     {
         PlayerHeader header;
 
@@ -19,8 +22,6 @@ namespace StickmanIo.Runtime.Player
         
         IPlayerGroundCheck groundCheck;
 
-        List<RigComponent> components = new List<RigComponent>();
-
         public bool IsOwner => header.IsOwner;
         
         public IHealth Health => health;
@@ -33,19 +34,16 @@ namespace StickmanIo.Runtime.Player
         public IPlayerGroundCheck GroundCheck => groundCheck;
         
         public IInputEvents InputEvents => inputEvents;
+
+        public PlayerData GetData() => header.Data;
         
         public void Initialize(PlayerHeader hdr)
         {
             header = hdr;
-            InitializeComponents();
+            Initialize();
         }
         
-        public void OnDestroy()
-        {
-            DestroyComponents();
-        }
-        
-        void InitializeComponents()
+        protected override void InitializeComponents()
         {
             health = AddComponent<PlayerHealth>();
             attacker = AddComponent<PlayerAttacker>();
@@ -57,36 +55,6 @@ namespace StickmanIo.Runtime.Player
             inputEvents = AddComponent<PlayerInputEvents>();
 
             groundCheck = GetComponentInChildren<IPlayerGroundCheck>();
-            
-            OnAllComponentsAdded?.Invoke();
-            OnAllComponentsAdded = null;
-        }
-        
-        T AddComponent<T>() where T : RigComponent
-        {
-            var component = gameObject.AddComponent<T>();
-            var data = header.Data;
-            
-            components.Add(component);
-
-            OnAllComponentsAdded += () =>
-            {
-                component.Initialize(this, data);
-            };
-            
-            return component;
-        }
-        
-        event Action OnAllComponentsAdded;
-        
-        void DestroyComponents()
-        {
-            foreach (var c in components)
-            {
-                c.OnRigDestroy();
-            }
-            
-            components.Clear();
         }
     }
 }

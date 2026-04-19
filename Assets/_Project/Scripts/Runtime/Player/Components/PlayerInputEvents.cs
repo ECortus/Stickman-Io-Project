@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.Player
         event Action OnAttackAction;
     }
 
-    public class PlayerInputEvents : RigComponent, IInputEvents
+    public class PlayerInputEvents : PlayerRigComponent, IInputEvents
     {
         StickmanInputActions inputActions;
         StickmanInputActions.PlayerActions playerActions;
@@ -26,6 +26,8 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+
             if (!Rig.IsOwner)
             {
                 enabled = false;

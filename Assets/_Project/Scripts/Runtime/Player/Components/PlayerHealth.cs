@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.Player
         event Action OnDied;
     }
     
-    public class PlayerHealth : RigComponent, IHealth
+    public class PlayerHealth : PlayerRigComponent, IHealth
     {
         float currentHealth;
         float maxHealth;
@@ -24,6 +24,8 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+
             var settings = Data.Settings;
             maxHealth = settings.BaseMaxHealth;
 

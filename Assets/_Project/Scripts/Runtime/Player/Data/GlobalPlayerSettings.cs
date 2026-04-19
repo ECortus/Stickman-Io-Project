@@ -10,7 +10,12 @@ namespace StickmanIo.Runtime.Player.Data
 
         [Header("Movement parameters")]
         public float Speed = 5f;
+        public float SpeedInAir = 3f;
+
+        [Space(5)]
         public float RotationSpeed = 270f;
+
+        [Space(5)]
         public float JumpForce = 5f;
 
         [Header("Camera parameters")]

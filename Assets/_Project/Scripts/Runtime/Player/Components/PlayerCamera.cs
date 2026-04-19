@@ -10,7 +10,7 @@ namespace StickmanIo.Runtime.Player
         public float RotationHorizontalAngle { get; }   
     }
     
-    public class PlayerCamera : RigComponent, ICamera
+    public class PlayerCamera : PlayerRigComponent, ICamera
     {
         CameraTarget cameraTarget;
         Vector2 lookDirection;
@@ -33,6 +33,8 @@ namespace StickmanIo.Runtime.Player
         
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+
             if (!Rig.IsOwner)
             {
                 enabled = false;

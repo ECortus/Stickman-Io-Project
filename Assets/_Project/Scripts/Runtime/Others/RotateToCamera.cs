@@ -1,8 +1,11 @@
 using UnityEngine;
 
-namespace StickmanIo.Runtime.UI
+namespace StickmanIo.Runtime
 {
-    public class URotateToCamera : MonoBehaviour
+#if UNITY_EDITOR
+    [ExecuteInEditMode]
+#endif
+    public class RotateToCamera : MonoBehaviour
     {
         Camera cam;
 
@@ -13,6 +16,11 @@ namespace StickmanIo.Runtime.UI
 
         void LateUpdate()
         {
+            if (cam == null)
+            {
+                return;
+            }
+
             transform.rotation = cam.transform.rotation;
         }
     }
