@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData00
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.Data.PlayerData
   Settings: {fileID: 11400000, guid: d61fe29b76399e6459ad8c6363e548ef, type: 2}
+  Upgrades:
+  - {fileID: 11400000, guid: 97ce38924ff40f8478fda290630c3931, type: 2}
+  - {fileID: 11400000, guid: 9235cfe0c563d284cb69177a8da696e6, type: 2}
+  - {fileID: 11400000, guid: a1f0a1e8dec57a747a39f466a335cd28, type: 2}

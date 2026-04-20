@@ -1,3 +1,5 @@
+using System;
+
 namespace StickmanIo.Runtime.Player
 {
     public interface ILevel
@@ -5,6 +7,8 @@ namespace StickmanIo.Runtime.Player
         int Level { get; }
 
         void AddLevel();
+
+        event Action<int> OnLevelUp;
     }
 
     public class PlayerLevel : PlayerRigComponent, ILevel
@@ -12,6 +16,8 @@ namespace StickmanIo.Runtime.Player
         int level = 1;
 
         public int Level => level;
+
+        public event Action<int> OnLevelUp;
 
         protected override void OnInitialize()
         {
@@ -26,6 +32,7 @@ namespace StickmanIo.Runtime.Player
         public void AddLevel()
         {
             level++;
+            OnLevelUp?.Invoke(level);
         }
     }
 }

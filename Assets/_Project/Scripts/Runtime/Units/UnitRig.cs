@@ -9,16 +9,24 @@ namespace StickmanIo.Runtime.Units
     {
         List<RigComponent> components = new List<RigComponent>();
 
+        UnitsManager unitsManager;
+
         public virtual void Initialize()
         {
+            unitsManager = UnitsManager.GetInstance;
+
             InitializeComponents();
 
             OnAllComponentsAdded?.Invoke();
             OnAllComponentsAdded = null;
+
+            unitsManager.Register(this);
         }
 
         public virtual void OnDestroy()
         {
+            unitsManager.Unregister(this);
+            
             DestroyComponents();
         }
 
