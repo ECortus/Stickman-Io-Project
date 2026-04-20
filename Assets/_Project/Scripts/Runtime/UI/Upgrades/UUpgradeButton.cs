@@ -13,6 +13,7 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private TMP_Text labelText;
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text levelText;
+        [SerializeField] private TMP_Text percentageText;
         [SerializeField] private Button upgradeButton;
 
         public event Action OnButtonClickEvent;
@@ -44,7 +45,20 @@ namespace StickmanIo.Runtime.UI
 
         void UpdateButton()
         {
-            levelText.text = $"{runtimeData.Level:00}";
+            var lvl = runtimeData.Level;
+            if (lvl <= 0)
+            {
+                percentageText.gameObject.SetActive(false);
+            }
+            else
+            {
+                percentageText.gameObject.SetActive(true);
+
+                var value = runtimeData.GetFullValue();
+                percentageText.text = $"+{Mathf.RoundToInt(value * 100)}%";
+            }
+
+            levelText.text = $"{lvl:00}";
         }
 
         public void OnButtonClick()

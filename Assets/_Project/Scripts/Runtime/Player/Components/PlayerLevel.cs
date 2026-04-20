@@ -1,8 +1,9 @@
 using System;
+using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface ILevel
+    public interface ILevel : IRigInterface
     {
         int Level { get; }
 

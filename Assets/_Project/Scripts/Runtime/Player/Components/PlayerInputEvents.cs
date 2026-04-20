@@ -1,10 +1,11 @@
 ﻿using System;
 using StickmanIo.Runtime.Input;
+using StickmanIo.Runtime.Units;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface IInputEvents
+    public interface IInputEvents : IRigInterface
     {
         event Action<Vector2> OnLookAction;
         event Action<Vector2> OnMoveAction;

@@ -21,5 +21,13 @@ namespace StickmanIo.Runtime.UI
 
             return currentHealth / maxHealth;
         }
+
+        protected override string GetLabelText()
+        {
+            var currentHealth = Mathf.RoundToInt(health.CurrentHealth);
+            var maxHealth = Mathf.RoundToInt(health.MaxHealth);
+
+            return $"{currentHealth}/{maxHealth}";
+        }
     }
 }

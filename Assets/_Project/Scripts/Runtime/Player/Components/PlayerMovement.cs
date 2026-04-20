@@ -1,10 +1,11 @@
 ﻿using System;
 using StickmanIo.Runtime.Player.Data;
+using StickmanIo.Runtime.Units;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface IMovement
+    public interface IMovement : IRigInterface, ISpeedGradeable
     {
         public float InputSpeed { get; }
         public float ActualSpeed { get; }
@@ -32,7 +33,16 @@ namespace StickmanIo.Runtime.Player
 
         Rigidbody rb;
 
-        float Speed => groundCheck.IsOnGround ? settings.Speed : settings.SpeedInAir;
+        float Speed
+        {
+            get
+            {
+                var baseSpeed = groundCheck.IsOnGround ? settings.Speed : settings.SpeedInAir;
+                baseSpeed *= 1f + upgradeableSpeedModifier;
+
+                return baseSpeed;
+            }
+        }
 
         public float InputSpeed
         {
@@ -176,5 +186,12 @@ namespace StickmanIo.Runtime.Player
         }
 
         public event Action OnJump;
+
+        float upgradeableSpeedModifier = 0f;
+
+        public void UpdateSpeedModifier(float modifier)
+        {
+            upgradeableSpeedModifier = modifier;
+        }
     }
 }

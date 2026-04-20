@@ -1,9 +1,11 @@
 ﻿using System;
 using GameDevUtils.Runtime;
+using StickmanIo.Runtime.Player.Data;
+using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface IHealth
+    public interface IHealth : IRigInterface, IHealthGradeable
     {
         float CurrentHealth { get; }
         float MaxHealth { get; }
@@ -13,11 +15,13 @@ namespace StickmanIo.Runtime.Player
 
         event Action OnDied;
     }
-    
+
     public class PlayerHealth : PlayerRigComponent, IHealth
     {
+        GlobalPlayerSettings settings;
+
         float currentHealth;
-        float maxHealth;
+        float maxHealth => settings.BaseMaxHealth * (1f + upgradeableMaxHealthModifier);
 
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
@@ -26,15 +30,19 @@ namespace StickmanIo.Runtime.Player
         {
             base.OnInitialize();
 
-            var settings = Data.Settings;
-            maxHealth = settings.BaseMaxHealth;
-
-            Heal(maxHealth);
+            settings = Data.Settings;
+            Refill();
         }
-        
+
         protected override void OnDestroyed()
         {
-            
+
+        }
+
+        public void Refill()
+        {
+            currentHealth = maxHealth;
+            ClampHealth();
         }
 
         public void Heal(float amount)
@@ -78,5 +86,13 @@ namespace StickmanIo.Runtime.Player
         }
 
         public event Action OnDied;
+
+        float upgradeableMaxHealthModifier = 0f;
+
+        public void UpdateHealthModifier(float modifier)
+        {
+            upgradeableMaxHealthModifier = modifier;
+            Refill();
+        }
     }
 }

@@ -3,7 +3,7 @@ using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface IUpgrades
+    public interface IUpgrades : IRigInterface
     {
         int AvailableUpgrades { get; }
         bool HasAvailableUpgrade();

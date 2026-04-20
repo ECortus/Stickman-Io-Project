@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
 {
+    public interface IGradeable
+    {
+        
+    }
+
     public abstract class UpgradeEffect : ScriptableObject
     {
         [SerializeField] private float[] upgradesValues;

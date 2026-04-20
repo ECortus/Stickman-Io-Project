@@ -29,6 +29,8 @@ namespace StickmanIo.Runtime.Units
         public UpgradeData Data => data;
         public int Level => lvl;
 
+        public float GetFullValue() => data.GetFullValue(lvl);
+
         public event Action OnLevelUp;
 
         public void Upgrade()

@@ -1,11 +1,12 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
+using StickmanIo.Runtime.Units;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface IAttacker
+    public interface IAttacker : IRigInterface, IDamageGradeable
     {
         bool IsAttacking { get; }
 
@@ -84,6 +85,7 @@ namespace StickmanIo.Runtime.Player
             int maxAttacks = attacks.Length;
 
             damage = settings.BaseAttackDamage;
+            damage *= 1f + upgradeableDamageModifier;
 
             float maxDelayBetweenInputs = settings.AttackInputsDelay;
             while (true)
@@ -183,5 +185,12 @@ namespace StickmanIo.Runtime.Player
         }
 
         public event Action<int> OnAttackStarted;
+
+        float upgradeableDamageModifier = 0f;
+        
+        public void UpdateDamageModifier(float modifier)
+        {
+            upgradeableDamageModifier = modifier;
+        }
     }
 }

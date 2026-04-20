@@ -1,11 +1,12 @@
 ﻿using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Player.Data;
+using StickmanIo.Runtime.Units;
 using Unity.Cinemachine;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public interface ICamera
+    public interface ICamera : IRigInterface
     {
         public float RotationHorizontalAngle { get; }   
     }

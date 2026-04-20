@@ -17,6 +17,8 @@ namespace StickmanIo.Runtime.Units
         [Range(1f, 5f)]
         [SerializeField] private float effectsScaleModifier = 1f;
 
+        public float GetFullValue(int lvl) => effect.GetFullValue(lvl);
+
         public void ApplyEffect(UnitRig unit, int lvl)
         {
             effect.ApplyEffect(unit, lvl, effectsScaleModifier);

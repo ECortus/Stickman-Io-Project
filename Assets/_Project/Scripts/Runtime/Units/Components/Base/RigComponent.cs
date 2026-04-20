@@ -2,6 +2,11 @@
 
 namespace StickmanIo.Runtime.Units
 {
+    public interface IRigInterface
+    {
+        
+    }
+
     public abstract class RigComponent : MonoBehaviour
     {
         protected UnitRig BaseRig { get; private set; }
