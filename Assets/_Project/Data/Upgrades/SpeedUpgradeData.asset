@@ -15,3 +15,4 @@ MonoBehaviour:
   id: speed_upgrade
   title: Speed
   icon: {fileID: 21300000, guid: ec92e2a78f2ff264db561c6e14069589, type: 3}
+  effect: {fileID: 11400000, guid: ae2bdb42576e81047aebe4f007a95f29, type: 2}

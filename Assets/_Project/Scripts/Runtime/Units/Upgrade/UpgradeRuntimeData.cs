@@ -1,6 +1,6 @@
 using System;
 
-namespace StickmanIo.Runtime.Player
+namespace StickmanIo.Runtime.Units
 {
     [Serializable]
     public class UpgradeRuntimeData
@@ -17,6 +17,8 @@ namespace StickmanIo.Runtime.Player
             lvl = startLvl;
         }
 
+        UnitRig owner;
+
         UpgradeData data;
         int lvl;
 
@@ -25,12 +27,13 @@ namespace StickmanIo.Runtime.Player
 
         public event Action OnLevelUp;
 
-        public void AddLevel()
+        public void Upgrade()
         {
             lvl++;
-
-            //TODO: Upgrade from data
             OnLevelUp?.Invoke();
+
+            var effect = data.effect;
+            effect.ApplyEffect(owner, lvl);
         }
     }
 }

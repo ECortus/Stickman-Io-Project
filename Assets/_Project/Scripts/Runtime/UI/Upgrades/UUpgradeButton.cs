@@ -1,5 +1,5 @@
 using System;
-using StickmanIo.Runtime.Player;
+using StickmanIo.Runtime.Units;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,7 +49,7 @@ namespace StickmanIo.Runtime.UI
 
         public void OnButtonClick()
         {
-            runtimeData.AddLevel();
+            runtimeData.Upgrade();
             UpdateButton();
 
             OnButtonClickEvent?.Invoke();

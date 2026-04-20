@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player.Data
 {
