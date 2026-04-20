@@ -590,7 +590,7 @@ namespace StickmanIo.Runtime.Input
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""15cef263-9014-4fd5-94d9-4e4a6234a6ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -654,6 +654,78 @@ namespace StickmanIo.Runtime.Input
                     ""type"": ""PassThrough"",
                     ""id"": ""9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be"",
                     ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum1"",
+                    ""type"": ""Button"",
+                    ""id"": ""0125c883-c741-48e4-a05d-5592a78e21c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum2"",
+                    ""type"": ""Button"",
+                    ""id"": ""707ceaf3-54ca-4e7a-87b8-a573c5e64ae3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum3"",
+                    ""type"": ""Button"",
+                    ""id"": ""d513bb5b-6bed-4ddd-94a6-f9a82e989c87"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum4"",
+                    ""type"": ""Button"",
+                    ""id"": ""497c7a8a-1d20-43b7-a8ee-5d6670ef0194"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum5"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7ff3463-d3c4-4cc7-a00d-07db4583a46b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum6"",
+                    ""type"": ""Button"",
+                    ""id"": ""ade57802-579e-4a78-b615-796c11bd2d96"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum7"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f9dab52-70e1-4535-883f-cfd82bf2d574"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum8"",
+                    ""type"": ""Button"",
+                    ""id"": ""abe1fcd2-3abd-45d2-958f-abd31916c908"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1077,6 +1149,94 @@ namespace StickmanIo.Runtime.Input
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfe7f2d6-19a7-4a91-b5b2-14218c189ead"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec2bcae0-9ff7-48d5-b956-7ab2bc0a4c8c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b8d6b3d-68d4-4f7c-9575-ed018efb8d4d"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3ae6332-6497-4dce-aeda-d21a463e9632"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e78b32f-669d-440c-b5df-d602f74fd8bc"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cee7aa4f-3945-4d35-833a-3fe7a9436380"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69206606-7394-4981-87c5-eeaf26d65e55"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""792ce561-b340-4c4d-bbcd-fa863205c93e"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeyNum8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1167,6 +1327,14 @@ namespace StickmanIo.Runtime.Input
             m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            m_UI_KeyNum1 = m_UI.FindAction("KeyNum1", throwIfNotFound: true);
+            m_UI_KeyNum2 = m_UI.FindAction("KeyNum2", throwIfNotFound: true);
+            m_UI_KeyNum3 = m_UI.FindAction("KeyNum3", throwIfNotFound: true);
+            m_UI_KeyNum4 = m_UI.FindAction("KeyNum4", throwIfNotFound: true);
+            m_UI_KeyNum5 = m_UI.FindAction("KeyNum5", throwIfNotFound: true);
+            m_UI_KeyNum6 = m_UI.FindAction("KeyNum6", throwIfNotFound: true);
+            m_UI_KeyNum7 = m_UI.FindAction("KeyNum7", throwIfNotFound: true);
+            m_UI_KeyNum8 = m_UI.FindAction("KeyNum8", throwIfNotFound: true);
         }
 
         ~@StickmanInputActions()
@@ -1442,6 +1610,14 @@ namespace StickmanIo.Runtime.Input
         private readonly InputAction m_UI_ScrollWheel;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
+        private readonly InputAction m_UI_KeyNum1;
+        private readonly InputAction m_UI_KeyNum2;
+        private readonly InputAction m_UI_KeyNum3;
+        private readonly InputAction m_UI_KeyNum4;
+        private readonly InputAction m_UI_KeyNum5;
+        private readonly InputAction m_UI_KeyNum6;
+        private readonly InputAction m_UI_KeyNum7;
+        private readonly InputAction m_UI_KeyNum8;
         /// <summary>
         /// Provides access to input actions defined in input action map "UI".
         /// </summary>
@@ -1493,6 +1669,38 @@ namespace StickmanIo.Runtime.Input
             /// Provides access to the underlying input action "UI/TrackedDeviceOrientation".
             /// </summary>
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum1".
+            /// </summary>
+            public InputAction @KeyNum1 => m_Wrapper.m_UI_KeyNum1;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum2".
+            /// </summary>
+            public InputAction @KeyNum2 => m_Wrapper.m_UI_KeyNum2;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum3".
+            /// </summary>
+            public InputAction @KeyNum3 => m_Wrapper.m_UI_KeyNum3;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum4".
+            /// </summary>
+            public InputAction @KeyNum4 => m_Wrapper.m_UI_KeyNum4;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum5".
+            /// </summary>
+            public InputAction @KeyNum5 => m_Wrapper.m_UI_KeyNum5;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum6".
+            /// </summary>
+            public InputAction @KeyNum6 => m_Wrapper.m_UI_KeyNum6;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum7".
+            /// </summary>
+            public InputAction @KeyNum7 => m_Wrapper.m_UI_KeyNum7;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/KeyNum8".
+            /// </summary>
+            public InputAction @KeyNum8 => m_Wrapper.m_UI_KeyNum8;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1549,6 +1757,30 @@ namespace StickmanIo.Runtime.Input
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @KeyNum1.started += instance.OnKeyNum1;
+                @KeyNum1.performed += instance.OnKeyNum1;
+                @KeyNum1.canceled += instance.OnKeyNum1;
+                @KeyNum2.started += instance.OnKeyNum2;
+                @KeyNum2.performed += instance.OnKeyNum2;
+                @KeyNum2.canceled += instance.OnKeyNum2;
+                @KeyNum3.started += instance.OnKeyNum3;
+                @KeyNum3.performed += instance.OnKeyNum3;
+                @KeyNum3.canceled += instance.OnKeyNum3;
+                @KeyNum4.started += instance.OnKeyNum4;
+                @KeyNum4.performed += instance.OnKeyNum4;
+                @KeyNum4.canceled += instance.OnKeyNum4;
+                @KeyNum5.started += instance.OnKeyNum5;
+                @KeyNum5.performed += instance.OnKeyNum5;
+                @KeyNum5.canceled += instance.OnKeyNum5;
+                @KeyNum6.started += instance.OnKeyNum6;
+                @KeyNum6.performed += instance.OnKeyNum6;
+                @KeyNum6.canceled += instance.OnKeyNum6;
+                @KeyNum7.started += instance.OnKeyNum7;
+                @KeyNum7.performed += instance.OnKeyNum7;
+                @KeyNum7.canceled += instance.OnKeyNum7;
+                @KeyNum8.started += instance.OnKeyNum8;
+                @KeyNum8.performed += instance.OnKeyNum8;
+                @KeyNum8.canceled += instance.OnKeyNum8;
             }
 
             /// <summary>
@@ -1590,6 +1822,30 @@ namespace StickmanIo.Runtime.Input
                 @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+                @KeyNum1.started -= instance.OnKeyNum1;
+                @KeyNum1.performed -= instance.OnKeyNum1;
+                @KeyNum1.canceled -= instance.OnKeyNum1;
+                @KeyNum2.started -= instance.OnKeyNum2;
+                @KeyNum2.performed -= instance.OnKeyNum2;
+                @KeyNum2.canceled -= instance.OnKeyNum2;
+                @KeyNum3.started -= instance.OnKeyNum3;
+                @KeyNum3.performed -= instance.OnKeyNum3;
+                @KeyNum3.canceled -= instance.OnKeyNum3;
+                @KeyNum4.started -= instance.OnKeyNum4;
+                @KeyNum4.performed -= instance.OnKeyNum4;
+                @KeyNum4.canceled -= instance.OnKeyNum4;
+                @KeyNum5.started -= instance.OnKeyNum5;
+                @KeyNum5.performed -= instance.OnKeyNum5;
+                @KeyNum5.canceled -= instance.OnKeyNum5;
+                @KeyNum6.started -= instance.OnKeyNum6;
+                @KeyNum6.performed -= instance.OnKeyNum6;
+                @KeyNum6.canceled -= instance.OnKeyNum6;
+                @KeyNum7.started -= instance.OnKeyNum7;
+                @KeyNum7.performed -= instance.OnKeyNum7;
+                @KeyNum7.canceled -= instance.OnKeyNum7;
+                @KeyNum8.started -= instance.OnKeyNum8;
+                @KeyNum8.performed -= instance.OnKeyNum8;
+                @KeyNum8.canceled -= instance.OnKeyNum8;
             }
 
             /// <summary>
@@ -1836,6 +2092,62 @@ namespace StickmanIo.Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum1(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum2(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum3(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum4(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum5(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum6" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum6(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum7" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum7(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "KeyNum8" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnKeyNum8(InputAction.CallbackContext context);
         }
     }
 }

@@ -6,6 +6,7 @@ using StickmanIo.Runtime.Player;
 using StickmanIo.Runtime.Units;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace StickmanIo.Runtime.UI
 {
@@ -22,6 +23,18 @@ namespace StickmanIo.Runtime.UI
         [Space(5)]
         [SerializeField] private UUpgradeButton buttonPrefab;
         [SerializeField] private Transform parentTransform;
+
+        [Space(10)]
+        [SerializeField] private InputActionReference inputKey1;
+        [SerializeField] private InputActionReference inputKey2;
+        [SerializeField] private InputActionReference inputKey3;
+        [SerializeField] private InputActionReference inputKey4;
+        [SerializeField] private InputActionReference inputKey5;
+        [SerializeField] private InputActionReference inputKey6;
+        [SerializeField] private InputActionReference inputKey7;
+        [SerializeField] private InputActionReference inputKey8;
+
+        List<UUpgradeButton> buttons = new List<UUpgradeButton>();
 
         UnitsManager unitsManager;
         PlayerRig ownerRig;
@@ -114,8 +127,11 @@ namespace StickmanIo.Runtime.UI
                 var d = data[i];
 
                 var button = InstantiateButton();
-                button.SetupButton(d);
+
+                button.SetupButton(i, d);
                 button.OnButtonClickEvent += ReduceAvailableUpgrades;
+
+                BindButtonToInput(i, button);
             }
         }
 
@@ -123,6 +139,45 @@ namespace StickmanIo.Runtime.UI
         {
             var button = ObjectInstantiator.InstantiatePrefabForComponent(buttonPrefab, parentTransform);
             return button;
+        }
+
+        void BindButtonToInput(int id, UUpgradeButton button)
+        {
+            if (id < 0)
+            {
+                DebugHelper.LogError("Wrong id: " + id);
+                return;
+            }
+
+            switch (id)
+            {
+                case 0:
+                    inputKey1.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 1:
+                    inputKey2.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 2:
+                    inputKey3.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 3:
+                    inputKey4.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 4:
+                    inputKey5.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 5:
+                    inputKey6.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 6:
+                    inputKey7.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                case 7:
+                    inputKey8.action.performed += (cont) => button.OnButtonClick();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

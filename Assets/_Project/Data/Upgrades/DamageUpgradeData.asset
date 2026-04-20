@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c989cf1a84cb63a46b22ff80b43bcda3, type: 3}
   m_Name: DamageUpgradeData
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.UpgradeData
+  id: damage_upgrade
   title: Damage
   icon: {fileID: 21300000, guid: 0fc0260370f160b4899a87eb1c26ff07, type: 3}
