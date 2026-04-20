@@ -12,11 +12,14 @@ namespace StickmanIo.Runtime.Units
         public Sprite icon;
 
         [Space(10)]
-        public UpgradeEffect effect;
+        [SerializeField] private UpgradeEffect effect;
 
         [Range(1f, 5f)]
-        public float effectsScaleModifier = 1f;
+        [SerializeField] private float effectsScaleModifier = 1f;
 
-        //TODO: Action of upgrade, via scriptableobject or choosing script
+        public void ApplyEffect(UnitRig unit, int lvl)
+        {
+            effect.ApplyEffect(unit, lvl, effectsScaleModifier);
+        }
     }
 }

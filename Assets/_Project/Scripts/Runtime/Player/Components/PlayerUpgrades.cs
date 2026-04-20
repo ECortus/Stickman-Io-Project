@@ -44,7 +44,7 @@ namespace StickmanIo.Runtime.Player
                 var data = upgradesData[i];
                 if (data != null)
                 {
-                    var newUpgrade = new UpgradeRuntimeData(data);
+                    var newUpgrade = new UpgradeRuntimeData(data, Rig);
                     upgrades.Add(newUpgrade);
                 }
             }

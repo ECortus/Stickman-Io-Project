@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f81de8e4ece7047b842c1ab0007b0f, type: 3}
   m_Name: SpeedUpgradeEffect
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.SpeedUpgradeEffect
+  upgradesValues:
+  - 0.1
+  - 0.1
+  - 0.05
+  - 0.01

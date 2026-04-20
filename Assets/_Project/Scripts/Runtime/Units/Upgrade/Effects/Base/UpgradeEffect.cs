@@ -5,9 +5,20 @@ namespace StickmanIo.Runtime.Units
 {
     public abstract class UpgradeEffect : ScriptableObject
     {
-        [SerializeField] private int[] upgradesValues;
+        [SerializeField] private float[] upgradesValues;
 
-        public int GetValue(int lvl)
+        public float GetFullValue(int lvl)
+        {
+            float value = 0f;
+            for (int i = 0; i < lvl; i++)
+            {
+                value += GetValue(i);
+            }
+
+            return value;
+        }
+
+        float GetValue(int lvl)
         {
             if (upgradesValues.Length == 0)
             {
@@ -27,6 +38,6 @@ namespace StickmanIo.Runtime.Units
             return upgradesValues[lvl];
         }
 
-        public abstract void ApplyEffect(UnitRig unit, int lvl);
+        public abstract void ApplyEffect(UnitRig unit, int lvl, float valueModifier = 1f);
     }
 }

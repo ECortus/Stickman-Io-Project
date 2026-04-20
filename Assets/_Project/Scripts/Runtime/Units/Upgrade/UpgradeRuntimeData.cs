@@ -5,15 +5,19 @@ namespace StickmanIo.Runtime.Units
     [Serializable]
     public class UpgradeRuntimeData
     {
-        public UpgradeRuntimeData(UpgradeData dt)
+        public UpgradeRuntimeData(UpgradeData dt, UnitRig rig)
         {
             data = dt;
+            owner = rig;
+
             lvl = 0;
         }
 
-        public UpgradeRuntimeData(UpgradeData dt, int startLvl)
+        public UpgradeRuntimeData(UpgradeData dt, UnitRig rig, int startLvl)
         {
             data = dt;
+            owner = rig;
+
             lvl = startLvl;
         }
 
@@ -32,8 +36,7 @@ namespace StickmanIo.Runtime.Units
             lvl++;
             OnLevelUp?.Invoke();
 
-            var effect = data.effect;
-            effect.ApplyEffect(owner, lvl);
+            data.ApplyEffect(owner, lvl);
         }
     }
 }
