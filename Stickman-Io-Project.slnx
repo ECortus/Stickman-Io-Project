@@ -91,6 +91,7 @@
   <Project Path="ChatChannelSample.Editor.csproj" />
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.Addressables.csproj" />
+  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="Unity.Services.Authentication.PlayerAccounts.Editor.csproj" />
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="projectsetup.runtime.csproj" />
@@ -138,7 +139,6 @@
   <Project Path="projectsetup.editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
   <Project Path="Unity.Services.Core.Scheduler.csproj" />
-  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
   <Project Path="cachingobjectstool.editor.csproj" />

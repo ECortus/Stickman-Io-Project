@@ -19,6 +19,7 @@ namespace StickmanIo.Runtime.Player
         PlayerMovement movement;
 
         PlayerUpgrades upgrades;
+        PlayerResources resources;
         PlayerInputEvents inputEvents;
         
         IPlayerGroundCheck groundCheck;
@@ -35,6 +36,7 @@ namespace StickmanIo.Runtime.Player
         public IPlayerGroundCheck GroundCheck => groundCheck;
         
         public IUpgrades Upgrades => upgrades;
+        public IResources Resources => resources;
         public IInputEvents InputEvents => inputEvents;
 
         public PlayerData GetData() => header.Data;
@@ -55,6 +57,8 @@ namespace StickmanIo.Runtime.Player
             movement = AddComponent<PlayerMovement>();
             
             upgrades = AddComponent<PlayerUpgrades>();
+            resources = AddComponent<PlayerResources>();
+            
             inputEvents = AddComponent<PlayerInputEvents>();
 
             groundCheck = GetComponentInChildren<IPlayerGroundCheck>();
