@@ -38,4 +38,4 @@ MonoBehaviour:
   MaxCoinCost: 4
   MinCoinsCount: 10
   MaxCoinsCount: 20
-  throwForceOfCoin: 75
+  throwForceOfCoin: 150
