@@ -6,13 +6,17 @@ namespace StickmanIo.Runtime.Player
     public class PlayerLoot : PlayerRigComponent
     {
         IHealth health;
+        ILevel level;
+
         LootManager lootManager;
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            health = GetComponentInParent<IHealth>();
+            health = Rig.Health;
+            level = Rig.Level;
+
             lootManager = LootManager.GetInstance;
 
             health.OnDied += SpawnLoot;
@@ -27,16 +31,13 @@ namespace StickmanIo.Runtime.Player
         {
             var settings = Data.Settings;
 
-            var minCoinCost = settings.MinCoinCost;
-            var maxCoinCost = settings.MaxCoinCost;
-
             var minCoins = settings.MinCoinsCount;
             var maxCoins = settings.MaxCoinsCount;
 
             var offset = new Vector3(0, 1f, 0);
 
             int count = Random.Range(minCoins, maxCoins + 1);
-            int coinCost = Random.Range(minCoinCost, maxCoinCost + 1);
+            int coinCost = level.Level;
 
             float throwForce = settings.throwForceOfCoin;
 

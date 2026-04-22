@@ -17,7 +17,7 @@ namespace StickmanIo.Runtime
                 var hitBox = other.GetComponentInParent<IHitBox>();
                 if (hitBox is IHitBoxReceiver receiver)
                 {
-                    receiver.Damage(damageInEnter, out _);
+                    receiver.Damage(damageInEnter);
                 }
             }
         }
@@ -29,7 +29,7 @@ namespace StickmanIo.Runtime
                 var hitBox = other.GetComponentInParent<IHitBox>();
                 if (hitBox is IHitBoxReceiver receiver)
                 {
-                    receiver.Damage(damageInStay, out _);
+                    receiver.Damage(damageInStay);
                 }
             }
         }

@@ -47,9 +47,10 @@ namespace StickmanIo.Runtime.Player.Data
         }
 
         [Header("Loot parameters")]
-        public int MinCoinCost = 1;
-        public int MaxCoinCost = 5;
+        public int BaseScorePerKill = 100;
+        public int ScoreMultiplierPerEachLevelPerKill = 200;
 
+        [Space(10)]
         public int MinCoinsCount = 10;
         public int MaxCoinsCount = 20;
 

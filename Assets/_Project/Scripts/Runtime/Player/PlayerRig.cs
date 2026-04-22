@@ -7,7 +7,25 @@ using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public class PlayerRig : UnitRig
+    public interface IPlayerRig
+    {
+        bool IsOwner { get; }
+        
+        IHealth Health { get; }
+        IAttacker Attacker { get; }
+        ILevel Level { get; }
+        
+        ICamera Camera { get; }
+        IMovement Movement { get; }
+        
+        IPlayerGroundCheck GroundCheck { get; }
+        
+        IUpgrades Upgrades { get; }
+        IResources Resources { get; }
+        IInputEvents InputEvents { get; }
+    }
+
+    public class PlayerRig : UnitRig, IPlayerRig
     {
         PlayerHeader header;
 

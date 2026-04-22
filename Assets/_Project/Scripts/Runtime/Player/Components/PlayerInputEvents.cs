@@ -67,6 +67,7 @@ namespace StickmanIo.Runtime.Player
 
             if (gameStatement.IsPaused)
             {
+                ResetLookUpdate();
                 return;
             }
 
@@ -102,6 +103,11 @@ namespace StickmanIo.Runtime.Player
             {
                 OnLookAction?.Invoke(Vector2.zero);
             }
+        }
+
+        void ResetLookUpdate()
+        {
+            OnLookAction?.Invoke(Vector2.zero);
         }
 
         public event Action<Vector2> OnLookAction;

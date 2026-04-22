@@ -11,7 +11,10 @@ namespace StickmanIo.Runtime.Player
         float MaxHealth { get; }
 
         void Heal(float amount);
+
+        void TakeDamage(float damage);
         void TakeDamage(float damage, out bool isKilled);
+        void TakeDamage(float damage, out bool isKilled, out IPlayerRig rig);
 
         event Action OnDied;
     }
@@ -51,10 +54,22 @@ namespace StickmanIo.Runtime.Player
             ClampHealth();
         }
 
+        public void TakeDamage(float damage)
+        {
+            TakeDamage(damage, out _, out _);
+        }
+
         public void TakeDamage(float damage, out bool isKilled)
+        {
+            TakeDamage(damage, out isKilled, out _);
+        }
+
+        public void TakeDamage(float damage, out bool isKilled, out IPlayerRig rig)
         {
             currentHealth -= damage;
             ClampHealth();
+
+            rig = Rig;
 
             if (currentHealth <= 0f)
             {

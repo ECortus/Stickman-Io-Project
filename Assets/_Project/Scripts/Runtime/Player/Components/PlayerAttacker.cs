@@ -27,6 +27,7 @@ namespace StickmanIo.Runtime.Player
 
         IMovement movement;
         ILevel level;
+        IResources resources;
 
         IPlayerWeaponController weaponController;
 
@@ -38,6 +39,7 @@ namespace StickmanIo.Runtime.Player
 
             movement = Rig.Movement;
             level = Rig.Level;
+            resources = Rig.Resources;
 
             movement.OnJump += ResetAttack;
 
@@ -55,10 +57,11 @@ namespace StickmanIo.Runtime.Player
         public void DamageUnit(IHitBoxReceiver unit)
         {
             var dmg = damage * damageMod;
-            unit.Damage(dmg, out bool isKilled);
+            unit.Damage(dmg, out bool isKilled, out IPlayerRig rig);
 
             if (isKilled)
             {
+                resources.AddScore(rig);
                 level.AddLevel();
             }
         }
