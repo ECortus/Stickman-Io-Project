@@ -45,5 +45,15 @@ namespace StickmanIo.Runtime.Player.Data
             [Space(5), Range(1f, 3f)]
             public float DamageModificator;
         }
+
+        [Header("Loot parameters")]
+        public int MinCoinCost = 1;
+        public int MaxCoinCost = 5;
+
+        public int MinCoinsCount = 10;
+        public int MaxCoinsCount = 20;
+
+        [Space(5)]
+        public float throwForceOfCoin = 60f;
     }
 }

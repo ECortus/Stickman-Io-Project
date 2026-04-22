@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983870137672046894}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 2395108977046784483}
   - component: {fileID: 8978696795679338121}
   - component: {fileID: 338787068779343136}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: PickupAbleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905831492443955445}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -94,7 +94,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!135 &2395108977046784483
 SphereCollider:
@@ -106,10 +106,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 73783
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -136,8 +136,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2.5
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &338787068779343136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,9 +155,10 @@ MonoBehaviour:
     m_Bits: 8192
   resourceAmount: 1
   heightOffset: 0.5
-  speedMove: 6
-  speedRotate: 90
+  speedMove: 9
+  speedRotate: 180
   minDistance: 0.5
+  delayBeforeCanPickup: 0.85
 --- !u!1001 &887537051562207039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,6 +170,14 @@ PrefabInstance:
     - target: {fileID: 1343425844583092, guid: 12779f4ab4369fa469e2c9090d6d5a47, type: 3}
       propertyPath: m_Name
       value: AuraSoftYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343425844583092, guid: 12779f4ab4369fa469e2c9090d6d5a47, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741184341048988, guid: 12779f4ab4369fa469e2c9090d6d5a47, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4664119039206506, guid: 12779f4ab4369fa469e2c9090d6d5a47, type: 3}
       propertyPath: m_LocalScale.x
@@ -291,6 +300,10 @@ PrefabInstance:
     - target: {fileID: 1639909534220598, guid: 2eb5d4c04f841f7499c1943a559deb0a, type: 3}
       propertyPath: m_Name
       value: coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639909534220598, guid: 2eb5d4c04f841f7499c1943a559deb0a, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4486814125003868, guid: 2eb5d4c04f841f7499c1943a559deb0a, type: 3}
       propertyPath: m_LocalScale.x

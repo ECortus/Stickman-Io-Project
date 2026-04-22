@@ -20,6 +20,8 @@ namespace StickmanIo.Runtime.Player
 
         PlayerUpgrades upgrades;
         PlayerResources resources;
+        PlayerLoot loot;
+
         PlayerInputEvents inputEvents;
         
         IPlayerGroundCheck groundCheck;
@@ -58,7 +60,8 @@ namespace StickmanIo.Runtime.Player
             
             upgrades = AddComponent<PlayerUpgrades>();
             resources = AddComponent<PlayerResources>();
-            
+            loot = AddComponent<PlayerLoot>();
+
             inputEvents = AddComponent<PlayerInputEvents>();
 
             groundCheck = GetComponentInChildren<IPlayerGroundCheck>();

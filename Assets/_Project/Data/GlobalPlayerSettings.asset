@@ -23,14 +23,19 @@ MonoBehaviour:
   LookVerticalSensitivity: 5
   LookHorizontalSensitivity: 25
   BaseMaxHealth: 100
-  BaseAttackDamage: 20
+  BaseAttackDamage: 25
   AttackInputsDelay: 0.3
   AttacksData:
   - PrepareDuration: 0.2
     AttackDuration: 0.2
     PostDuration: 0.05
-    DamageModificator: 1.1
+    DamageModificator: 1
   - PrepareDuration: 0.25
     AttackDuration: 0.15
     PostDuration: 0.05
-    DamageModificator: 1.4
+    DamageModificator: 1.35
+  MinCoinCost: 2
+  MaxCoinCost: 4
+  MinCoinsCount: 10
+  MaxCoinsCount: 20
+  throwForceOfCoin: 75
