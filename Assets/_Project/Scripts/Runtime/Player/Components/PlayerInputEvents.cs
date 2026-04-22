@@ -1,5 +1,6 @@
 ﻿using System;
 using StickmanIo.Runtime.Input;
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Units;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace StickmanIo.Runtime.Player
         IMovement movement;
         IAttacker attacker;
 
+        GameStatement gameStatement;
+
         IPlayerGroundCheck groundCheck;
 
         protected override void OnInitialize()
@@ -34,6 +37,8 @@ namespace StickmanIo.Runtime.Player
                 enabled = false;
                 return;
             }
+
+            gameStatement = GameStatement.GetInstance;
 
             inputActions = new StickmanInputActions();
             playerActions = inputActions.Player;
@@ -58,8 +63,14 @@ namespace StickmanIo.Runtime.Player
 
         private void LateUpdate()
         {
-            OnLookUpdate();
             OnMoveUpdate();
+
+            if (gameStatement.IsPaused)
+            {
+                return;
+            }
+
+            OnLookUpdate();
 
             OnJumpUpdate();
             OnAttackUpdate();

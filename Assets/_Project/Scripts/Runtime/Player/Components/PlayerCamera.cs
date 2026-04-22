@@ -1,4 +1,5 @@
 ﻿using GameDevUtils.Runtime;
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
 using Unity.Cinemachine;
@@ -41,9 +42,6 @@ namespace StickmanIo.Runtime.Player
                 enabled = false;
                 return;
             }
-
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
 
             settings = Data.Settings;
             

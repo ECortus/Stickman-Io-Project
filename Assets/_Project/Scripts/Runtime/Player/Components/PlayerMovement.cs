@@ -1,4 +1,5 @@
 ﻿using System;
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
 using UnityEngine;
@@ -58,7 +59,7 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
+    
             settings = Data.Settings;
 
             cam = Rig.Camera;

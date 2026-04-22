@@ -729,6 +729,15 @@ namespace StickmanIo.Runtime.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""7aa2a461-7878-4d9b-a3f9-2757672325c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1237,6 +1246,17 @@ namespace StickmanIo.Runtime.Input
                     ""action"": ""KeyNum8"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12cfa354-ce1a-4524-8d77-7d00b0fe2b0b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1335,6 +1355,7 @@ namespace StickmanIo.Runtime.Input
             m_UI_KeyNum6 = m_UI.FindAction("KeyNum6", throwIfNotFound: true);
             m_UI_KeyNum7 = m_UI.FindAction("KeyNum7", throwIfNotFound: true);
             m_UI_KeyNum8 = m_UI.FindAction("KeyNum8", throwIfNotFound: true);
+            m_UI_Escape = m_UI.FindAction("Escape", throwIfNotFound: true);
         }
 
         ~@StickmanInputActions()
@@ -1618,6 +1639,7 @@ namespace StickmanIo.Runtime.Input
         private readonly InputAction m_UI_KeyNum6;
         private readonly InputAction m_UI_KeyNum7;
         private readonly InputAction m_UI_KeyNum8;
+        private readonly InputAction m_UI_Escape;
         /// <summary>
         /// Provides access to input actions defined in input action map "UI".
         /// </summary>
@@ -1702,6 +1724,10 @@ namespace StickmanIo.Runtime.Input
             /// </summary>
             public InputAction @KeyNum8 => m_Wrapper.m_UI_KeyNum8;
             /// <summary>
+            /// Provides access to the underlying input action "UI/Escape".
+            /// </summary>
+            public InputAction @Escape => m_Wrapper.m_UI_Escape;
+            /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
             public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -1781,6 +1807,9 @@ namespace StickmanIo.Runtime.Input
                 @KeyNum8.started += instance.OnKeyNum8;
                 @KeyNum8.performed += instance.OnKeyNum8;
                 @KeyNum8.canceled += instance.OnKeyNum8;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
 
             /// <summary>
@@ -1846,6 +1875,9 @@ namespace StickmanIo.Runtime.Input
                 @KeyNum8.started -= instance.OnKeyNum8;
                 @KeyNum8.performed -= instance.OnKeyNum8;
                 @KeyNum8.canceled -= instance.OnKeyNum8;
+                @Escape.started -= instance.OnEscape;
+                @Escape.performed -= instance.OnEscape;
+                @Escape.canceled -= instance.OnEscape;
             }
 
             /// <summary>
@@ -2148,6 +2180,13 @@ namespace StickmanIo.Runtime.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnKeyNum8(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnEscape(InputAction.CallbackContext context);
         }
     }
 }
