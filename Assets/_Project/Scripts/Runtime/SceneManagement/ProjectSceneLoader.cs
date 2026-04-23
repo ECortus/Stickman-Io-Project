@@ -31,7 +31,7 @@ namespace StickmanIo.Runtime.SceneManagement
                 .Perform();
         }
 
-        public static void ExitApplication()
+        public static void QuitApplication()
         {
             Application.Quit();
         }

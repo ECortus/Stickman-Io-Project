@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d5b85949184755b775c25fb581f163, type: 3}
   m_Name: SettingsMenuParametersSO
   m_EditorClassIdentifier: SettingsMenu.Runtime::SettingsMenu.Runtime.Bottom.Settings.SettingsMenuParametersSO
-  settingsMenu: {fileID: 7268566237724373359, guid: 91252cee178a9d1439052e219d7c628c, type: 3}
+  settingsMenu: {fileID: 5561184443982292691, guid: 7a9d6df07ee37e648a099afee0f12dcb, type: 3}
   mobileSettingsMenu: {fileID: 8180142699255860301, guid: a2dfaf1260c8990469e0f9c4aa8d646d, type: 3}
   AlwaysSaveOnChange: 1
   CanResetToDefault: 0

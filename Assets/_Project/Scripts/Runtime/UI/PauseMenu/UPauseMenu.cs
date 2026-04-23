@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.UI
         [Space(5)]
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button mainMenuButton;
-        [SerializeField] private Button exitButton;
+        [SerializeField] private Button quitButton;
 
         [Space(10)]
         [SerializeField] private InputActionReference pauseAction;
@@ -35,7 +35,7 @@ namespace StickmanIo.Runtime.UI
         {
             resumeButton.onClick.AddListener(OnResumeButtonClicked);
             mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
-            exitButton.onClick.AddListener(OnExitButtonClicked);
+            quitButton.onClick.AddListener(OnQuitButtonClicked);
         }
 
         void SetupInputs()
@@ -85,9 +85,9 @@ namespace StickmanIo.Runtime.UI
             ProjectSceneLoader.LoadMainMenu();
         }
 
-        void OnExitButtonClicked()
+        void OnQuitButtonClicked()
         {
-            ProjectSceneLoader.ExitApplication();
+            ProjectSceneLoader.QuitApplication();
         }
     }
 }

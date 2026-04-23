@@ -8008,11 +8008,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2977528510301177869, guid: 5584045f922088d43b8a0e3e71917523, type: 3}
       propertyPath: m_text
-      value: Exit
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 8243759872074731748, guid: 5584045f922088d43b8a0e3e71917523, type: 3}
       propertyPath: m_Name
-      value: Exit
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 8716531083548851127, guid: 5584045f922088d43b8a0e3e71917523, type: 3}
       propertyPath: m_Pivot.x
@@ -11164,7 +11164,7 @@ MonoBehaviour:
   menuRoot: {fileID: 340153302}
   resumeButton: {fileID: 9157053539970282971}
   mainMenuButton: {fileID: 422560292}
-  exitButton: {fileID: 995642800}
+  quitButton: {fileID: 995642800}
   pauseAction: {fileID: -5751646812961675760, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &1610617399
 PrefabInstance:
