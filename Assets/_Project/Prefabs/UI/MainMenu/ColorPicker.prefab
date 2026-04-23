@@ -3304,7 +3304,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181038343584393254}
         m_TargetAssemblyTypeName: TS.ColorPicker.ColorPicker, stickman-io.runtime.ui
-        m_MethodName: UI_Button_Picker
+        m_MethodName: OnColorPicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
