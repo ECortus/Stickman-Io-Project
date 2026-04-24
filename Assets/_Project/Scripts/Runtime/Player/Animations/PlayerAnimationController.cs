@@ -30,17 +30,19 @@ namespace StickmanIo.Runtime.Player
 
         void Start()
         {
+            header = GetComponentInParent<PlayerHeader>();
+            if (!header)
+            {
+                /* DebugHelper.LogWarning($"AnimationController on {gameObject.name} requires a Header in its parents."); */
+
+                enabled = false;
+                return;
+            }
+
             animator = GetComponent<Animator>();
             ragdoll = GetComponent<RagdollController>();
 
             body = GetComponentInParent<Rigidbody>();
-
-            header = GetComponentInParent<PlayerHeader>();
-            if (!header)
-            {
-                DebugHelper.LogWarning($"AnimationController on {gameObject.name} requires a Header in its parents.");
-                return;
-            }
 
             header.OnRigInitialize.AddListener(OnRigInitialize);
 

@@ -14,8 +14,6 @@ namespace StickmanIo.Runtime.Player
 
         IAttacker attacker;
 
-        bool initialized = false;
-
         protected override void OnInitialize()
         {
             attacker = GetComponentInParent<IAttacker>();
@@ -24,8 +22,6 @@ namespace StickmanIo.Runtime.Player
 
             var hitBoxes = GetComponentsInParent<IHitBox>();
             excludedHitBox.AddRange(hitBoxes);
-
-            initialized = true;
         }
 
         protected override void PostInitialize()
@@ -35,7 +31,7 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnHitBoxTriggered(IHitBox hitBox)
         {
-            if (!initialized)
+            if (!IsInitialized)
             {
                 return;
             }

@@ -18,7 +18,7 @@ namespace StickmanIo.Runtime.Player
 
         Collider[] hitBoxColliders;
 
-        bool initialized = false;
+        protected bool IsInitialized { get; private set; } = false;
 
         void Start()
         {
@@ -30,7 +30,7 @@ namespace StickmanIo.Runtime.Player
             GetAllColliders();
 
             OnInitialize();
-            initialized = true;
+            IsInitialized = true;
 
             PostInitialize();
         }
@@ -47,7 +47,7 @@ namespace StickmanIo.Runtime.Player
 
         void GetAllColliders()
         {
-            if (initialized)
+            if (IsInitialized)
             {
                 return;
             }
@@ -57,7 +57,7 @@ namespace StickmanIo.Runtime.Player
 
         public void SetHitBoxActive(bool active)
         {
-            if (!initialized)
+            if (!IsInitialized)
             {
                 Initialize();
             }

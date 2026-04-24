@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7140789815203380997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2308149656368361563, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308149656368361563, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308149656368361563, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308149656368361563, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879136555714432936, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_Name
+      value: Debug UI Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252262512112388505, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252262512112388505, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252262512112388505, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252262512112388505, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.212769
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -909.5743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3399.582
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074930177647017194, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288064894481731975, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288064894481731975, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288064894481731975, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288064894481731975, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 65025752640270948, guid: aa191a082de4cf141935528718f12b92, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4577094743860080835, guid: aa191a082de4cf141935528718f12b92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2791141174041239963}
+  m_SourcePrefab: {fileID: 100100000, guid: aa191a082de4cf141935528718f12b92, type: 3}
+--- !u!1 &6673268033873170374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577094743860080835, guid: aa191a082de4cf141935528718f12b92, type: 3}
+  m_PrefabInstance: {fileID: 7140789815203380997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2791141174041239963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673268033873170374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a4986719111b64381a4bed344acdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.Debug.StickmanIoCheatsFieldsSetup

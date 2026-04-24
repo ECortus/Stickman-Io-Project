@@ -1,3 +1,4 @@
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player
@@ -16,8 +17,30 @@ namespace StickmanIo.Runtime.Player
         int score;
         int coins;
 
+        bool isOwner;
+        GoldStorage goldStorage;
+
         public int Score => score;
         public int Coins => coins;
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+            isOwner = Rig.IsOwner;
+
+            if (!isOwner)
+            {
+                enabled = false;
+                return;
+            }
+
+            goldStorage = GoldStorage.GetInstance;
+        }
+
+        protected override void OnDestroyed()
+        {
+            base.OnDestroyed();
+        }
 
         public void AddScore(IPlayerRig killedRig)
         {
@@ -32,11 +55,17 @@ namespace StickmanIo.Runtime.Player
 
         public void AddCoins(int amount)
         {
+            if (!isOwner)
+            {
+                return;
+            }
+
             if (amount <= 0)
             {
                 return;
             }
 
+            goldStorage.Add(amount);
             this.coins += amount;
         }
     }
