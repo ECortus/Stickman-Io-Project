@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     public class HsbPicker : MonoBehaviour
     {

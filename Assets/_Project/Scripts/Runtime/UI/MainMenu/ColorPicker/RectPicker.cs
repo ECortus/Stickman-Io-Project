@@ -2,7 +2,7 @@
 using UnityEngine;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     [RequireComponent(typeof(PointerTrackerArea))]
     public class RectPicker : MonoBehaviour

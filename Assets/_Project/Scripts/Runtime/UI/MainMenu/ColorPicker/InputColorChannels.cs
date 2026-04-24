@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     public class InputColorChannels : MonoBehaviour
     {

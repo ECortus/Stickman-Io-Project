@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     [RequireComponent(typeof(PointerTrackerArea), typeof(Slider))]
     public class ColorSlider : MonoBehaviour

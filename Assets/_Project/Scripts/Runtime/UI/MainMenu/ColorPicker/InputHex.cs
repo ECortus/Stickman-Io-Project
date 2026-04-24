@@ -4,27 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
-    public class InputChannel : MonoBehaviour
+    public class InputHex : MonoBehaviour
     {
         #region Variables
 
         InputField _inputLegacy;
         TMP_InputField _input;
 
-        public delegate void OnValueChanged(InputChannel sender, float value, int value32);
+        public delegate void OnValueChanged(InputHex sender, Color color);
         public OnValueChanged ValueChanged;
-
-        public float Value
-        {
-            get { return Value32 / 255f; }
-            set { Value32 = Mathf.RoundToInt(value * 255f); }
-        }
 
         string Text
         {
-            get
+            get 
             {
                 if (_inputLegacy != null)
                 {
@@ -38,29 +32,30 @@ namespace TS.ColorPicker
 
                 return string.Empty;
             }
-            set
-            {
+            set 
+            { 
                 if (_inputLegacy != null)
                 {
-                    _inputLegacy.text = value;
+                    _inputLegacy.text = value; 
                 }
 
                 if (_input != null)
                 {
-                    _input.text = value;
+                    _input.text = value; 
                 }
             }
         }
 
-        public int Value32
+        public Color Value
         {
-            get 
+            get
             {
-                return Mathf.Clamp(int.Parse(Text), 0, 255);
+                ColorUtility.TryParseHtmlString(string.Format("#{0}", Text), out Color color);
+                return color;
             }
-            set 
-            { 
-                Text = Mathf.Clamp(value, 0, 255).ToString();
+            set
+            {
+                Text = ColorUtility.ToHtmlStringRGBA(value);
             }
         }
 
@@ -85,8 +80,7 @@ namespace TS.ColorPicker
         private void Input_EndEdit(string arg0)
         {
             if (string.IsNullOrEmpty(arg0)) { return; }
-
-            ValueChanged?.Invoke(this, Value, Value32);
+            ValueChanged?.Invoke(this, Value);
         }
     }
 }

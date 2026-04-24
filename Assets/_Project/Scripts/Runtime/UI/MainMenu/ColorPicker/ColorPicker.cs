@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     public class ColorPicker : MonoBehaviour
     {
@@ -73,7 +73,7 @@ namespace TS.ColorPicker
 
         public void Open()
         {
-            Open(Color.white);
+            Open(_currentColor);
         }
 
         public void Open(Color color)

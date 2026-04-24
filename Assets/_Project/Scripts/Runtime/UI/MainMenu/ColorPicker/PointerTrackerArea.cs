@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 #endregion
 
-namespace TS.ColorPicker
+namespace StickmanIo.Runtime.UI.ColorPicker
 {
     [RequireComponent(typeof(RectTransform))]
     public class PointerTrackerArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
