@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.Player
         readonly int AttackOneHash = Animator.StringToHash("Attack1");
         readonly int AttackTwoHash = Animator.StringToHash("Attack2");
 
-        [SerializeField] private Rigidbody parentBody;
+        [SerializeField, ReadOnly] private Rigidbody body;
 
         Animator animator;
 
@@ -32,6 +32,8 @@ namespace StickmanIo.Runtime.Player
         {
             animator = GetComponent<Animator>();
             ragdoll = GetComponent<RagdollController>();
+
+            body = GetComponentInParent<Rigidbody>();
 
             header = GetComponentInParent<PlayerHeader>();
             if (!header)
@@ -128,8 +130,8 @@ namespace StickmanIo.Runtime.Player
 
         void SyncPositionsWithBody()
         {
-            var bodyPosition = parentBody.position;
-            var bodyRotation = parentBody.rotation;
+            var bodyPosition = body.position;
+            var bodyRotation = body.rotation;
 
             var localPosition = transform.localPosition;
             localPosition = bodyRotation * localPosition;
@@ -137,7 +139,7 @@ namespace StickmanIo.Runtime.Player
             bodyPosition += localPosition;
 
             transform.localPosition = Vector3.zero;
-            parentBody.MovePosition(bodyPosition);
+            body.MovePosition(bodyPosition);
         }
 
         void OnDied()

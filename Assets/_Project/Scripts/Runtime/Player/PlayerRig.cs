@@ -40,6 +40,8 @@ namespace StickmanIo.Runtime.Player
         PlayerResources resources;
         PlayerLoot loot;
 
+        PlayerSkin skin;
+
         PlayerInputEvents inputEvents;
         
         IPlayerGroundCheck groundCheck;
@@ -69,6 +71,8 @@ namespace StickmanIo.Runtime.Player
         
         protected override void InitializeComponents()
         {
+            skin = AddComponent<PlayerSkin>();
+
             health = AddComponent<PlayerHealth>();
             attacker = AddComponent<PlayerAttacker>();
             level = AddComponent<PlayerLevel>();

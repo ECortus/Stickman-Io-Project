@@ -7,6 +7,7 @@ namespace StickmanIo.Runtime.Player.Data
     public class PlayerData : ScriptableObject
     {
         public GlobalPlayerSettings Settings;
+        public SkinsCollection SkinsCollection;
 
         [Space(5)]
         public UpgradeData[] Upgrades;

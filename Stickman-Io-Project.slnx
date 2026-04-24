@@ -80,6 +80,7 @@
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
+  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="Unity.Services.Deployment.csproj" />
   <Project Path="ChatChannelSample.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
@@ -91,7 +92,6 @@
   <Project Path="ChatChannelSample.Editor.csproj" />
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.Addressables.csproj" />
-  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="Unity.Services.Authentication.PlayerAccounts.Editor.csproj" />
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="projectsetup.runtime.csproj" />

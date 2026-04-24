@@ -10,9 +10,11 @@ namespace StickmanIo.Runtime.Player
 
     public class HitBoxDamageDealerController : HitBoxController, IHitBoxDamageDealer
     {
-        List<IHitBox> excludedHitBox;
+        List<IHitBox> excludedHitBox = new List<IHitBox>();
 
         IAttacker attacker;
+
+        bool initialized = false;
 
         protected override void OnInitialize()
         {
@@ -22,6 +24,8 @@ namespace StickmanIo.Runtime.Player
 
             var hitBoxes = GetComponentsInParent<IHitBox>();
             excludedHitBox.AddRange(hitBoxes);
+
+            initialized = true;
         }
 
         protected override void PostInitialize()
@@ -31,6 +35,11 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnHitBoxTriggered(IHitBox hitBox)
         {
+            if (!initialized)
+            {
+                return;
+            }
+
             if (excludedHitBox.Contains(hitBox))
             {
                 return;
