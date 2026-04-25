@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: SaveableExtension.Runtime::SaveableExtension.Runtime.Settings.SaveableExtensionSettingsSO
   LoadBehavioursOnAdding: 1
   SavingType: 0
+  saveCircleAnimated: {fileID: 8583216831986574298, guid: 98dbfb0199d086f408af09f0f7cd5048, type: 3}

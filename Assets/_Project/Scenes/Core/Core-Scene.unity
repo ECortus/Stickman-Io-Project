@@ -202,10 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Zenject::Zenject.SceneContext
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: 5e1ea43c4bafb634898c03417a0e9291, type: 2}
-  - {fileID: 11400000, guid: 5d5108cb15753a746b2218d337afab82, type: 2}
-  - {fileID: 11400000, guid: c939a599b61f10846925c63ce0caae5b, type: 2}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1625776413}
   _installerPrefabs: []
@@ -933,9 +930,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391651181}
     m_Modifications:
+    - target: {fileID: 449593502225444482, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449593502225444482, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449593502225444482, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449593502225444482, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832678385117957982, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832678385117957982, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832678385117957982, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832678385117957982, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4966786431316914349, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
       propertyPath: m_Name
       value: Debug UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637228030841321116, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637228030841321116, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637228030841321116, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637228030841321116, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6598936637638951919, guid: 9a727c4a3f1f96c40be0eb7381a0890a, type: 3}
       propertyPath: m_LocalPosition.x

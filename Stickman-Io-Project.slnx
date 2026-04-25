@@ -67,6 +67,7 @@
   <Project Path="gamedevutils.tests.csproj" />
   <Project Path="Unity.VisualScripting.State.csproj" />
   <Project Path="Unity.Services.Multiplayer.Editor.Matchmaker.Authoring.csproj" />
+  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="Unity.Networking.Editor.csproj" />
   <Project Path="UniTask.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.013.csproj" />
@@ -80,7 +81,6 @@
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
-  <Project Path="stickman-io.runtime.ui.csproj" />
   <Project Path="Unity.Services.Deployment.csproj" />
   <Project Path="ChatChannelSample.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
@@ -135,6 +135,7 @@
   <Project Path="multiscenecontroller.runtime.ui.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
   <Project Path="multiscenecontroller.tests.csproj" />
+  <Project Path="saveableextension.runtime.ui.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
   <Project Path="projectsetup.editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
