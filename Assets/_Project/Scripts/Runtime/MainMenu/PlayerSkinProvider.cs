@@ -10,10 +10,10 @@ namespace StickmanIo.Runtime.MainMenu
     [Serializable]
     public class SkinDataRuntime
     {
-        public bool IsOwned { get; private set; }
-        public bool IsEquipped { get; private set; }
+        [field: SerializeField] public bool IsOwned { get; private set; }
+        [field: SerializeField] public bool IsEquipped { get; private set; }
 
-        public SkinData SkinData { get; private set; }
+        [field: SerializeField] public SkinData SkinData { get; private set; }
 
         public SkinDataRuntime(SkinData skinData)
         {
@@ -38,7 +38,19 @@ namespace StickmanIo.Runtime.MainMenu
         [SerializeField] private SkinsCollection skinsCollection;
         [SerializeField] private List<string> defaultUnlockedSkinsIDs = new List<string> { "default" };
 
-        List<SkinDataRuntime> skinsRuntimeData = new List<SkinDataRuntime>();
+        [SerializeField] private List<SkinDataRuntime> skinsRuntimeData = new List<SkinDataRuntime>();
+
+        public event Action OnSkinEquipped;
+
+        public SkinDataRuntime GetEquippedSkinData()
+        {
+            if (skinsRuntimeData.Count == 0)
+            {
+                CreateRuntimeDataList();
+            }   
+
+            return skinsRuntimeData.FirstOrDefault(s => s.IsEquipped);
+        }
 
         public List<SkinDataRuntime> GetSkinsRuntimeData()
         {
@@ -68,6 +80,17 @@ namespace StickmanIo.Runtime.MainMenu
 
                 skinsRuntimeData.Add(runtimeData);
             }
+        }
+
+        public void SetEquippedSkin(SkinDataRuntime runtimeData, bool value)
+        {
+            runtimeData.SetIsEquipped(value);
+            OnSkinEquipped?.Invoke();
+        }
+
+        public void SetOwnedSkin(SkinDataRuntime runtimeData)
+        {
+            runtimeData.SetIsOwned();
         }
     }
 }

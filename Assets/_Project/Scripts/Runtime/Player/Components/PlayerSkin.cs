@@ -10,6 +10,8 @@ namespace StickmanIo.Runtime.Player
         UnitView view;
         SkinsCollection skinsCollection;
 
+        ISkinMaterialController skinMaterialController;
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -25,6 +27,12 @@ namespace StickmanIo.Runtime.Player
             }
 
             view.ReplaceSkin(skin);
+
+            var color = Color.seaGreen;
+
+            skinMaterialController = view.GetComponentInChildren<ISkinMaterialController>();
+            skinMaterialController.SetDefaultMaterial();
+            skinMaterialController.SetNewColor(color);
         }
 
         protected override void OnDestroyed()

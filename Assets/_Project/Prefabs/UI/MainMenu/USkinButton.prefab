@@ -412,14 +412,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4875110645010867195}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3721239792141691949}
   m_Father: {fileID: 1541188512637166797}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -65}
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e8b405a4e3d74e860e4063b2d4ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Others.RotateObject
-  rotationSpeed: {x: 0, y: 15, z: 0}
+  rotationSpeed: {x: 0, y: 45, z: 0}
 --- !u!1 &5220645174418838210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.USkinButton
   previewTransform: {fileID: 2136168569186806626}
+  previewMaterial: {fileID: 2100000, guid: 96f2f64c5517d3a4dbcb2cdf7793b70e, type: 2}
   lockedObject: {fileID: 6111583333648427783}
   buyButton: {fileID: 215783234297632346}
   priceText: {fileID: 1667473870249136831}

@@ -1130,6 +1130,7 @@ GameObject:
   - component: {fileID: 7835208700696182326}
   - component: {fileID: 5238186224033513843}
   - component: {fileID: 4255957441549384112}
+  - component: {fileID: -1865079517592620949}
   - component: {fileID: 648073630711546243}
   m_Layer: 13
   m_Name: Skin 00
@@ -1242,6 +1243,20 @@ MonoBehaviour:
   - {x: 0.99901533, y: 4.736206e-11, z: -0.0000000010846029, w: -0.044370115}
   - {x: 0.9992684, y: -0.0000000050994657, z: -0.0000001191013, w: 0.038247943}
   - {x: 0.99901533, y: 4.7330972e-11, z: -0.0000000010842138, w: -0.044370115}
+--- !u!114 &-1865079517592620949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4499269816549463390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21b84a2a10f27942990ee3d8f6000d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Units.SkinMaterialController
+  skinnedMeshRenderer: {fileID: 4357467389564163896}
+  defaultMaterial: {fileID: 2100000, guid: e0e1980bd5c79eb468beda1ead7b286f, type: 2}
 --- !u!114 &648073630711546243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,7 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed04fc0ad9940a78d6412ae4ad69004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerAnimationController
-  parentBody: {fileID: 0}
+  body: {fileID: 0}
 --- !u!1 &4838439666300161820
 GameObject:
   m_ObjectHideFlags: 0

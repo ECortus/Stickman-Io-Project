@@ -12,6 +12,7 @@ namespace StickmanIo.Runtime.UI
     public class USkinButton : MonoBehaviour
     {
         [SerializeField] private RectTransform previewTransform;
+        [SerializeField] private Material previewMaterial;
 
         [Space(5)]
         [SerializeField] private GameObject lockedObject;
@@ -30,6 +31,7 @@ namespace StickmanIo.Runtime.UI
         SkinDataRuntime dataRuntime;
 
         GoldStorage goldStorage;
+        PlayerSkinProvider skinProvider;
 
         USkinButtonsManager manager;
 
@@ -41,6 +43,7 @@ namespace StickmanIo.Runtime.UI
             skinData = runtime.SkinData;
 
             goldStorage = GoldStorage.GetInstance;
+            skinProvider = PlayerSkinProvider.GetInstance;
 
             SetIsLocked(!runtime.IsOwned);
             SetIsEquipped(runtime.IsEquipped);
@@ -98,6 +101,9 @@ namespace StickmanIo.Runtime.UI
 
             var previewInstance = ObjectInstantiator.InstantiatePrefab(skinPrefab, previewTransform);
             previewInstance.transform.ResetAllLocalParameters();
+
+            var materialController = previewInstance.GetComponentInChildren<ISkinMaterialController>();
+            materialController.SetNewMaterial(previewMaterial);
         }
 
         void SetIsLocked(bool value)
@@ -114,7 +120,7 @@ namespace StickmanIo.Runtime.UI
             if (goldStorage.HasRequiredAmount(price))
             {
                 goldStorage.Reduce(price);
-                dataRuntime.SetIsOwned();
+                skinProvider.SetOwnedSkin(dataRuntime);
 
                 SetIsLocked(false);
                 SetIsEquipped(true);
@@ -127,7 +133,7 @@ namespace StickmanIo.Runtime.UI
         {
             if (equipped == value) return;
 
-            dataRuntime.SetIsEquipped(true);
+            skinProvider.SetEquippedSkin(dataRuntime, value);
             equipped = value;
 
             if (equipped)
