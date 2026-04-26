@@ -328,6 +328,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1079993797964048275}
     m_Modifications:
+    - target: {fileID: 711549523882637649, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002977311725514739, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705211505162991031, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2249135403081026072, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -408,6 +420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2532598509825555552, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3062670585821584043, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -416,6 +432,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3637570306009874786, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3783362412236664600, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -423,14 +443,50 @@ PrefabInstance:
     - target: {fileID: 3783362412236664600, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849665887178194945, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932752213494069366, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834049217508620009, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200919741032109782, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649475943521974758, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811926321292565454, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5971900381707929705, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6655740427422337695, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6897618091982077741, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_Name
       value: U Player World Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897618091982077741, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138727850209800805, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
