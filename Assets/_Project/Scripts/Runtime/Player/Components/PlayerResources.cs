@@ -1,7 +1,10 @@
+using System.Diagnostics;
+using GameDevUtils.Runtime;
 using SaveableExtension.Runtime;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Units;
 using StickmanProject.Runtime.SavePrefs;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -10,22 +13,20 @@ namespace StickmanIo.Runtime.Player
         int Score { get; }
         void AddScore(IPlayerRig killedRig);
 
-        int Coins { get; }
         void AddCoins(int coins);
     }
 
-    public class PlayerResources : PlayerRigComponent, IResources, ISaveableBehaviour<ProjectSavePrefs>
+    public class PlayerResources : PlayerRigComponent, IResources
     {
-        int score;
-        int coins;
+        [SerializeField] int score;
+        [SerializeField] int maximumScore;
 
         public int Score => score;
-        public int Coins => coins;
 
         bool isOwner;
         GoldStorage goldStorage;
 
-        ProjectSavePrefs prefs;
+        IPlayerSaveable playerSaveable;
 
         protected override void OnInitialize()
         {
@@ -39,6 +40,10 @@ namespace StickmanIo.Runtime.Player
             }
 
             goldStorage = GoldStorage.GetInstance;
+
+            playerSaveable = Rig.Saveable;
+            playerSaveable.OnSerialize += Serialize;
+            playerSaveable.OnDeserialize += Deserialize;
         }
 
         protected override void OnDestroyed()
@@ -53,12 +58,12 @@ namespace StickmanIo.Runtime.Player
             var baseScore = settings.BaseScorePerKill;
             var multiplierPerLevel = settings.ScoreMultiplierPerEachLevelPerKill;
 
-            var score = baseScore + multiplierPerLevel * killedRig.Level.Level;
-            this.score += score;
+            var plusScore = baseScore + multiplierPerLevel * killedRig.Level.Level;
+            score += plusScore;
 
-            if (score > prefs.MaximumScore)
+            if (score > maximumScore)
             {
-                SavePrefs();
+                playerSaveable.TrySavePrefs();
             }
         }
 
@@ -75,22 +80,17 @@ namespace StickmanIo.Runtime.Player
             }
 
             goldStorage.Add(amount);
-            this.coins += amount;
         }
 
-        void SavePrefs()
-        {
-            SaveablePrefs.Save<ProjectSavePrefs>();
-        }
-
-        public void Serialize(ref ProjectSavePrefs savePrefs)
+        void Serialize(ref ProjectSavePrefs savePrefs)
         {
             savePrefs.MaximumScore = score;
+            maximumScore = score;
         }
 
-        public void Deserialize(ProjectSavePrefs savePrefs)
+        void Deserialize(ProjectSavePrefs savePrefs)
         {
-            prefs = savePrefs;
+            maximumScore = savePrefs.MaximumScore;
         }
     }
 }

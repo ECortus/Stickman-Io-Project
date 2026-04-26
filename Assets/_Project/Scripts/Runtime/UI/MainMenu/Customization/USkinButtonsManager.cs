@@ -28,6 +28,11 @@ namespace StickmanIo.Runtime.UI
             goldStorage.onChanged += OnUpdateGold;
         }
 
+        void OnDestroy()
+        {
+            goldStorage.onChanged -= OnUpdateGold;
+        }
+
         void SetupButtons()
         {
             buttonsParent.DestroyAllChildren();

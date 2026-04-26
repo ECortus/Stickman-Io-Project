@@ -1,4 +1,5 @@
 using SaveableExtension.Runtime;
+using UnityEngine;
 
 namespace StickmanProject.Runtime.SavePrefs
 {
@@ -10,7 +11,29 @@ namespace StickmanProject.Runtime.SavePrefs
         public int MaximumScore = 0;
 
         public string EquippedSkinID = "";
-        public int[] UnlockedSkinIDs = new int[0];
-        public int[] Color = new int[0];
+        public string[] UnlockedSkinIDs = new string[0];
+        public int[] ColorRGB = new int[0];
+
+        public static Color ArrayToColor(int[] rgb)
+        {
+            if (rgb == null || rgb.Length != 4)
+            {
+                return Color.white;
+            }
+
+            var color = new Color(rgb[0] / 255f, rgb[1] / 255f, rgb[2] / 255f, rgb[3] / 255f);
+            return color;
+        }
+
+        public static int[] ColorToArray(Color color)
+        {
+            return new int[] 
+            { 
+                (int)(color.r * 255), 
+                (int)(color.g * 255), 
+                (int)(color.b * 255), 
+                (int)(color.a * 255) 
+            };
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace StickmanIo.Runtime.UI
         private void Awake()
         {
             layersController = FindAnyObjectByType<USettingsLayersController>();
-            mainMenu = FindAnyObjectByType<UMainMenu>();
             
             button = GetComponent<Button>();
             button.onClick.AddListener(OnButtonClick);
@@ -25,6 +24,7 @@ namespace StickmanIo.Runtime.UI
             layersController.PreviousLayer();
             if (layersController.Layer == USettingsLayersController.ELayer.Off)
             {
+                mainMenu ??= FindAnyObjectByType<UMainMenu>(FindObjectsInactive.Include);
                 mainMenu.OpenMainMenuPanel();
             }
         }

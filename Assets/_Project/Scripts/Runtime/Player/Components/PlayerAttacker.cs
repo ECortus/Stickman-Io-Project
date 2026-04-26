@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Units;
+using StickmanProject.Runtime.SavePrefs;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
@@ -28,6 +29,7 @@ namespace StickmanIo.Runtime.Player
         IMovement movement;
         ILevel level;
         IResources resources;
+        IPlayerSaveable playerSaveable;
 
         IPlayerWeaponController weaponController;
 
@@ -43,10 +45,18 @@ namespace StickmanIo.Runtime.Player
 
             movement.OnJump += ResetAttack;
 
-            weaponController = GetComponentInChildren<IPlayerWeaponController>();
+            UpdateWeaponController();
+
+            playerSaveable = Rig.Saveable;
+            playerSaveable.OnDeserialize += UpdateWeaponController;
 
             var inputEvents = Rig.InputEvents;
             inputEvents.OnAttackAction += TryAttack;
+        }
+
+        void UpdateWeaponController(ProjectSavePrefs savePrefs = null)
+        {
+            weaponController = GetComponentInChildren<IPlayerWeaponController>();
         }
 
         protected override void OnDestroyed()
@@ -190,7 +200,7 @@ namespace StickmanIo.Runtime.Player
         public event Action<int> OnAttackStarted;
 
         float upgradeableDamageModifier = 0f;
-        
+
         public void UpdateDamageModifier(float modifier)
         {
             upgradeableDamageModifier = modifier;

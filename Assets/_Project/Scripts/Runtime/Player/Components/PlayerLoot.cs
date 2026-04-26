@@ -37,7 +37,7 @@ namespace StickmanIo.Runtime.Player
             var offset = new Vector3(0, 1f, 0);
 
             int count = Random.Range(minCoins, maxCoins + 1);
-            int coinCost = level.Level;
+            int coinCost = Mathf.Max(level.Level + 1, 1);
 
             float throwForce = settings.throwForceOfCoin;
 

@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
+using SaveableExtension.Runtime;
 using StickmanIo.Runtime.Units;
+using StickmanProject.Runtime.SavePrefs;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.MainMenu
@@ -33,33 +36,68 @@ namespace StickmanIo.Runtime.MainMenu
         }
     }
 
-    public class PlayerSkinProvider : SingletonMonoBehaviour<PlayerSkinProvider>
+    public class PlayerSkinProvider : SingletonMonoBehaviour<PlayerSkinProvider>, ISaveableBehaviour<ProjectSavePrefs>
     {
         [SerializeField] private SkinsCollection skinsCollection;
         [SerializeField] private List<string> defaultUnlockedSkinsIDs = new List<string> { "default" };
 
-        [SerializeField] private List<SkinDataRuntime> skinsRuntimeData = new List<SkinDataRuntime>();
+        List<SkinDataRuntime> skinsRuntimeData = new List<SkinDataRuntime>();
+
+        string EquippedSkinID = "";
+        SkinDataRuntime EquippedSkin = null;
+        List<string> unlockedSkinsIDs = new List<string>();
+
+        [SerializeField] private int[] colorRGB;
+        [SerializeField] private Color currentColor;
 
         public event Action OnSkinEquipped;
+        public event Action<Color> OnColorDeserialized;
 
-        public SkinDataRuntime GetEquippedSkinData()
+        bool initialized = false;
+
+        protected override void OnAwake()
         {
-            if (skinsRuntimeData.Count == 0)
-            {
-                CreateRuntimeDataList();
-            }   
-
-            return skinsRuntimeData.FirstOrDefault(s => s.IsEquipped);
+            base.OnAwake();
+            Initialize();
         }
 
-        public List<SkinDataRuntime> GetSkinsRuntimeData()
+        void Initialize()
         {
-            if (skinsRuntimeData.Count == 0)
+            if (initialized)
             {
-                CreateRuntimeDataList();
+                return;
             }
 
-            return skinsRuntimeData;
+            AsyncTaskHelper.CreateTask(AsyncInitialize);
+
+            initialized = true;
+        }
+
+        async UniTask AsyncInitialize()
+        {
+            await UniTask.WaitUntil(() => SaveableSupervisor.Exist());
+
+            SaveableSupervisor.AddBehaviour(this);
+
+            JoinUnlockedSkinsIDsAndDefaultUnlocked();
+            CreateRuntimeDataList();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            SaveableSupervisor.RemoveBehaviour(this);
+        }
+
+        void JoinUnlockedSkinsIDsAndDefaultUnlocked()
+        {
+            foreach (var id in defaultUnlockedSkinsIDs)
+            {
+                if (!unlockedSkinsIDs.Contains(id))
+                {
+                    unlockedSkinsIDs.Add(id);
+                }
+            }
         }
 
         void CreateRuntimeDataList()
@@ -70,27 +108,115 @@ namespace StickmanIo.Runtime.MainMenu
             foreach (var skinData in skins)
             {
                 var runtimeData = new SkinDataRuntime(skinData);
-
-                // Set default unlocked skins as owned and equipped IF none other in save
-                if (defaultUnlockedSkinsIDs.Contains(skinData.Id))
+                if (unlockedSkinsIDs.Contains(skinData.Id))
                 {
                     runtimeData.SetIsOwned();
-                    runtimeData.SetIsEquipped(true);
                 }
 
                 skinsRuntimeData.Add(runtimeData);
             }
+
+            SkinDataRuntime equippedSkin = null;
+            if (EquippedSkinID != string.Empty)
+            {
+                equippedSkin = skinsRuntimeData.FirstOrDefault(s => s.SkinData.Id == EquippedSkinID);
+            }
+            else
+            {
+                equippedSkin = skinsRuntimeData.First();
+            }
+            SetEquippedSkin(equippedSkin, true, false);
         }
 
-        public void SetEquippedSkin(SkinDataRuntime runtimeData, bool value)
+        public void SetEquippedSkin(SkinDataRuntime runtimeData, bool value, bool withSaving = true)
         {
             runtimeData.SetIsEquipped(value);
+
+            if (value)
+            {
+                EquippedSkinID = runtimeData.SkinData.Id;
+                EquippedSkin = runtimeData;
+
+                if (withSaving)
+                {
+                    SavePrefs();
+                }
+            }
+
             OnSkinEquipped?.Invoke();
         }
 
-        public void SetOwnedSkin(SkinDataRuntime runtimeData)
+        public void SetOwnedSkin(SkinDataRuntime runtimeData, bool withSaving = true)
         {
             runtimeData.SetIsOwned();
+            unlockedSkinsIDs.Add(runtimeData.SkinData.Id);
+
+            SetEquippedSkin(runtimeData, true, false);
+
+            if (withSaving)
+            {
+                SavePrefs();
+            }
+        }
+
+        public SkinDataRuntime GetEquippedSkinData()
+        {
+            if (!initialized)
+            {
+                Initialize();
+            }
+
+            return skinsRuntimeData.FirstOrDefault(s => s.IsEquipped);
+        }
+
+        public List<SkinDataRuntime> GetSkinsRuntimeData()
+        {
+            if (!initialized)
+            {
+                Initialize();
+            }
+
+            return skinsRuntimeData;
+        }
+
+        public Color GetCurrentColor()
+        {
+            return currentColor;
+        }
+
+        void SavePrefs()
+        {
+            SaveablePrefs.Save<ProjectSavePrefs>();
+        }
+
+        public void Serialize(ref ProjectSavePrefs savePrefs)
+        {
+            savePrefs.EquippedSkinID = EquippedSkinID;
+            savePrefs.UnlockedSkinIDs = unlockedSkinsIDs.ToArray();
+
+            savePrefs.ColorRGB = ProjectSavePrefs.ColorToArray(currentColor);
+        }
+
+        public void Deserialize(ProjectSavePrefs savePrefs)
+        {
+            EquippedSkinID = savePrefs.EquippedSkinID;
+            unlockedSkinsIDs = savePrefs.UnlockedSkinIDs.ToList();
+
+            var rgb = savePrefs.ColorRGB;
+            var color = ProjectSavePrefs.ArrayToColor(rgb);
+
+            colorRGB = rgb;
+            currentColor = color;
+
+            OnColorDeserialized?.Invoke(color);
+        }
+
+        public void OnColorChanged(Color color)
+        {
+            colorRGB = ProjectSavePrefs.ColorToArray(color);
+            currentColor = color;
+
+            SavePrefs();
         }
     }
 }

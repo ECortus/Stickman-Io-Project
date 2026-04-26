@@ -1,8 +1,10 @@
 using System;
+using GameDevUtils.Runtime;
 using SaveableExtension.Runtime;
 using StickmanIo.Runtime.Units;
 using StickmanProject.Runtime.SavePrefs;
 using UnityEditor.SearchService;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -15,51 +17,61 @@ namespace StickmanIo.Runtime.Player
         event Action<int> OnLevelUp;
     }
 
-    public class PlayerLevel : PlayerRigComponent, ILevel, ISaveableBehaviour<ProjectSavePrefs>
+    public class PlayerLevel : PlayerRigComponent, ILevel
     {
-        int level = 0;
+        [SerializeField] int level = 0;
+        bool isOwner;
+
+        [SerializeField] int maximumKills;
 
         public int Level => level;
 
         public event Action<int> OnLevelUp;
 
-        ProjectSavePrefs prefs;
+        IPlayerSaveable playerSaveable;
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            SaveableSupervisor.AddBehaviour(this);
+
+            isOwner = Rig.IsOwner;
+
+            if (!isOwner)
+            {
+                return;
+            }
+
+            playerSaveable = Rig.Saveable;
+            playerSaveable.OnSerialize += Serialize;
+            playerSaveable.OnDeserialize += Deserialize;
         }
 
         protected override void OnDestroyed()
         {
-            SaveableSupervisor.RemoveBehaviour(this);
+            base.OnDestroyed();
         }
 
         public void AddLevel()
         {
             level++;
-            OnLevelUp?.Invoke(level);
 
-            if (level > prefs.MaximumKills)
+            if (level > maximumKills)
             {
-                SavePrefs();
+                playerSaveable.TrySavePrefs();
             }
+
+            OnLevelUp?.Invoke(level);
         }
 
-        void SavePrefs()
-        {
-            SaveablePrefs.Save<ProjectSavePrefs>();
-        }
-
-        public void Serialize(ref ProjectSavePrefs savePrefs)
+        void Serialize(ref ProjectSavePrefs savePrefs)
         {
             savePrefs.MaximumKills = level;
+            maximumKills = level;
         }
 
-        public void Deserialize(ProjectSavePrefs savePrefs)
+        void Deserialize(ProjectSavePrefs savePrefs)
         {
-            prefs = savePrefs;
+            maximumKills = savePrefs.MaximumKills;
         }
     }
 }

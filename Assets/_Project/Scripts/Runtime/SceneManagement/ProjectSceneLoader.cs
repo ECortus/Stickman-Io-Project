@@ -1,4 +1,6 @@
 using MultiSceneController.Runtime;
+using SaveableExtension.Runtime;
+using StickmanProject.Runtime.SavePrefs;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.SceneManagement
@@ -13,6 +15,8 @@ namespace StickmanIo.Runtime.SceneManagement
 
         public static void LoadMainMenu()
         {
+            SaveablePrefs.Save<ProjectSavePrefs>();
+
             SceneLoader.NewTransition()
                 .Load(MainMenu_Section, MainMenu_Scene, setActive: true)
                 .Unload(GamePlay_Section)
@@ -33,6 +37,8 @@ namespace StickmanIo.Runtime.SceneManagement
 
         public static void QuitApplication()
         {
+            SaveablePrefs.Save<ProjectSavePrefs>();
+
             Application.Quit();
         }
     }

@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using StickmanIo.Runtime.MainMenu;
 #endregion
 
 namespace StickmanIo.Runtime.UI.ColorPicker
@@ -30,6 +31,8 @@ namespace StickmanIo.Runtime.UI.ColorPicker
         private Color _currentColor = Color.white;
         private Texture2D _screenTexture;
 
+        PlayerSkinProvider playerSkinProvider;
+
         #endregion
 
         public Color CurrentColor => _currentColor;
@@ -43,10 +46,21 @@ namespace StickmanIo.Runtime.UI.ColorPicker
         {
             _inputRgb = GetComponent<InputColorChannels>();
 
+            playerSkinProvider = PlayerSkinProvider.GetInstance;
+
+            playerSkinProvider.OnColorDeserialized += SetColor;
+            OnChanged.AddListener(OnColorChanged);
+
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (_inputRgb == null) { throw new System.Exception("Missing InputColorChannels"); }
 #endif
         }
+
+        void OnColorChanged(Color color)
+        {
+            playerSkinProvider.OnColorChanged(color);
+        }
+
         private void Start()
         {
             _hsbPicker.ValueChanged = HsbPicker_ValueChanged;
@@ -55,7 +69,7 @@ namespace StickmanIo.Runtime.UI.ColorPicker
 
             enabled = false;
 
-            Open();
+            Open(playerSkinProvider.GetCurrentColor());
         }
         private void Update()
         {
@@ -121,10 +135,15 @@ namespace StickmanIo.Runtime.UI.ColorPicker
 
         private void SetCurrentColor(Color color)
         {
+            var previousColor = new Color(_currentColor.r, _currentColor.g, _currentColor.b, _currentColor.a);
+
             _currentColor = color;
             _colorResult.color = _currentColor;
 
-            OnChanged?.Invoke(color);
+            if (previousColor != _currentColor)
+            {
+                OnChanged?.Invoke(_currentColor);
+            }
         }
 
         private void SetRgbChannels(Color color)

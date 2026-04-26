@@ -1,3 +1,5 @@
+using StickmanIo.Runtime.MainMenu;
+using StickmanIo.Runtime.Player;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.UI.ColorPicker

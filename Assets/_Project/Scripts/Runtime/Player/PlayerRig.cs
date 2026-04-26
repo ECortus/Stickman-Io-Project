@@ -43,6 +43,8 @@ namespace StickmanIo.Runtime.Player
         PlayerSkin skin;
 
         PlayerInputEvents inputEvents;
+
+        PlayerSaveableBehaviour saveableBehaviour;
         
         IPlayerGroundCheck groundCheck;
 
@@ -61,6 +63,8 @@ namespace StickmanIo.Runtime.Player
         public IResources Resources => resources;
         public IInputEvents InputEvents => inputEvents;
 
+        public IPlayerSaveable Saveable => saveableBehaviour;
+
         public PlayerData GetData() => header.Data;
         
         public void Initialize(PlayerHeader hdr)
@@ -71,6 +75,8 @@ namespace StickmanIo.Runtime.Player
         
         protected override void InitializeComponents()
         {
+            saveableBehaviour = AddComponent<PlayerSaveableBehaviour>();
+
             skin = AddComponent<PlayerSkin>();
 
             health = AddComponent<PlayerHealth>();
