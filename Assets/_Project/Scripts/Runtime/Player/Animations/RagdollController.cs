@@ -11,6 +11,7 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] private float ragdollTorque = 100f;
 
         [Header("Default parameters and object")]
+        [SerializeField] private Transform bodiesParent;
         [SerializeField] private bool alreadyBaked = false;
         [SerializeField] private Rigidbody[] rigidbodies;
         [SerializeField] private Collider[] colliders;
@@ -40,16 +41,16 @@ namespace StickmanIo.Runtime.Player
         {
             alreadyBaked = true;
 
-            rigidbodies = GetComponentsInChildren<Rigidbody>(true);
-            colliders = GetComponentsInChildren<Collider>(true);
+            rigidbodies = bodiesParent.GetComponentsInChildren<Rigidbody>(true);
+            colliders = bodiesParent.GetComponentsInChildren<Collider>(true);
 
             defaultPositions = new Vector3[rigidbodies.Length];
             defaultRotations = new Quaternion[rigidbodies.Length];
 
             for (int i = 0; i < rigidbodies.Length; i++)
             {
-                defaultPositions[i] = rigidbodies[i].transform.position;
-                defaultRotations[i] = rigidbodies[i].transform.rotation;
+                defaultPositions[i] = rigidbodies[i].transform.localPosition;
+                defaultRotations[i] = rigidbodies[i].transform.localRotation;
             }
 
             OffRagdoll();
@@ -88,8 +89,8 @@ namespace StickmanIo.Runtime.Player
                 rigidbodies[i].isKinematic = true;
                 colliders[i].enabled = false;
 
-                rigidbodies[i].transform.position = defaultPositions[i];
-                rigidbodies[i].transform.rotation = defaultRotations[i];
+                rigidbodies[i].transform.localPosition = defaultPositions[i];
+                rigidbodies[i].transform.localRotation = defaultRotations[i];
             }
         }
     }
