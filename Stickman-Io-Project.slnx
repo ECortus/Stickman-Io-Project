@@ -131,6 +131,7 @@
   <Project Path="Unity.Services.DeploymentApi.csproj" />
   <Project Path="PurrNet.Profiler.Editor.csproj" />
   <Project Path="userinterfacedevutils.tests.csproj" />
+  <Project Path="ParrelSync.csproj" />
   <Project Path="saveableextension.tests.csproj" />
   <Project Path="Unity.Services.Core.Registration.csproj" />
   <Project Path="Unity.PathTracing.Editor.csproj" />
