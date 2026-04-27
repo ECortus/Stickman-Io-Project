@@ -50,6 +50,7 @@
   <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="gamedevutils.runtime.csproj" />
+  <Project Path="Unity.Netcode.Runtime.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.csproj" />
   <Project Path="saveableextension.runtime.csproj" />
@@ -73,6 +74,7 @@
   <Project Path="Unity.Networking.Editor.csproj" />
   <Project Path="UniTask.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.013.csproj" />
+  <Project Path="Unity.Multiplayer.Center.NetcodeForGameObjectsExample.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
   <Project Path="Unity.Services.Core.Editor.csproj" />
   <Project Path="Unity.Timeline.csproj" />
@@ -118,6 +120,7 @@
   <Project Path="toolsetup.editor.csproj" />
   <Project Path="Unity.Addressables.Android.Editor.csproj" />
   <Project Path="Unity.SurfaceCache.Runtime.csproj" />
+  <Project Path="Unity.Netcode.Editor.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.Splines.csproj" />
   <Project Path="Unity.AI.Navigation.csproj" />
@@ -127,6 +130,7 @@
   <Project Path="cachingobjectstool.runtime.csproj" />
   <Project Path="userinterfacedevutils.runtime.ui.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
+  <Project Path="Unity.Netcode.Editor.CodeGen.csproj" />
   <Project Path="multiscenecontroller.editor.csproj" />
   <Project Path="Unity.Services.DeploymentApi.csproj" />
   <Project Path="PurrNet.Profiler.Editor.csproj" />
@@ -180,6 +184,7 @@
   <Project Path="IngameDebugConsole.Editor.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
+  <Project Path="Unity.Netcode.PackageChecker.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
   <Project Path="PurrNet.Examples.csproj" />
   <Project Path="vibrationplugin.editor.csproj" />
