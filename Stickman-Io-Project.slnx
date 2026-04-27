@@ -12,7 +12,9 @@
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.Editor.csproj" />
+  <Project Path="PurrNet.Steam.Runtime.csproj" />
   <Project Path="Unity.Burst.csproj" />
+  <Project Path="PurrNet.Runtime.csproj" />
   <Project Path="minimaputility.runtime.csproj" />
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.csproj" />
@@ -23,6 +25,7 @@
   <Project Path="Zenject.csproj" />
   <Project Path="Unity.Addressables.Android.csproj" />
   <Project Path="Unity.Services.QoS.csproj" />
+  <Project Path="PurrNet.Editor.csproj" />
   <Project Path="UnityEngine.UI.csproj" />
   <Project Path="Unity.Services.Authentication.Editor.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
@@ -66,6 +69,7 @@
   <Project Path="Unity.VisualScripting.State.csproj" />
   <Project Path="Unity.Services.Multiplayer.Editor.Matchmaker.Authoring.csproj" />
   <Project Path="stickman-io.runtime.ui.csproj" />
+  <Project Path="SimpleWebTransport.csproj" />
   <Project Path="Unity.Networking.Editor.csproj" />
   <Project Path="UniTask.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.013.csproj" />
@@ -74,11 +78,13 @@
   <Project Path="Unity.Timeline.csproj" />
   <Project Path="vibrationplugin.tests.csproj" />
   <Project Path="virtualmouse.runtime.csproj" />
+  <Project Path="Unity.PurrNet.Codegen.csproj" />
   <Project Path="Unity.AutoGroupGenerator.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
+  <Project Path="LiteNetLib.csproj" />
   <Project Path="Unity.Services.Deployment.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
@@ -86,8 +92,10 @@
   <Project Path="UniTask.Linq.csproj" />
   <Project Path="Unity.Services.Multiplayer.Editor.Matchmaker.Authoring.Core.csproj" />
   <Project Path="Unity.Multiplayer.Center.Integrations.csproj" />
+  <Project Path="PurrNet.Edgegap.Runtime.csproj" />
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.Addressables.csproj" />
+  <Project Path="ToolbarExtender.Editor.csproj" />
   <Project Path="Unity.Services.Authentication.PlayerAccounts.Editor.csproj" />
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="projectsetup.runtime.csproj" />
@@ -121,6 +129,7 @@
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="multiscenecontroller.editor.csproj" />
   <Project Path="Unity.Services.DeploymentApi.csproj" />
+  <Project Path="PurrNet.Profiler.Editor.csproj" />
   <Project Path="userinterfacedevutils.tests.csproj" />
   <Project Path="saveableextension.tests.csproj" />
   <Project Path="Unity.Services.Core.Registration.csproj" />
@@ -132,6 +141,7 @@
   <Project Path="multiscenecontroller.runtime.ui.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
   <Project Path="multiscenecontroller.tests.csproj" />
+  <Project Path="PurrNet.DeltaPackerAnalysis.Editor.csproj" />
   <Project Path="saveableextension.runtime.ui.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
   <Project Path="Blocks.Sessions.csproj" />
@@ -144,6 +154,7 @@
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="Unity.Services.Core.Networking.csproj" />
   <Project Path="Boxophobic.SkyboxCubemapExtended.Editor.csproj" />
+  <Project Path="PurrNet.UTP.Runtime.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
   <Project Path="vibrationplugin.runtime.csproj" />
@@ -154,6 +165,7 @@
   <Project Path="Unity.Services.Core.Environments.csproj" />
   <Project Path="Unity.ScriptableBuildPipeline.csproj" />
   <Project Path="settingsmenu.editor.csproj" />
+  <Project Path="PurrNet.UTP.Editor.csproj" />
   <Project Path="minimaputility.tests.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.013.csproj" />
   <Project Path="saveableextension.editor.csproj" />
@@ -168,8 +180,10 @@
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
+  <Project Path="PurrNet.Examples.csproj" />
   <Project Path="vibrationplugin.editor.csproj" />
   <Project Path="minimaputility.editor.csproj" />
   <Project Path="Blocks.Common.csproj" />
+  <Project Path="PurrNet.Steam.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
 </Solution>
