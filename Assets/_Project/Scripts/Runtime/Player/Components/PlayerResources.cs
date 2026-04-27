@@ -84,8 +84,11 @@ namespace StickmanIo.Runtime.Player
 
         void Serialize(ref ProjectSavePrefs savePrefs)
         {
-            savePrefs.MaximumScore = score;
-            maximumScore = score;
+            if (score > maximumScore)
+            {
+                savePrefs.MaximumScore = score;
+                maximumScore = score;
+            }
         }
 
         void Deserialize(ProjectSavePrefs savePrefs)

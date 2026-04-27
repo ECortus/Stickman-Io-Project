@@ -14,6 +14,8 @@ namespace StickmanIo.Runtime.Player
     
     public class PlayerCamera : PlayerRigComponent, ICamera
     {
+        CinemachineCamera cinemachineCamera;
+
         CameraTarget cameraTarget;
         Vector2 lookDirection;
         
@@ -45,6 +47,7 @@ namespace StickmanIo.Runtime.Player
 
             settings = Data.Settings;
             
+            cinemachineCamera = FindAnyObjectByType<CinemachineCamera>();
             var targetGroup = FindAnyObjectByType<CinemachineTargetGroup>();
             
             cameraTarget = ObjectInstantiator.InstantiateComponentOnNewGameObject<CameraTarget>($"{gameObject.name} Camera Target");
@@ -52,6 +55,8 @@ namespace StickmanIo.Runtime.Player
             
             targetGroup.Targets.Clear();
             targetGroup.AddMember(cameraTarget.Target, 1f, 1f);
+
+            ForceMoveCamera();
             
             var inputEvents = Rig.InputEvents;
             inputEvents.OnLookAction += UpdateLookDirection;
@@ -79,6 +84,17 @@ namespace StickmanIo.Runtime.Player
         {
             var pos = Rig.transform.position + settings.CameraPositionOffset;
             SetCameraTargetPosition(pos);
+        }
+
+        void ForceMoveCamera()
+        {
+            UpdateCameraTargetPosition();
+            UpdateCameraRotation(999f);
+
+            var pos = cameraTarget.transform.position;
+            var rot = cameraTarget.transform.rotation;
+
+            cinemachineCamera.ForceCameraPosition(pos, rot);
         }
 
         void SetCameraTargetPosition(Vector3 pos)

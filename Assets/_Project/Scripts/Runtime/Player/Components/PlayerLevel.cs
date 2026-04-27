@@ -65,8 +65,11 @@ namespace StickmanIo.Runtime.Player
 
         void Serialize(ref ProjectSavePrefs savePrefs)
         {
-            savePrefs.MaximumKills = level;
-            maximumKills = level;
+            if (level > maximumKills)
+            {
+                savePrefs.MaximumKills = level;
+                maximumKills = level;
+            }
         }
 
         void Deserialize(ProjectSavePrefs savePrefs)

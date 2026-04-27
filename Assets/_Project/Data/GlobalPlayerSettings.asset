@@ -16,7 +16,7 @@ MonoBehaviour:
   Speed: 7
   SpeedInAir: 5.5
   RotationSpeed: 45
-  JumpForce: 100
+  JumpForce: 120
   CameraPositionOffset: {x: 0, y: 1.5, z: 0}
   CameraRotationOffset: {x: 25, y: 0, z: 0}
   CameraVerticalAnglesRange: {x: -25, y: 15}
@@ -34,8 +34,8 @@ MonoBehaviour:
     AttackDuration: 0.15
     PostDuration: 0.05
     DamageModificator: 1.35
-  MinCoinCost: 2
-  MaxCoinCost: 4
+  BaseScorePerKill: 100
+  ScoreMultiplierPerEachLevelPerKill: 200
   MinCoinsCount: 10
   MaxCoinsCount: 20
   throwForceOfCoin: 150

@@ -12,6 +12,11 @@ namespace StickmanIo.Runtime.Player
         
         public bool IsOwner => isOwner;
         public PlayerData Data => data;
+
+        public void SetOwnerState(bool state)
+        {
+            isOwner = state;
+        }
         
         private void Awake()
         {
