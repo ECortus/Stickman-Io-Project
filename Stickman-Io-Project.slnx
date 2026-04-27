@@ -5,11 +5,9 @@
   <Project Path="Unity.Localization.csproj" />
   <Project Path="Unity.ShaderGraph.Editor.csproj" />
   <Project Path="Unity.ScriptableBuildPipeline.Editor.csproj" />
-  <Project Path="Unity.Services.Vivox.csproj" />
   <Project Path="Unity.Mathematics.csproj" />
   <Project Path="Unity.Multiplayer.Center.Editor.csproj" />
   <Project Path="Unity.Cinemachine.Editor.csproj" />
-  <Project Path="Unity.Services.Vivox.Editor.csproj" />
   <Project Path="Unity.Addressables.Editor.csproj" />
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
@@ -82,14 +80,12 @@
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
   <Project Path="Unity.Services.Deployment.csproj" />
-  <Project Path="ChatChannelSample.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
   <Project Path="Unity.Services.Core.Components.csproj" />
   <Project Path="UniTask.Linq.csproj" />
   <Project Path="Unity.Services.Multiplayer.Editor.Matchmaker.Authoring.Core.csproj" />
   <Project Path="Unity.Multiplayer.Center.Integrations.csproj" />
-  <Project Path="ChatChannelSample.Editor.csproj" />
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.Addressables.csproj" />
   <Project Path="Unity.Services.Authentication.PlayerAccounts.Editor.csproj" />
@@ -97,6 +93,7 @@
   <Project Path="projectsetup.runtime.csproj" />
   <Project Path="Unity.PathTracing.Runtime.csproj" />
   <Project Path="cachingobjectstool.tests.csproj" />
+  <Project Path="Blocks.Sessions.Common.csproj" />
   <Project Path="Unity.Services.Core.Telemetry.csproj" />
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
@@ -137,6 +134,7 @@
   <Project Path="multiscenecontroller.tests.csproj" />
   <Project Path="saveableextension.runtime.ui.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
+  <Project Path="Blocks.Sessions.csproj" />
   <Project Path="projectsetup.editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
   <Project Path="Unity.Services.Core.Scheduler.csproj" />
@@ -172,5 +170,6 @@
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
   <Project Path="vibrationplugin.editor.csproj" />
   <Project Path="minimaputility.editor.csproj" />
+  <Project Path="Blocks.Common.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
 </Solution>
