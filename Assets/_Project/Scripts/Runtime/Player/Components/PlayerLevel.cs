@@ -33,7 +33,7 @@ namespace StickmanIo.Runtime.Player
         {
             base.OnInitialize();
 
-            if (!isOwner)
+            if (!Rig.IsOwner)
             {
                 return;
             }

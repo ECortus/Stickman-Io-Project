@@ -51,7 +51,7 @@ namespace StickmanIo.Runtime.Player
         {
             base.OnInitialize();
 
-            if (!isOwner)
+            if (!Rig.IsOwner)
             {
                 enabled = false;
                 return;
@@ -64,7 +64,7 @@ namespace StickmanIo.Runtime.Player
         {
             base.OnDestroyed();
 
-            if (!isOwner)
+            if (!Rig.IsOwner)
             {
                 return;
             }
@@ -74,7 +74,7 @@ namespace StickmanIo.Runtime.Player
 
         public void TrySavePrefs()
         {
-            if (!isOwner)
+            if (!Rig.IsOwner)
             {
                 return;
             }

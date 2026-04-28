@@ -35,13 +35,7 @@ namespace StickmanIo.Runtime.Units
         public virtual void Initialize()
         {
             unitsManager = UnitsManager.GetInstance;
-
             InitializeComponents();
-
-            OnAllComponentsAdded?.Invoke();
-            OnAllComponentsAdded = null;
-
-            unitsManager.Register(this);
         }
 
         protected override void OnDestroy()
@@ -54,7 +48,15 @@ namespace StickmanIo.Runtime.Units
 
         protected virtual void InitializeComponents()
         {
+            
+        }
 
+        public void OnInitializeComponentsComplete()
+        {
+            OnAllComponentsAdded?.Invoke();
+            OnAllComponentsAdded = null;
+
+            unitsManager.Register(this);
         }
 
         protected T AddComponent<T>() where T : RigComponent
@@ -62,7 +64,6 @@ namespace StickmanIo.Runtime.Units
             var component = gameObject.AddComponent<T>();
 
             var playerID = localPlayer;
-            component.SetIsSpawned(true, false);
             component.GiveOwnership(playerID);
 
             components.Add(component);

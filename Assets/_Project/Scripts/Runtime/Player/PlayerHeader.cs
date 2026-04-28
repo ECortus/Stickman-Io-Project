@@ -17,14 +17,16 @@ namespace StickmanIo.Runtime.Player
 
         public PlayerRig Rig => rig;
 
-        protected override void OnSpawned()
-        {
-            Initialize();
-        }
-
-        public void Initialize()
+        void Awake()
         {
             InitRig();
+        }
+
+        protected override void OnSpawned()
+        {
+            base.OnSpawned();
+
+            InitComponents();
         }
 
         void InitRig()
@@ -32,12 +34,16 @@ namespace StickmanIo.Runtime.Player
             rig = gameObject.AddComponent<PlayerRig>();
 
             var playerID = localPlayer;
-            rig.SetIsSpawned(true, false);
             rig.GiveOwnership(playerID);
 
             rig.Initialize(this);
 
             OnRigInitialize?.Invoke();
+        }
+
+        void InitComponents()
+        {
+            rig.OnInitializeComponentsComplete();
         }
 
         public readonly FireEvent OnRigInitialize = new FireEvent();
