@@ -10,7 +10,9 @@ namespace StickmanIo.Runtime.UI
 
         protected override void OnStart()
         {
-            health = GetComponentInParent<IHealth>();
+            var header = GetComponentInParent<PlayerHeader>();
+            health = header.Rig.Health;
+
             base.OnStart();
         }
 

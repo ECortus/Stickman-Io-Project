@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PurrNet;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
 {
@@ -7,7 +8,7 @@ namespace StickmanIo.Runtime.Units
         
     }
 
-    public abstract class RigComponent : MonoBehaviour
+    public abstract class RigComponent : NetworkIdentity
     {
         protected UnitRig BaseRig { get; private set; }
 

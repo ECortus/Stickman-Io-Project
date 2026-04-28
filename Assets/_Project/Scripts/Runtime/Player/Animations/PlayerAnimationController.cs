@@ -51,7 +51,7 @@ namespace StickmanIo.Runtime.Player
 
         void OnRigInitialize()
         {
-            rig = GetComponentInParent<PlayerRig>();
+            rig = header.Rig;
 
             health = rig.Health;
             movement = rig.Movement;

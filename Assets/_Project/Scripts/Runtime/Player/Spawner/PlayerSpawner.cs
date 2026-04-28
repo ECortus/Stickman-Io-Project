@@ -29,10 +29,19 @@ namespace StickmanIo.Runtime.Player
             var randomIndex = Random.Range(0, dots.Count - 1);
 
             var spawnPosition = dots[randomIndex].position;
-            SpawnPlayerOwner(spawnPosition, ownerParent);
+            SpawnPlayer(spawnPosition, ownerParent);
         }
 
         void CreateDotsList()
+        {
+            PlaceDotsOnNavMesh();
+
+            dots = dotsParent.GetComponentsInChildren<Transform>().ToList();
+            dots.RemoveAt(0);
+        }
+
+        [ContextMenu("Place Dots On NavMesh")]
+        void PlaceDotsOnNavMesh()
         {
             var array = dotsParent.GetComponentsInChildren<Transform>().ToList();
             array.RemoveAt(0);
@@ -44,22 +53,13 @@ namespace StickmanIo.Runtime.Player
                 {
                     position = hit.position;
                 }
-
                 dot.position = position;
-                dots.Add(dot);
             }
-        }
-
-        void SpawnPlayerOwner(Vector3 position, Transform parent)
-        {
-            var owner = ObjectInstantiator.InstantiatePrefabForComponent(playerPrefab, position, Quaternion.identity, parent);
-            owner.SetOwnerState(true);
         }
 
         void SpawnPlayer(Vector3 position, Transform parent)
         {
-            var player = ObjectInstantiator.InstantiatePrefabForComponent(playerPrefab, position, Quaternion.identity, parent);
-            player.SetOwnerState(false);
+            ObjectInstantiator.InstantiatePrefabForComponent(playerPrefab, position, Quaternion.identity, parent);
         }
     }
 }

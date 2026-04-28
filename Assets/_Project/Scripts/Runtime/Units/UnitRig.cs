@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using GameDevUtils.Runtime;
+using PurrNet;
 using StickmanIo.Runtime.Player;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
 {
-    public class UnitRig : MonoBehaviour, IManagedComponent
+    public class UnitRig : NetworkIdentity, IManagedComponent
     {
         List<RigComponent> components = new List<RigComponent>();
 

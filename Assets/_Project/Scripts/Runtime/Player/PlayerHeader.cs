@@ -1,24 +1,23 @@
 ﻿using System;
 using GameDevUtils.Runtime;
+using PurrNet;
 using StickmanIo.Runtime.Player.Data;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public class PlayerHeader : MonoBehaviour
+    public class PlayerHeader : NetworkIdentity
     {
-        [SerializeField] private bool isOwner = true;
         [SerializeField] private PlayerData data;
-        
+
+        PlayerRig rig;
+
         public bool IsOwner => isOwner;
         public PlayerData Data => data;
 
-        public void SetOwnerState(bool state)
-        {
-            isOwner = state;
-        }
-        
-        private void Awake()
+        public PlayerRig Rig => rig;
+
+        protected override void OnSpawned()
         {
             Initialize();
         }
@@ -27,12 +26,12 @@ namespace StickmanIo.Runtime.Player
         {
             InitRig();
         }
-        
+
         void InitRig()
         {
-            var rig = gameObject.AddComponent<PlayerRig>();
+            rig = gameObject.AddComponent<PlayerRig>();
             rig.Initialize(this);
-            
+
             OnRigInitialize?.Invoke();
         }
 

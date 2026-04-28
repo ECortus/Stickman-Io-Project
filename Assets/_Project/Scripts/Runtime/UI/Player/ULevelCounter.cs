@@ -9,7 +9,8 @@ namespace StickmanIo.Runtime.Player
 
         protected override void OnStart()
         {
-            level = GetComponentInParent<ILevel>();
+            var header = GetComponentInParent<PlayerHeader>();
+            level = header.Rig.Level;
         }
 
         protected override string GetText()

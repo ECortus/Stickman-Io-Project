@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 5267682047118564956}
   - component: {fileID: 4099629224660877445}
   - component: {fileID: 7649604438782637157}
+  - component: {fileID: -4395857617192257514}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -170,8 +171,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c045819c0f4e10ba6df2c843315dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerHeader
-  isOwner: 1
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   data: {fileID: 11400000, guid: a9b35e53a5340134b84989869d2935e9, type: 2}
+--- !u!114 &-4395857617192257514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198282532187504312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817fe5016bd0a2a49a95b6eb338bb132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkTransform
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _syncPosition: 1
+  _syncRotation: 1
+  _syncScale: 1
+  _syncParent: 1
+  _interpolateSettings: 7
+  _minBufferSize: 1
+  _maxBufferSize: 2
+  _characterControllerPatch: 0
+  _ownerAuth: 1
+  _interpolationTiming: 0
 --- !u!1 &7240020838515595559
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +523,10 @@ PrefabInstance:
     - target: {fileID: 6897618091982077741, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897618091982077741, guid: b59af640f48038143bcbec94b2761a68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9138727850209800805, guid: b59af640f48038143bcbec94b2761a68, type: 3}
       propertyPath: m_Layer
