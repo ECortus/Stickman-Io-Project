@@ -18,13 +18,13 @@ namespace StickmanIo.Runtime.Player
 
     public class PlayerAttacker : PlayerRigComponent, IAttacker
     {
-        bool isAttacking;
+        [SerializeField] bool isAttacking;
 
         bool inputReaded;
         float lastInputTime;
 
-        float damage = -1f;
-        float damageMod = 1f;
+        [SerializeField] float damage = -1f;
+        [SerializeField] float damageMod = 1f;
 
         IMovement movement;
         ILevel level;

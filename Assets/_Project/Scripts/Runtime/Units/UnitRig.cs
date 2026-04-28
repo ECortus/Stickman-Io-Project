@@ -44,10 +44,11 @@ namespace StickmanIo.Runtime.Units
             unitsManager.Register(this);
         }
 
-        public virtual void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
+            
             unitsManager.Unregister(this);
-
             DestroyComponents();
         }
 
@@ -59,6 +60,11 @@ namespace StickmanIo.Runtime.Units
         protected T AddComponent<T>() where T : RigComponent
         {
             var component = gameObject.AddComponent<T>();
+
+            var playerID = localPlayer;
+            component.SetIsSpawned(true, false);
+            component.GiveOwnership(playerID);
+
             components.Add(component);
 
             OnAllComponentsAdded += () =>

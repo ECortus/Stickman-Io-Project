@@ -14,10 +14,10 @@ namespace StickmanIo.Runtime.Player
     
     public class PlayerCamera : PlayerRigComponent, ICamera
     {
-        CinemachineCamera cinemachineCamera;
+        [SerializeField] CinemachineCamera cinemachineCamera;
 
-        CameraTarget cameraTarget;
-        Vector2 lookDirection;
+        [SerializeField] CameraTarget cameraTarget;
+        [SerializeField] Vector2 lookDirection;
         
         GlobalPlayerSettings settings;
         

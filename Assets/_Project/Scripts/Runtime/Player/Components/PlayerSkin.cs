@@ -7,8 +7,8 @@ namespace StickmanIo.Runtime.Player
 {
     public class PlayerSkin : PlayerRigComponent
     {
-        string skinID = "nothing";
-        Color skinColor;
+        [SerializeField] string skinID = "nothing";
+        [SerializeField] Color skinColor;
 
         UnitView view;
         SkinsCollection skinsCollection;

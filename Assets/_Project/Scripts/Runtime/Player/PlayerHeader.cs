@@ -30,6 +30,11 @@ namespace StickmanIo.Runtime.Player
         void InitRig()
         {
             rig = gameObject.AddComponent<PlayerRig>();
+
+            var playerID = localPlayer;
+            rig.SetIsSpawned(true, false);
+            rig.GiveOwnership(playerID);
+
             rig.Initialize(this);
 
             OnRigInitialize?.Invoke();

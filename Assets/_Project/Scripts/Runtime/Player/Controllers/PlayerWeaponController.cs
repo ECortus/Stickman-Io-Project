@@ -1,6 +1,7 @@
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
 using UnityEngine;
+using PurrNet;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -12,7 +13,7 @@ namespace StickmanIo.Runtime.Player
         void SetWeaponActive(bool active);
     }
 
-    public class PlayerWeaponController : MonoBehaviour, IPlayerWeaponController
+    public class PlayerWeaponController : NetworkIdentity, IPlayerWeaponController
     {
         [SerializeField] private bool instantiateWeapon = false;
         [SerializeField] private Transform weapon;

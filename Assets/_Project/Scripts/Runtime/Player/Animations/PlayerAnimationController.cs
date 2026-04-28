@@ -1,10 +1,11 @@
 ﻿using System;
 using GameDevUtils.Runtime;
+using PurrNet;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
-    public class PlayerAnimationController : MonoBehaviour
+    public class PlayerAnimationController : NetworkIdentity
     {
         readonly int SpeedHash = Animator.StringToHash("Speed");
         readonly int JumpHash = Animator.StringToHash("Jump");
@@ -44,9 +45,9 @@ namespace StickmanIo.Runtime.Player
 
             body = GetComponentInParent<Rigidbody>();
 
-            header.OnRigInitialize.AddListener(OnRigInitialize);
-
             ragdoll.OffRagdoll();
+
+            header.OnRigInitialize.AddListener(OnRigInitialize);
         }
 
         void OnRigInitialize()
@@ -76,12 +77,16 @@ namespace StickmanIo.Runtime.Player
 
         private void LateUpdate()
         {
+            if (!rig)
+            {
+                return;
+            }
+
             SyncPositionsWithBody();
         }
 
         void UpdateMoveSpeed()
         {
-            /* var speed = movement.ActualSpeed; */
             var speed = movement.InputSpeed;
             SetSpeed(speed);
         }

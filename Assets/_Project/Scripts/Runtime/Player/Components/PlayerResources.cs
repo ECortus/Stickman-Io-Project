@@ -22,8 +22,6 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] int maximumScore;
 
         public int Score => score;
-
-        bool isOwner;
         GoldStorage goldStorage;
 
         IPlayerSaveable playerSaveable;
@@ -31,7 +29,6 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            isOwner = Rig.IsOwner;
 
             if (!isOwner)
             {

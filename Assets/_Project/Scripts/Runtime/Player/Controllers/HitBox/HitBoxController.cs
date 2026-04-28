@@ -2,6 +2,7 @@ using System;
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
 using UnityEngine;
+using PurrNet;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -12,7 +13,7 @@ namespace StickmanIo.Runtime.Player
         void SetHitBoxActive(bool active);
     }
 
-    public abstract class HitBoxController : MonoBehaviour, IHitBox
+    public abstract class HitBoxController : NetworkIdentity, IHitBox
     {
         [SerializeField] private LayerMask hitBoxLayerMask = ~0;
 

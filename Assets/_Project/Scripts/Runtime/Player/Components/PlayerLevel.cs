@@ -20,7 +20,6 @@ namespace StickmanIo.Runtime.Player
     public class PlayerLevel : PlayerRigComponent, ILevel
     {
         [SerializeField] int level = 0;
-        bool isOwner;
 
         [SerializeField] int maximumKills;
 
@@ -33,8 +32,6 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            isOwner = Rig.IsOwner;
 
             if (!isOwner)
             {

@@ -2,6 +2,7 @@
 using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -23,8 +24,8 @@ namespace StickmanIo.Runtime.Player
     {
         GlobalPlayerSettings settings;
 
-        float currentHealth;
-        float maxHealth => settings.BaseMaxHealth * (1f + upgradeableMaxHealthModifier);
+        [SerializeField] float currentHealth;
+        [SerializeField] float maxHealth;
 
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
@@ -34,6 +35,8 @@ namespace StickmanIo.Runtime.Player
             base.OnInitialize();
 
             settings = Data.Settings;
+
+            UpdateMaxHealth();
             Refill();
         }
 
@@ -94,6 +97,11 @@ namespace StickmanIo.Runtime.Player
             }
         }
 
+        void UpdateMaxHealth()
+        {
+            maxHealth = settings.BaseMaxHealth * (1f + upgradeableMaxHealthModifier);
+        }
+
         void OnDeath()
         {
             OnDied?.Invoke();
@@ -107,6 +115,8 @@ namespace StickmanIo.Runtime.Player
         public void UpdateHealthModifier(float modifier)
         {
             upgradeableMaxHealthModifier = modifier;
+
+            UpdateMaxHealth();
             Refill();
         }
     }

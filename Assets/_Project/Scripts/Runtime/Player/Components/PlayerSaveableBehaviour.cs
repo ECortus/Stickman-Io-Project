@@ -47,13 +47,9 @@ namespace StickmanIo.Runtime.Player
             remove => OnDeserializeEvent -= value;
         }
 
-        bool isOwner;
-
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            isOwner = Rig.IsOwner;
 
             if (!isOwner)
             {

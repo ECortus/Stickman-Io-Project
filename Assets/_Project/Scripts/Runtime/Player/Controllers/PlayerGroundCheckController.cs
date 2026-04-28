@@ -1,6 +1,7 @@
 ﻿using System;
 using GameDevUtils.Runtime.Extensions;
 using UnityEngine;
+using PurrNet;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -9,7 +10,7 @@ namespace StickmanIo.Runtime.Player
         public bool IsOnGround { get; }
     }
     
-    public class PlayerGroundCheckController : MonoBehaviour, IPlayerGroundCheck
+    public class PlayerGroundCheckController : NetworkIdentity, IPlayerGroundCheck
     {
         [SerializeField] bool isOnGround = false;
         [SerializeField] LayerMask groundLayer;

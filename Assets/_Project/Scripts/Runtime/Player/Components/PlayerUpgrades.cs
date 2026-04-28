@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using StickmanIo.Runtime.Units;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -15,8 +16,8 @@ namespace StickmanIo.Runtime.Player
 
     public class PlayerUpgrades : PlayerRigComponent, IUpgrades
     {
-        int availableUpgrades;
-        List<UpgradeRuntimeData> upgrades = new List<UpgradeRuntimeData>();
+        [SerializeField] int availableUpgrades;
+        [SerializeField] List<UpgradeRuntimeData> upgrades = new List<UpgradeRuntimeData>();
 
         ILevel level;
 

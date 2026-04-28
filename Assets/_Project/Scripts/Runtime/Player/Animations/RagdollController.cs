@@ -1,9 +1,10 @@
 using UnityEditor;
 using UnityEngine;
+using PurrNet;
 
 namespace StickmanIo.Runtime.Player
 {
-    public class RagdollController : MonoBehaviour
+    public class RagdollController : NetworkIdentity
     {
         [Header("Ragdool parameters")]
         [SerializeField] private Vector3 forceMoveDirection = Vector3.up;
