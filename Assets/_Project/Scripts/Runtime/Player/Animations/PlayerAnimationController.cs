@@ -153,10 +153,10 @@ namespace StickmanIo.Runtime.Player
         {
             transform.SetParent(null);
 
-            ragdoll.SetToRagdoll();
-
             animator.enabled = false;
-            ObjectHelper.Destroy(this);
+            this.enabled = false;
+
+            ragdoll.SetToRagdoll();
         }
     }
 }

@@ -62,10 +62,6 @@ namespace StickmanIo.Runtime.Units
         protected T AddComponent<T>() where T : RigComponent
         {
             var component = gameObject.AddComponent<T>();
-
-            var playerID = localPlayer;
-            component.GiveOwnership(playerID);
-
             components.Add(component);
 
             OnAllComponentsAdded += () =>

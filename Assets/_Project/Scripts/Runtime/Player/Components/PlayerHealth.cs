@@ -125,13 +125,10 @@ namespace StickmanIo.Runtime.Player
         {
             OnDied?.Invoke();
 
-            var identities = GetComponentsInChildren<NetworkIdentity>();
-            foreach (var identity in identities)
-            {
-                identity.RemoveOwnership();
-            }
+            gameObject.SetActive(false);
+            /* Despawn(); */
 
-            Despawn();
+            /* ObjectHelper.Destroy(this.gameObject); */
         }
 
         public event Action OnDied;
