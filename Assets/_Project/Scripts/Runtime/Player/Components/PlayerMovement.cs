@@ -1,4 +1,5 @@
 ﻿using System;
+using PurrNet;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
@@ -22,9 +23,9 @@ namespace StickmanIo.Runtime.Player
         Vector3 lastPosition;
         Vector3 currentPosition;
 
-        Vector3 moveDirection;
+        [SerializeField] SyncVar<Vector3> moveDirectionVar = new SyncVar<Vector3>(Vector3.zero);
 
-        float speed;
+        [SerializeField] SyncVar<float> speedVar = new SyncVar<float>(0f);
 
         GlobalPlayerSettings settings;
         
@@ -49,12 +50,12 @@ namespace StickmanIo.Runtime.Player
         {
             get
             {
-                var velocity = moveDirection * Speed;
+                var velocity = moveDirectionVar.value * Speed;
                 return velocity.magnitude;
             }
         }
 
-        public float ActualSpeed => speed;
+        public float ActualSpeed => speedVar;
 
         protected override void OnInitialize()
         {
@@ -79,15 +80,16 @@ namespace StickmanIo.Runtime.Player
 
         }
 
+        [ServerRpc]
         void UpdateMoveDirection(Vector2 dir)
         {
             if (dir != Vector2.zero)
             {
-                moveDirection = new Vector3(dir.x, 0, dir.y);
+                moveDirectionVar.value = new Vector3(dir.x, 0, dir.y);
             }
             else
             {
-                moveDirection = Vector3.zero;
+                moveDirectionVar.value = Vector3.zero;
             }
         }
 
@@ -111,9 +113,9 @@ namespace StickmanIo.Runtime.Player
         void UpdateMove()
         {
             Vector3 velocity;
-            if (moveDirection != Vector3.zero)
+            if (moveDirectionVar != Vector3.zero)
             {
-                velocity = moveDirection * Speed;
+                velocity = moveDirectionVar.value * Speed;
             }
             else
             {
@@ -131,7 +133,7 @@ namespace StickmanIo.Runtime.Player
         {
             rb.angularVelocity = Vector3.zero;
 
-            var direction = moveDirection;
+            var direction = moveDirectionVar.value;
             direction.y = 0;
 
             if (direction != Vector3.zero)
@@ -169,15 +171,16 @@ namespace StickmanIo.Runtime.Player
             currentPosition = pos;
         }
 
+        [ServerRpc]
         void CalculateSpeed(float delta)
         {
-            if (moveDirection == Vector3.zero)
+            if (moveDirectionVar == Vector3.zero)
             {
-                speed = 0f;
+                speedVar.value = 0f;
                 return;
             }
 
-            speed = (currentPosition - lastPosition).magnitude / delta;
+            speedVar.value = (currentPosition - lastPosition).magnitude / delta;
         }
 
         public bool IsDisabled { get; private set; }

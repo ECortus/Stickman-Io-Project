@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PurrNet;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
@@ -11,7 +12,7 @@ namespace StickmanIo.Runtime.Units
         void SetNewColor(Color color);
     }
 
-    public class SkinMaterialController : MonoBehaviour, ISkinMaterialController
+    public class SkinMaterialController : NetworkIdentity, ISkinMaterialController
     {
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         [SerializeField] private Material defaultMaterial;

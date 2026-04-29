@@ -1,10 +1,11 @@
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
 using UnityEngine;
+using PurrNet;
 
 namespace StickmanIo.Runtime.Units
 {
-    public class UnitView : MonoBehaviour
+    public class UnitView : NetworkIdentity
     {
         Transform skinParent => transform;
 

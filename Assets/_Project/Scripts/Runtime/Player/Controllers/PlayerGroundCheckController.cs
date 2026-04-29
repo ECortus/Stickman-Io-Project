@@ -12,16 +12,16 @@ namespace StickmanIo.Runtime.Player
     
     public class PlayerGroundCheckController : NetworkIdentity, IPlayerGroundCheck
     {
-        [SerializeField] bool isOnGround = false;
+        [SerializeField] SyncVar<bool> isOnGroundVar = new SyncVar<bool>(false);
         [SerializeField] LayerMask groundLayer;
         
-        public bool IsOnGround => isOnGround;
+        public bool IsOnGround => isOnGroundVar;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.IsSameMask(groundLayer))
             {
-                isOnGround = true;
+                SetIsOnGround(true);
             }
         }
         
@@ -29,7 +29,7 @@ namespace StickmanIo.Runtime.Player
         {
             if (other.IsSameMask(groundLayer))
             {
-                isOnGround = true;
+                SetIsOnGround(true);
             }
         }
         
@@ -37,8 +37,14 @@ namespace StickmanIo.Runtime.Player
         {
             if (other.IsSameMask(groundLayer))
             {
-                isOnGround = false;
+                SetIsOnGround(false);
             }
+        }
+
+        [ServerRpc]
+        void SetIsOnGround(bool value)
+        {
+            isOnGroundVar.value = value;
         }
     }
 }

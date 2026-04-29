@@ -1,8 +1,10 @@
 ﻿using System;
 using GameDevUtils.Runtime;
+using PurrNet;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -24,11 +26,11 @@ namespace StickmanIo.Runtime.Player
     {
         GlobalPlayerSettings settings;
 
-        [SerializeField] float currentHealth;
-        [SerializeField] float maxHealth;
+        [SerializeField] SyncVar<float> currentHealthVar = new SyncVar<float>(0f);
+        [SerializeField] SyncVar<float> maxHealthVar = new SyncVar<float>(50f);
 
-        public float CurrentHealth => currentHealth;
-        public float MaxHealth => maxHealth;
+        public float CurrentHealth => currentHealthVar.value;
+        public float MaxHealth => maxHealthVar.value;
 
         protected override void OnInitialize()
         {
@@ -47,14 +49,14 @@ namespace StickmanIo.Runtime.Player
 
         public void Refill()
         {
-            currentHealth = maxHealth;
-            ClampHealth();
+            var value = MaxHealth;
+            SetCurrentHealth(value);
         }
 
         public void Heal(float amount)
         {
-            currentHealth += amount;
-            ClampHealth();
+            var value = CurrentHealth + amount;
+            SetCurrentHealth(value);
         }
 
         public void TakeDamage(float damage)
@@ -69,12 +71,12 @@ namespace StickmanIo.Runtime.Player
 
         public void TakeDamage(float damage, out bool isKilled, out IPlayerRig rig)
         {
-            currentHealth -= damage;
-            ClampHealth();
+            var value = CurrentHealth - damage;
+            SetCurrentHealth(value);
 
             rig = Rig;
 
-            if (currentHealth <= 0f)
+            if (CurrentHealth <= 0f)
             {
                 isKilled = true;
                 OnDeath();
@@ -85,39 +87,69 @@ namespace StickmanIo.Runtime.Player
             }
         }
 
-        void ClampHealth()
+        float ClampHealth(float value)
         {
-            if (currentHealth > maxHealth)
+            if (CurrentHealth > MaxHealth)
             {
-                currentHealth = maxHealth;
+                value = maxHealthVar.value;
             }
-            else if (currentHealth < 0f)
+            else if (CurrentHealth < 0f)
             {
-                currentHealth = 0f;
+                value = 0f;
             }
+
+            return value;
         }
 
         void UpdateMaxHealth()
         {
-            maxHealth = settings.BaseMaxHealth * (1f + upgradeableMaxHealthModifier);
+            var value = settings.BaseMaxHealth * (1f + upgradeableMaxHealthModifierVar.value);
+            SetMaxHealth(value);
+        }
+
+        [ServerRpc]
+        void SetCurrentHealth(float value)
+        {
+            var clamp = ClampHealth(value);
+            currentHealthVar.value = clamp;
+        }
+
+        [ServerRpc]
+        void SetMaxHealth(float value)
+        {
+            var clamp = ClampHealth(value);
+            maxHealthVar.value = clamp;
         }
 
         void OnDeath()
         {
             OnDied?.Invoke();
-            ObjectHelper.Destroy(this.gameObject);
+
+            var identities = GetComponentsInChildren<NetworkIdentity>();
+            foreach (var identity in identities)
+            {
+                identity.RemoveOwnership();
+            }
+
+            Despawn();
         }
 
         public event Action OnDied;
 
-        float upgradeableMaxHealthModifier = 0f;
+        SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f);
 
         public void UpdateHealthModifier(float modifier)
         {
-            upgradeableMaxHealthModifier = modifier;
+            SetHealthModifier(modifier);
 
             UpdateMaxHealth();
             Refill();
+        }
+
+        [ServerRpc]
+        void SetHealthModifier(float modifier)
+        {
+            upgradeableMaxHealthModifierVar.value = modifier;
         }
     }
 }

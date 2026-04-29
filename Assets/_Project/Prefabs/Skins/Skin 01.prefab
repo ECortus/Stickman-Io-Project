@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 4193814154248635939}
   - component: {fileID: 7977733884055007024}
   - component: {fileID: 6497291405194696493}
+  - component: {fileID: 2296976362660875851}
   m_Layer: 13
   m_Name: spine
   m_TagString: Untagged
@@ -470,6 +471,47 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2296976362660875851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406891227576248109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &1701390859148632508
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +524,7 @@ GameObject:
   - component: {fileID: 7722544218254857381}
   - component: {fileID: 9060532763798530494}
   - component: {fileID: 686993079657016312}
+  - component: {fileID: -4357975230175191142}
   m_Layer: 13
   m_Name: upper_arm.L
   m_TagString: Untagged
@@ -601,6 +644,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-4357975230175191142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701390859148632508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &1960587489523861421
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +793,7 @@ GameObject:
   - component: {fileID: 2082886705977651876}
   - component: {fileID: 7113979595898417834}
   - component: {fileID: 7138671999491001800}
+  - component: {fileID: 7310911392884288908}
   m_Layer: 13
   m_Name: shin.L
   m_TagString: Untagged
@@ -828,6 +913,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7310911392884288908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962154125337465714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &3066688405317411366
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +966,7 @@ GameObject:
   - component: {fileID: 4480278860513860561}
   - component: {fileID: 9105136909921276799}
   - component: {fileID: 2049962241860828608}
+  - component: {fileID: -4856368888586256665}
   m_Layer: 13
   m_Name: thigh.L
   m_TagString: Untagged
@@ -959,6 +1086,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-4856368888586256665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066688405317411366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &3284721184003337709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,6 +1518,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d2f5010fd95ee45b6b49362dee27d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.RagdollController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   forceMoveDirection: {x: 0, y: 1, z: 0}
   ragdollForce: 10
   ragdollTorque: 180
@@ -1403,6 +1580,7 @@ MonoBehaviour:
   - {x: 0.078834906, y: 0.0018081331, z: 0.0013324065, w: 0.9968852}
   - {x: 0.99753493, y: 0.0052289353, z: -0.00051481865, w: 0.06997455}
   - {x: 0.07883491, y: -0.0018081575, z: -0.0013324033, w: 0.9968852}
+  isNetwork: 1
 --- !u!114 &3010299332556208925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,6 +1593,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21b84a2a10f27942990ee3d8f6000d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Units.SkinMaterialController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   skinnedMeshRenderer: {fileID: 1787885285216258713}
   defaultMaterial: {fileID: 2100000, guid: e0e1980bd5c79eb468beda1ead7b286f, type: 2}
 --- !u!114 &8997186991067648684
@@ -1429,6 +1616,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed04fc0ad9940a78d6412ae4ad69004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerAnimationController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   body: {fileID: 0}
 --- !u!114 &1756555660241486924
 MonoBehaviour:
@@ -1979,6 +2175,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5520ef71284ed4d85a6e7d8dcf430a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.HitBoxDamageDealerController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   hitBoxLayerMask:
     serializedVersion: 2
     m_Bits: 65536
@@ -2343,6 +2548,7 @@ GameObject:
   - component: {fileID: 6135619960440159677}
   - component: {fileID: 3742359944788846931}
   - component: {fileID: 6901501495544588379}
+  - component: {fileID: 3016547685872951890}
   m_Layer: 13
   m_Name: upper_arm.R
   m_TagString: Untagged
@@ -2462,6 +2668,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3016547685872951890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624291292478674944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &7699142592062485599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2721,7 @@ GameObject:
   - component: {fileID: 8576401732872177814}
   - component: {fileID: 7879973612583072001}
   - component: {fileID: 7877300181432258371}
+  - component: {fileID: 6638883523379488868}
   m_Layer: 13
   m_Name: shin.R
   m_TagString: Untagged
@@ -2593,6 +2841,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6638883523379488868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699142592062485599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &7717423152895925908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,6 +2959,7 @@ GameObject:
   - component: {fileID: 4246167148321839428}
   - component: {fileID: 3936647548102302864}
   - component: {fileID: 2874477016104730140}
+  - component: {fileID: 2707097654460319978}
   m_Layer: 13
   m_Name: spine.001
   m_TagString: Untagged
@@ -2787,6 +3077,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2707097654460319978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870209325264070660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &7951235511512921992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,6 +3130,7 @@ GameObject:
   - component: {fileID: 3253665264529335063}
   - component: {fileID: 2419721090024535579}
   - component: {fileID: 5612804379604498856}
+  - component: {fileID: -941499535541735985}
   m_Layer: 13
   m_Name: forearm.R
   m_TagString: Untagged
@@ -2918,6 +3250,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-941499535541735985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951235511512921992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &7977186926614611753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,6 +3303,7 @@ GameObject:
   - component: {fileID: 7861243893963768381}
   - component: {fileID: 2889533634199423829}
   - component: {fileID: 4705439424403328135}
+  - component: {fileID: -2628439796343429514}
   m_Layer: 13
   m_Name: spine.005
   m_TagString: Untagged
@@ -3047,6 +3421,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-2628439796343429514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977186926614611753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &8252392195111617977
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,6 +3474,7 @@ GameObject:
   - component: {fileID: 6076028592873453650}
   - component: {fileID: 5614765168787352916}
   - component: {fileID: 8162146221734455020}
+  - component: {fileID: 623022532164328705}
   m_Layer: 13
   m_Name: thigh.R
   m_TagString: Untagged
@@ -3178,6 +3594,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &623022532164328705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252392195111617977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &8297081685049512563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,6 +3647,7 @@ GameObject:
   - component: {fileID: 8855481848798927145}
   - component: {fileID: 8382450817648644994}
   - component: {fileID: 1762662932026586031}
+  - component: {fileID: 58434561610908179}
   m_Layer: 13
   m_Name: forearm.L
   m_TagString: Untagged
@@ -3309,6 +3767,47 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &58434561610908179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8297081685049512563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 0
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &8303308982213514139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,6 +4078,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc3034f7b70dcd4f9d75a3666cd939a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerWeaponController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   instantiateWeapon: 0
   weapon: {fileID: 2862598820672451232}
   inHandParent: {fileID: 1419143839802618505}

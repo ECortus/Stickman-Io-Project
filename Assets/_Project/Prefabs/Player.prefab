@@ -66,7 +66,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c34f8308b3f4a4a8765d6989932d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.PlayerGroundCheckController
-  isOnGround: 0
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  isOnGroundVar:
+    _value: 0
+    _ownerAuth: 0
+    _sendIntervalInSeconds: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -83,6 +95,7 @@ GameObject:
   - component: {fileID: 4099629224660877445}
   - component: {fileID: 7649604438782637157}
   - component: {fileID: -4395857617192257514}
+  - component: {fileID: 3108312458760162339}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -212,6 +225,47 @@ MonoBehaviour:
   _characterControllerPatch: 0
   _ownerAuth: 1
   _interpolationTiming: 0
+--- !u!114 &3108312458760162339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198282532187504312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d497b70c6fb6adc46b663609bee66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkRigidbody
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _debugGizmos: 0
+  _debugTextOffset: 2
+  _ownerAuth: 1
+  _acceptableError: 0.05
+  _hardCorrectionThreshold: 2
+  _maxCorrectionTime: -1
+  _springConstant: 80
+  _dampingConstant: 5
+  _rotationSpringMultiplier: 0.3
+  _minRotationCorrectionAngle: 1
+  _uncertaintySpringDampening: 0.5
+  _accelerationDecay: 0.85
+  _hardCorrectionAccelerationScale: 0.1
+  _maxHardCorrectionMultiplier: 5
+  _lowSpeedThreshold: 1.5
+  _lowSpeedSpringMultiplier: 0.1
+  _extrapolateBasedOnPing: 0
+  _positionChangeThreshold: 0.001
+  _rotationChangeThreshold: 0.001
+  _velocityStopThreshold: 0.001
 --- !u!1 &7240020838515595559
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +366,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505f2a701b1e04a418b478b37a46cc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Player.HitBoxReceiverController
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
   hitBoxLayerMask:
     serializedVersion: 2
     m_Bits: 65536
@@ -360,6 +423,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52587b015360a454f8fd5d97d2d0f700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Units.UnitView
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
 --- !u!1001 &282758668016474440
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] private Vector3[] defaultPositions;
         [SerializeField] private Quaternion[] defaultRotations;
 
+        [Space(10)]
+        [SerializeField] private bool isNetwork = true;
+
         Animator animator;
 
         void Awake()
@@ -50,6 +53,11 @@ namespace StickmanIo.Runtime.Player
 
             for (int i = 0; i < rigidbodies.Length; i++)
             {
+                if (!rigidbodies[i].TryGetComponent<NetworkRigidbody>(out _))
+                {
+                    rigidbodies[i].gameObject.AddComponent<NetworkRigidbody>();
+                }
+
                 defaultPositions[i] = rigidbodies[i].transform.localPosition;
                 defaultRotations[i] = rigidbodies[i].transform.localRotation;
             }
