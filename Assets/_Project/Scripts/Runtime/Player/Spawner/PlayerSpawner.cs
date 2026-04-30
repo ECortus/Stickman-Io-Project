@@ -193,6 +193,7 @@ namespace StickmanIo.Runtime.Player
             }
 
             newPlayer.transform.SetParent(playersParent);
+            newPlayer.name = newPlayer.name + $"_({player.id})";
 
             _prefabInstantiatedProvider?.OnPrefabInstantiated(newPlayer, player, scene);
 

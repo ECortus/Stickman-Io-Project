@@ -57,6 +57,22 @@ namespace StickmanIo.Runtime.Player
             initialized = true;
         }
 
+        void LateUpdate() 
+        {
+            if (!initialized)
+            {
+                return;
+            }
+
+            if (!instance)
+            {
+                return;
+            }
+
+            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localRotation = new Quaternion();
+        }
+
         public void SetCollidersActive(bool active)
         {
             if (!initialized)

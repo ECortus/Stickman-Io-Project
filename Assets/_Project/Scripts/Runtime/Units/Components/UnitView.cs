@@ -9,6 +9,11 @@ namespace StickmanIo.Runtime.Units
     {
         Transform skinParent => transform;
 
+        public void SetParent(Transform parent)
+        {
+            transform.SetParent(parent);
+        }
+
         public void ReplaceSkin(SkinData skinData)
         {
             var prefab = skinData.SkinPrefab;

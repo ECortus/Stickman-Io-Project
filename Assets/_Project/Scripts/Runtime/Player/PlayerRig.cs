@@ -41,6 +41,7 @@ namespace StickmanIo.Runtime.Player
         PlayerLoot loot;
 
         PlayerSkin skin;
+        UnitView view;
 
         PlayerInputEvents inputEvents;
 
@@ -58,6 +59,8 @@ namespace StickmanIo.Runtime.Player
         public IMovement Movement => movement;
         
         public IPlayerGroundCheck GroundCheck => groundCheck;
+
+        public UnitView View => view;
         
         public IUpgrades Upgrades => upgrades;
         public IResources Resources => resources;
@@ -75,6 +78,7 @@ namespace StickmanIo.Runtime.Player
         
         protected override void InitializeComponents()
         {
+            view = GetComponentInChildren<UnitView>();
             saveableBehaviour = AddComponent<PlayerSaveableBehaviour>();
 
             skin = AddComponent<PlayerSkin>();

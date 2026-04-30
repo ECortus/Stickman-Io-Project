@@ -18,6 +18,7 @@ namespace StickmanIo.Runtime.Player
         [SerializeField, ReadOnly] private Rigidbody body;
 
         Animator animator;
+        NetworkAnimator networkAnimator;
 
         PlayerHeader header;
         PlayerRig rig;
@@ -41,6 +42,8 @@ namespace StickmanIo.Runtime.Player
             }
 
             animator = GetComponent<Animator>();
+            networkAnimator = GetComponent<NetworkAnimator>();
+
             ragdoll = GetComponent<RagdollController>();
 
             body = GetComponentInParent<Rigidbody>();
@@ -99,17 +102,18 @@ namespace StickmanIo.Runtime.Player
 
         void SetSpeed(float speed)
         {
-            animator.SetFloat(SpeedHash, speed);
+            networkAnimator.SetFloat(SpeedHash, speed);
         }
 
         void TriggerJump()
         {
-            animator.SetTrigger(JumpHash);
+            networkAnimator.SetTrigger(JumpHash);
         }
+
 
         void SetOnGround(bool onGround)
         {
-            animator.SetBool(OnGroundHash, onGround);
+            networkAnimator.SetBool(OnGroundHash, onGround);
         }
 
         void OnAttack(int attackIndex)
@@ -117,17 +121,17 @@ namespace StickmanIo.Runtime.Player
             bool isAttacking = attackIndex > 0;
             if (!isAttacking)
             {
-                animator.SetTrigger(NonAttackHash);
+                networkAnimator.SetTrigger(NonAttackHash);
             }
             else
             {
                 switch (attackIndex)
                 {
                     case 1:
-                        animator.SetTrigger(AttackOneHash);
+                        networkAnimator.SetTrigger(AttackOneHash);
                         break;
                     case 2:
-                        animator.SetTrigger(AttackTwoHash);
+                        networkAnimator.SetTrigger(AttackTwoHash);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(attackIndex), $"Invalid attack index: {attackIndex}");
@@ -154,6 +158,8 @@ namespace StickmanIo.Runtime.Player
             transform.SetParent(null);
 
             animator.enabled = false;
+            networkAnimator.enabled = false;
+
             this.enabled = false;
 
             ragdoll.SetToRagdoll();

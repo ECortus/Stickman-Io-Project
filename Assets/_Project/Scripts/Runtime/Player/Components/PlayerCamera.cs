@@ -20,6 +20,8 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] Vector2 lookDirection;
         
         GlobalPlayerSettings settings;
+
+        UnitView view;
         
         public float RotationHorizontalAngle
         {
@@ -46,6 +48,7 @@ namespace StickmanIo.Runtime.Player
             }
 
             settings = Data.Settings;
+            view = Rig.View;
             
             cinemachineCamera = FindAnyObjectByType<CinemachineCamera>();
             var targetGroup = FindAnyObjectByType<CinemachineTargetGroup>();
@@ -64,7 +67,13 @@ namespace StickmanIo.Runtime.Player
         
         protected override void OnDestroyed()
         {
-            
+            if (!Rig.IsOwner)
+            {
+                return;
+            }
+
+            var parent = view.transform;
+            cameraTarget.SetParent(parent);
         }
         
         void UpdateLookDirection(Vector2 dir)

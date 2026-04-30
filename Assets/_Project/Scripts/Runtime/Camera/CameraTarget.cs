@@ -5,6 +5,11 @@ namespace StickmanIo.Runtime
     public class CameraTarget : MonoBehaviour
     {
         public Transform Target => transform;
+
+        public void SetParent(Transform parent)
+        {
+            transform.SetParent(parent);
+        }
         
         public void SetPosition(Vector3 pos)
         {

@@ -26,6 +26,11 @@ namespace StickmanIo.Runtime.UI
             var currentHealth = health.CurrentHealth;
             var maxHealth = health.MaxHealth;
 
+            if (maxHealth == 0f)
+            {
+                return 0f;
+            }
+
             return currentHealth / maxHealth;
         }
 

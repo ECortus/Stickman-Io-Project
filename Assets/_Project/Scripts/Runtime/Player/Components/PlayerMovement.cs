@@ -23,9 +23,11 @@ namespace StickmanIo.Runtime.Player
         Vector3 lastPosition;
         Vector3 currentPosition;
 
-        [SerializeField] SyncVar<Vector3> moveDirectionVar = new SyncVar<Vector3>(Vector3.zero);
+        [SerializeField, NonSerialized] SyncVar<Vector3> moveDirectionVar = new SyncVar<Vector3>(Vector3.zero, ownerAuth: true);
 
-        [SerializeField] SyncVar<float> speedVar = new SyncVar<float>(0f);
+        [SerializeField, NonSerialized] SyncVar<float> calculatedSpeedVar = new SyncVar<float>(0f, ownerAuth: true);
+
+        [SerializeField, NonSerialized] SyncVar<float> upgradeableSpeedModifier = new SyncVar<float>(0f, ownerAuth: true);
 
         GlobalPlayerSettings settings;
         
@@ -35,12 +37,15 @@ namespace StickmanIo.Runtime.Player
 
         Rigidbody rb;
 
+        Vector3 MoveDirection => moveDirectionVar.value;
+        float CalculatedSpeed => calculatedSpeedVar.value;
+
         float Speed
         {
             get
             {
                 var baseSpeed = groundCheck.IsOnGround ? settings.Speed : settings.SpeedInAir;
-                baseSpeed *= 1f + upgradeableSpeedModifier;
+                baseSpeed *= 1f + upgradeableSpeedModifier.value;
 
                 return baseSpeed;
             }
@@ -50,12 +55,12 @@ namespace StickmanIo.Runtime.Player
         {
             get
             {
-                var velocity = moveDirectionVar.value * Speed;
+                var velocity = MoveDirection * Speed;
                 return velocity.magnitude;
             }
         }
 
-        public float ActualSpeed => speedVar;
+        public float ActualSpeed => CalculatedSpeed;
 
         protected override void OnInitialize()
         {
@@ -80,16 +85,15 @@ namespace StickmanIo.Runtime.Player
 
         }
 
-        [ServerRpc]
         void UpdateMoveDirection(Vector2 dir)
         {
             if (dir != Vector2.zero)
             {
-                moveDirectionVar.value = new Vector3(dir.x, 0, dir.y);
+                SetMoveDirection(new Vector3(dir.x, 0, dir.y));
             }
             else
             {
-                moveDirectionVar.value = Vector3.zero;
+                SetMoveDirection(Vector3.zero);
             }
         }
 
@@ -113,9 +117,9 @@ namespace StickmanIo.Runtime.Player
         void UpdateMove()
         {
             Vector3 velocity;
-            if (moveDirectionVar != Vector3.zero)
+            if (MoveDirection != Vector3.zero)
             {
-                velocity = moveDirectionVar.value * Speed;
+                velocity = MoveDirection * Speed;
             }
             else
             {
@@ -133,7 +137,7 @@ namespace StickmanIo.Runtime.Player
         {
             rb.angularVelocity = Vector3.zero;
 
-            var direction = moveDirectionVar.value;
+            var direction = MoveDirection;
             direction.y = 0;
 
             if (direction != Vector3.zero)
@@ -171,16 +175,20 @@ namespace StickmanIo.Runtime.Player
             currentPosition = pos;
         }
 
-        [ServerRpc]
         void CalculateSpeed(float delta)
         {
-            if (moveDirectionVar == Vector3.zero)
+            if (!isOwner)
             {
-                speedVar.value = 0f;
                 return;
             }
 
-            speedVar.value = (currentPosition - lastPosition).magnitude / delta;
+            if (MoveDirection == Vector3.zero)
+            {
+                calculatedSpeedVar.value = 0f;
+                return;
+            }
+
+            calculatedSpeedVar.value = (currentPosition - lastPosition).magnitude / delta;
         }
 
         public bool IsDisabled { get; private set; }
@@ -191,11 +199,24 @@ namespace StickmanIo.Runtime.Player
 
         public event Action OnJump;
 
-        float upgradeableSpeedModifier = 0f;
-
         public void UpdateSpeedModifier(float modifier)
         {
-            upgradeableSpeedModifier = modifier;
+            if (!isOwner)
+            {
+                return;
+            }
+
+            upgradeableSpeedModifier.value = modifier;
+        }
+
+        void SetMoveDirection(Vector3 value)
+        {
+            if (!isOwner)
+            {
+                return;
+            }
+
+            moveDirectionVar.value = value;
         }
     }
 }

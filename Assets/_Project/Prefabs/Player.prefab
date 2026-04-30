@@ -75,10 +75,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   _invertedPathToNearestParent: 
   _directChildren: []
-  isOnGroundVar:
-    _value: 0
-    _ownerAuth: 0
-    _sendIntervalInSeconds: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 2048

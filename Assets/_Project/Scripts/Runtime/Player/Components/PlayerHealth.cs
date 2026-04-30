@@ -26,11 +26,15 @@ namespace StickmanIo.Runtime.Player
     {
         GlobalPlayerSettings settings;
 
-        [SerializeField] SyncVar<float> currentHealthVar = new SyncVar<float>(0f);
-        [SerializeField] SyncVar<float> maxHealthVar = new SyncVar<float>(50f);
+        [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f, ownerAuth: true);
+        [SerializeField, NonSerialized] SyncVar<float> maximumHealthVar = new SyncVar<float>(0f, ownerAuth: true);
+
+        [SerializeField, NonSerialized] SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f, ownerAuth: true);
+
+        bool isDead = false;
 
         public float CurrentHealth => currentHealthVar.value;
-        public float MaxHealth => maxHealthVar.value;
+        public float MaxHealth => maximumHealthVar.value;
 
         protected override void OnInitialize()
         {
@@ -39,7 +43,7 @@ namespace StickmanIo.Runtime.Player
             settings = Data.Settings;
 
             UpdateMaxHealth();
-            Refill();
+            Resurrect();
         }
 
         protected override void OnDestroyed()
@@ -47,36 +51,66 @@ namespace StickmanIo.Runtime.Player
 
         }
 
-        public void Refill()
+        public void Resurrect()
         {
-            var value = MaxHealth;
-            SetCurrentHealth(value);
+            Heal_Internal(MaxHealth);
         }
 
         public void Heal(float amount)
         {
-            var value = CurrentHealth + amount;
-            SetCurrentHealth(value);
+            Heal_Internal(amount);
+        }
+
+        public void UpdateHealthModifier(float modifier)
+        {
+            SetHealthModifier(modifier);
+
+            UpdateMaxHealth();
+            Resurrect();
         }
 
         public void TakeDamage(float damage)
         {
-            TakeDamage(damage, out _, out _);
+            TakeDamage_Internal(damage, out _, out _);
         }
 
         public void TakeDamage(float damage, out bool isKilled)
         {
-            TakeDamage(damage, out isKilled, out _);
+            TakeDamage_Internal(damage, out isKilled, out _);
         }
 
         public void TakeDamage(float damage, out bool isKilled, out IPlayerRig rig)
         {
-            var value = CurrentHealth - damage;
+            TakeDamage_Internal(damage, out isKilled, out rig);
+        }
+
+        void Heal_Internal(float amount)
+        {
+            if (isDead & amount > 0)
+            {
+                isDead = false;
+            }
+
+            var value = CurrentHealth + amount;
             SetCurrentHealth(value);
+        }
+
+        void TakeDamage_Internal(float damage, out bool isKilled, out IPlayerRig rig)
+        {
+            if (isDead)
+            {
+                isKilled = false;
+                rig = null;
+
+                return;
+            }
+
+            var current = CurrentHealth - damage;
+            SetCurrentHealth(current);
 
             rig = Rig;
 
-            if (CurrentHealth <= 0f)
+            if (current <= 0f)
             {
                 isKilled = true;
                 OnDeath();
@@ -89,11 +123,11 @@ namespace StickmanIo.Runtime.Player
 
         float ClampHealth(float value)
         {
-            if (CurrentHealth > MaxHealth)
+            if (value > MaxHealth)
             {
-                value = maxHealthVar.value;
+                value = MaxHealth;
             }
-            else if (CurrentHealth < 0f)
+            else if (value <= 0f)
             {
                 value = 0f;
             }
@@ -107,46 +141,58 @@ namespace StickmanIo.Runtime.Player
             SetMaxHealth(value);
         }
 
-        [ServerRpc]
         void SetCurrentHealth(float value)
         {
+            if (!isOwner)
+            {
+                return;
+            }
+
             var clamp = ClampHealth(value);
             currentHealthVar.value = clamp;
         }
 
-        [ServerRpc]
         void SetMaxHealth(float value)
         {
-            var clamp = ClampHealth(value);
-            maxHealthVar.value = clamp;
+            if (!isOwner)
+            {
+                return;
+            }
+
+            maximumHealthVar.value = value;
+        }
+
+        void SetHealthModifier(float modifier)
+        {
+            if (!isOwner)
+            {
+                return;
+            }
+
+            upgradeableMaxHealthModifierVar.value = modifier;
         }
 
         void OnDeath()
         {
+            if (isDead)
+            {
+                return;
+            }
+
+            isDead = true;
             OnDied?.Invoke();
 
             gameObject.SetActive(false);
-            /* Despawn(); */
 
+            this.Invoke("OnDeathInvoke", 0.25f);
+        }
+
+        void OnDeathInvoke()
+        {
+            Despawn();
             /* ObjectHelper.Destroy(this.gameObject); */
         }
 
         public event Action OnDied;
-
-        SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f);
-
-        public void UpdateHealthModifier(float modifier)
-        {
-            SetHealthModifier(modifier);
-
-            UpdateMaxHealth();
-            Refill();
-        }
-
-        [ServerRpc]
-        void SetHealthModifier(float modifier)
-        {
-            upgradeableMaxHealthModifierVar.value = modifier;
-        }
     }
 }

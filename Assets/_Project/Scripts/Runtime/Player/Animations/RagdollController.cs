@@ -53,9 +53,12 @@ namespace StickmanIo.Runtime.Player
 
             for (int i = 0; i < rigidbodies.Length; i++)
             {
-                if (!rigidbodies[i].TryGetComponent<NetworkRigidbody>(out _))
+                if (isNetwork)
                 {
-                    rigidbodies[i].gameObject.AddComponent<NetworkRigidbody>();
+                    if (!rigidbodies[i].TryGetComponent<NetworkRigidbody>(out _))
+                    {
+                        rigidbodies[i].gameObject.AddComponent<NetworkRigidbody>();
+                    }
                 }
 
                 defaultPositions[i] = rigidbodies[i].transform.localPosition;

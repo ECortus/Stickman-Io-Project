@@ -1,3 +1,5 @@
+using System;
+using PurrNet;
 using SaveableExtension.Runtime;
 using StickmanIo.Runtime.Units;
 using StickmanProject.Runtime.SavePrefs;
@@ -7,8 +9,11 @@ namespace StickmanIo.Runtime.Player
 {
     public class PlayerSkin : PlayerRigComponent
     {
-        [SerializeField] string skinID = "nothing";
-        [SerializeField] Color skinColor;
+        [SerializeField, NonSerialized] SyncVar<string> skinID = new SyncVar<string>("nothing", ownerAuth: true);
+        [SerializeField, NonSerialized] SyncVar<Color> skinColor = new SyncVar<Color>(Color.white, ownerAuth: true);
+
+        string SkinID => skinID.value;
+        Color SkinColor => skinColor.value;
 
         UnitView view;
         SkinsCollection skinsCollection;
@@ -20,12 +25,6 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            if (!Rig.IsOwner)
-            {
-                enabled = false;
-                return;
-            }
 
             view = GetComponentInChildren<UnitView>();
             skinsCollection = Data.SkinsCollection;
@@ -59,13 +58,13 @@ namespace StickmanIo.Runtime.Player
 
         void Deserialize(ProjectSavePrefs savePrefs)
         {
-            if (skinID == savePrefs.EquippedSkinID)
+            if (SkinID == savePrefs.EquippedSkinID)
             {
                 return;
             }
 
-            skinID = savePrefs.EquippedSkinID;
-            skinColor = ProjectSavePrefs.ArrayToColor(savePrefs.ColorRGB);
+            skinID.value = savePrefs.EquippedSkinID;
+            skinColor.value = ProjectSavePrefs.ArrayToColor(savePrefs.ColorRGB);
 
             UpdateSkinAndMaterial();
         }
