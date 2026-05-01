@@ -26,7 +26,7 @@ namespace StickmanIo.Runtime.Player
     {
         GlobalPlayerSettings settings;
 
-        [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f, ownerAuth: true);
+        [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f);
         [SerializeField, NonSerialized] SyncVar<float> maximumHealthVar = new SyncVar<float>(0f, ownerAuth: true);
 
         [SerializeField, NonSerialized] SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f, ownerAuth: true);
@@ -111,6 +111,8 @@ namespace StickmanIo.Runtime.Player
             }
 
             var value = CurrentHealth + amount;
+            value = Mathf.Clamp(value, 0f, MaxHealth);
+
             SetCurrentHealth(value);
         }
 
@@ -125,34 +127,18 @@ namespace StickmanIo.Runtime.Player
             }
 
             var current = CurrentHealth - damage;
-            SetCurrentHealth(current);
-
-            Debug.LogWarning($"Health: {current}, Damage: {damage}, CurrentVar: {CurrentHealth}");
-
-            rig = Rig;
-
             if (current <= 0f)
             {
+                current = 0f;
                 isKilled = true;
             }
             else
             {
                 isKilled = false;
             }
-        }
 
-        float ClampHealth(float value)
-        {
-            if (value > MaxHealth)
-            {
-                value = MaxHealth;
-            }
-            else if (value <= 0f)
-            {
-                value = 0f;
-            }
-
-            return value;
+            rig = Rig;
+            SetCurrentHealth(current);
         }
 
         void UpdateMaxHealth()
@@ -161,15 +147,10 @@ namespace StickmanIo.Runtime.Player
             SetMaxHealth(value);
         }
 
+        [ServerRpc]
         void SetCurrentHealth(float value)
         {
-            if (!isOwner)
-            {
-                return;
-            }
-
-            var clamp = ClampHealth(value);
-            currentHealthVar.value = clamp;
+            currentHealthVar.value = value;
         }
 
         void SetMaxHealth(float value)
@@ -204,7 +185,7 @@ namespace StickmanIo.Runtime.Player
 
             gameObject.SetActive(false);
 
-            this.Invoke("OnDeathInvoke", 10f);
+            this.Invoke("OnDeathInvoke", 0.25f);
         }
 
         void SetIsDead(bool value)
