@@ -1,5 +1,6 @@
 using System;
 using GameDevUtils.Runtime;
+using PurrNet;
 using SaveableExtension.Runtime;
 using StickmanIo.Runtime.Units;
 using StickmanProject.Runtime.SavePrefs;
@@ -19,7 +20,7 @@ namespace StickmanIo.Runtime.Player
 
     public class PlayerLevel : PlayerRigComponent, ILevel
     {
-        [SerializeField] int level = 0;
+        [SerializeField] SyncVar<int> level = new SyncVar<int>(0, ownerAuth: true);
 
         [SerializeField] int maximumKills;
 
@@ -50,22 +51,22 @@ namespace StickmanIo.Runtime.Player
 
         public void AddLevel()
         {
-            level++;
+            level.value++;
 
-            if (level > maximumKills)
+            if (Level > maximumKills)
             {
                 playerSaveable.TrySavePrefs();
             }
 
-            OnLevelUp?.Invoke(level);
+            OnLevelUp?.Invoke(Level);
         }
 
         void Serialize(ref ProjectSavePrefs savePrefs)
         {
-            if (level > maximumKills)
+            if (Level > maximumKills)
             {
-                savePrefs.MaximumKills = level;
-                maximumKills = level;
+                savePrefs.MaximumKills = Level;
+                maximumKills = Level;
             }
         }
 
