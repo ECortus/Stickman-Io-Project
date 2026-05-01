@@ -1459,7 +1459,7 @@ GameObject:
   - component: {fileID: 3010299332556208925}
   - component: {fileID: 8997186991067648684}
   - component: {fileID: 1756555660241486924}
-  - component: {fileID: -2497183243868109335}
+  - component: {fileID: -2580613243337198933}
   m_Layer: 13
   m_Name: Skin 01
   m_TagString: Untagged
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   _ownerAuth: 1
   _autoSyncParameters: 1
   _dontSyncParameters: []
---- !u!114 &-2497183243868109335
+--- !u!114 &-2580613243337198933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1673,8 +1673,8 @@ MonoBehaviour:
   _parent: {fileID: 0}
   _invertedPathToNearestParent: 
   _directChildren: []
-  _syncPosition: 1
-  _syncRotation: 1
+  _syncPosition: 0
+  _syncRotation: 0
   _syncScale: 1
   _syncParent: 1
   _interpolateSettings: 7

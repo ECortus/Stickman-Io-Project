@@ -61,6 +61,7 @@ namespace StickmanIo.Runtime.Player
         public IPlayerGroundCheck GroundCheck => groundCheck;
 
         public UnitView View => view;
+        public ISkin Skin => skin;
         
         public IUpgrades Upgrades => upgrades;
         public IResources Resources => resources;

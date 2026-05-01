@@ -30,13 +30,17 @@ namespace StickmanIo.Runtime.Player
 
         RagdollController ragdoll;
 
-        void Start()
+        protected override void OnSpawned()
+        {
+            base.OnSpawned();
+            Initialize();
+        }
+
+        void Initialize()
         {
             header = GetComponentInParent<PlayerHeader>();
             if (!header)
             {
-                /* DebugHelper.LogWarning($"AnimationController on {gameObject.name} requires a Header in its parents."); */
-
                 enabled = false;
                 return;
             }
@@ -65,6 +69,20 @@ namespace StickmanIo.Runtime.Player
             health.OnDied += OnDied;
             movement.OnJump += TriggerJump;
             attacker.OnAttackStarted += OnAttack;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            if (!rig)
+            {
+                return;
+            }
+
+            health.OnDied -= OnDied;
+            movement.OnJump -= TriggerJump;
+            attacker.OnAttackStarted -= OnAttack;
         }
 
         private void Update()

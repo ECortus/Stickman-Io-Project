@@ -152,31 +152,40 @@ namespace StickmanIo.Runtime.UI
             switch (id)
             {
                 case 0:
-                    inputKey1.action.performed += (cont) => button.OnButtonClick();
+                    inputKey1.action.performed += OnKeyPerformed;
                     break;
                 case 1:
-                    inputKey2.action.performed += (cont) => button.OnButtonClick();
+                    inputKey2.action.performed += OnKeyPerformed;
                     break;
                 case 2:
-                    inputKey3.action.performed += (cont) => button.OnButtonClick();
+                    inputKey3.action.performed += OnKeyPerformed;
                     break;
                 case 3:
-                    inputKey4.action.performed += (cont) => button.OnButtonClick();
+                    inputKey4.action.performed += OnKeyPerformed;
                     break;
                 case 4:
-                    inputKey5.action.performed += (cont) => button.OnButtonClick();
+                    inputKey5.action.performed += OnKeyPerformed;
                     break;
                 case 5:
-                    inputKey6.action.performed += (cont) => button.OnButtonClick();
+                    inputKey6.action.performed += OnKeyPerformed;
                     break;
                 case 6:
-                    inputKey7.action.performed += (cont) => button.OnButtonClick();
+                    inputKey7.action.performed += OnKeyPerformed;
                     break;
                 case 7:
-                    inputKey8.action.performed += (cont) => button.OnButtonClick();
+                    inputKey8.action.performed += OnKeyPerformed;
                     break;
                 default:
                     break;
+            }
+
+            void OnKeyPerformed(InputAction.CallbackContext context)
+            {
+                var upgrades = ownerRig.Upgrades;
+                if (upgrades.HasAvailableUpgrade())
+                {
+                    button.OnButtonClick();
+                }
             }
         }
     }

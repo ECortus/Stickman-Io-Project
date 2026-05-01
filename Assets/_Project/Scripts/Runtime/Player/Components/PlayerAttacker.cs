@@ -32,7 +32,7 @@ namespace StickmanIo.Runtime.Player
         IMovement movement;
         ILevel level;
         IResources resources;
-        IPlayerSaveable playerSaveable;
+        ISkin skin;
 
         IPlayerWeaponController weaponController;
 
@@ -45,19 +45,19 @@ namespace StickmanIo.Runtime.Player
             movement = Rig.Movement;
             level = Rig.Level;
             resources = Rig.Resources;
+            skin = Rig.Skin;
 
             movement.OnJump += ResetAttack;
 
             UpdateWeaponController();
 
-            playerSaveable = Rig.Saveable;
-            playerSaveable.OnDeserialize += UpdateWeaponController;
+            skin.OnSkinChanged += UpdateWeaponController;
 
             var inputEvents = Rig.InputEvents;
             inputEvents.OnAttackAction += TryAttack;
         }
 
-        void UpdateWeaponController(ProjectSavePrefs savePrefs = null)
+        void UpdateWeaponController()
         {
             weaponController = GetComponentInChildren<IPlayerWeaponController>();
         }

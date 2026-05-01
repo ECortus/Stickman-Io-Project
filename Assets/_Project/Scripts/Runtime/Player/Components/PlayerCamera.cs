@@ -72,7 +72,7 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
-            var parent = view.transform;
+            var parent = view.transform.GetChild(0);
             cameraTarget.SetParent(parent);
         }
         

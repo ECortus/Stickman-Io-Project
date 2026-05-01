@@ -33,6 +33,8 @@ namespace StickmanIo.Runtime.Player
 
         bool isDead = false;
 
+        bool IsDead => isDead;
+
         public float CurrentHealth => currentHealthVar.value;
         public float MaxHealth => maximumHealthVar.value;
 
@@ -42,13 +44,30 @@ namespace StickmanIo.Runtime.Player
 
             settings = Data.Settings;
 
+            currentHealthVar.onChanged += OnCurrentHealthChanged;
+            maximumHealthVar.onChanged += OnManHealthChanged;
+
             UpdateMaxHealth();
             Resurrect();
         }
 
         protected override void OnDestroyed()
         {
+            currentHealthVar.onChanged -= OnCurrentHealthChanged;
+            maximumHealthVar.onChanged -= OnManHealthChanged;
+        }
 
+        void OnCurrentHealthChanged(float value)
+        {
+            if (value <= 0f)
+            {
+                OnDeath();
+            }
+        }
+
+        void OnManHealthChanged(float value)
+        {
+            UpdateMaxHealth();
         }
 
         public void Resurrect()
@@ -86,9 +105,9 @@ namespace StickmanIo.Runtime.Player
 
         void Heal_Internal(float amount)
         {
-            if (isDead & amount > 0)
+            if (IsDead & amount > 0)
             {
-                isDead = false;
+                SetIsDead(false);
             }
 
             var value = CurrentHealth + amount;
@@ -97,7 +116,7 @@ namespace StickmanIo.Runtime.Player
 
         void TakeDamage_Internal(float damage, out bool isKilled, out IPlayerRig rig)
         {
-            if (isDead)
+            if (IsDead)
             {
                 isKilled = false;
                 rig = null;
@@ -113,7 +132,6 @@ namespace StickmanIo.Runtime.Player
             if (current <= 0f)
             {
                 isKilled = true;
-                OnDeath();
             }
             else
             {
@@ -174,17 +192,22 @@ namespace StickmanIo.Runtime.Player
 
         void OnDeath()
         {
-            if (isDead)
+            if (IsDead)
             {
                 return;
             }
 
-            isDead = true;
+            SetIsDead(true);
             OnDied?.Invoke();
 
             gameObject.SetActive(false);
 
-            this.Invoke("OnDeathInvoke", 0.25f);
+            this.Invoke("OnDeathInvoke", 10f);
+        }
+
+        void SetIsDead(bool value)
+        {
+            isDead = value;
         }
 
         void OnDeathInvoke()
