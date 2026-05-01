@@ -153,27 +153,35 @@ namespace StickmanIo.Runtime.UI
             {
                 case 0:
                     inputKey1.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey1.action.performed -= OnKeyPerformed;
                     break;
                 case 1:
                     inputKey2.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey2.action.performed -= OnKeyPerformed;
                     break;
                 case 2:
                     inputKey3.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey3.action.performed -= OnKeyPerformed;
                     break;
                 case 3:
                     inputKey4.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey4.action.performed -= OnKeyPerformed;
                     break;
                 case 4:
                     inputKey5.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey5.action.performed -= OnKeyPerformed;
                     break;
                 case 5:
                     inputKey6.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey6.action.performed -= OnKeyPerformed;
                     break;
                 case 6:
                     inputKey7.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey7.action.performed -= OnKeyPerformed;
                     break;
                 case 7:
                     inputKey8.action.performed += OnKeyPerformed;
+                    button.OnDestroyEvent += () => inputKey8.action.performed -= OnKeyPerformed;
                     break;
                 default:
                     break;

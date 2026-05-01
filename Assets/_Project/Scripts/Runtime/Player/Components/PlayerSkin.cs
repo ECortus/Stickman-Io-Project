@@ -22,13 +22,12 @@ namespace StickmanIo.Runtime.Player
         Color SkinColor => skinColor.value;
 
         [SerializeField] string currentSkinID = "";
+        [SerializeField] Color currentSkinColor = new Color(0, 0, 0, 0);
 
         UnitView view;
         SkinsCollection skinsCollection;
 
         IPlayerSaveable playerSaveable;
-
-        ISkinMaterialController skinMaterialController;
 
         public event Action OnSkinChanged;
 
@@ -39,45 +38,52 @@ namespace StickmanIo.Runtime.Player
             view = GetComponentInChildren<UnitView>();
             skinsCollection = Data.SkinsCollection;
 
-            /* skinID.onChanged += ChangeSkin;
-            skinColor.onChanged += ChangeColor; */
+            if (Rig.isOwner)
+            {
+                playerSaveable = Rig.Saveable;
+                playerSaveable.OnDeserialize += Deserialize;
+            }
+            else
+            {
+                /* skinID.onChanged += ChangeSkin; */
+                skinColor.onChanged += ChangeColor;
 
-            playerSaveable = Rig.Saveable;
-            playerSaveable.OnDeserialize += Deserialize;
-        }
-
-        void UpdateSkinAndMaterial()
-        {
-            ChangeSkin(SkinID);
-            ChangeColor(SkinColor);
+                ChangeColor(SkinColor);
+            }
         }
 
         void ChangeSkin(string id)
         {
+            var skin = skinsCollection.GetSkinById(id);
+            if (skin == null)
+            {
+                /* Debug.LogError($"PlayerSkin: Skin with ID '{id}' not found in SkinsCollection."); */
+                return;
+            }
+
             if (currentSkinID == id)
             {
+                currentSkinID = id;
                 return;
             }
 
             currentSkinID = id;
 
-            var skin = skinsCollection.GetSkinById(id);
-            if (skin == null)
-            {
-                Debug.LogError($"PlayerSkin: Skin with ID '{id}' not found in SkinsCollection.");
-                return;
-            }
-
             view.ReplaceSkin(skin);
+            ChangeColor(SkinColor);
 
             OnSkinChanged?.Invoke();
         }
 
         void ChangeColor(Color color)
         {
-            skinMaterialController = view.GetComponentInChildren<ISkinMaterialController>();
+            currentSkinColor = color;
+
+            var skinMaterialController = view.SkinMaterialController;
             skinMaterialController.SetDefaultMaterial();
             skinMaterialController.SetNewColor(color);
+
+            /* Debug.LogWarning($"PlayerSkin: Color changed to {color} on {gameObject.name}"); */
         }
 
         protected override void OnDestroyed()
@@ -93,7 +99,7 @@ namespace StickmanIo.Runtime.Player
             skinID.value = savePrefs.EquippedSkinID;
             skinColor.value = ProjectSavePrefs.ArrayToColor(savePrefs.ColorRGB);
 
-            UpdateSkinAndMaterial();
+            ChangeSkin(SkinID);
         }
     }
 }

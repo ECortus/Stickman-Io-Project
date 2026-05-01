@@ -7,7 +7,20 @@ namespace StickmanIo.Runtime.Units
 {
     public class UnitView : NetworkIdentity
     {
+        GameObject instance;
+
         Transform skinParent => transform;
+
+        ISkinMaterialController skinMaterialController;
+
+        public ISkinMaterialController SkinMaterialController
+        {
+            get
+            {
+                skinMaterialController = GetComponentInChildren<ISkinMaterialController>();
+                return skinMaterialController;
+            }
+        }
 
         public void SetParent(Transform parent)
         {
@@ -29,14 +42,18 @@ namespace StickmanIo.Runtime.Units
 
             if (instantiateNewCopy)
             {
-                var instance = ObjectInstantiator.InstantiatePrefab(skin, skinParent);
+                instance = ObjectInstantiator.InstantiatePrefab(skin, skinParent);
                 instance.transform.ResetAllLocalParameters();
             }
             else
             {
                 skin.transform.SetParentAsSingleChild(skinParent);
                 skin.transform.ResetAllLocalParameters();
+
+                instance = skin;
             }
+
+            SkinMaterialController.SetDefaultMaterial();
         }
 
         void RemoveSkin()

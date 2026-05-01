@@ -18,6 +18,8 @@ namespace StickmanIo.Runtime.UI
 
         public event Action OnButtonClickEvent;
 
+        public event Action OnDestroyEvent;
+
         int id;
         UpgradeData data;
         UpgradeRuntimeData runtimeData;
@@ -67,6 +69,11 @@ namespace StickmanIo.Runtime.UI
             UpdateButton();
 
             OnButtonClickEvent?.Invoke();
+        }
+
+        void OnDestroy() 
+        {
+            OnDestroyEvent?.Invoke();
         }
     }
 }

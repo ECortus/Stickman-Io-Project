@@ -43,6 +43,11 @@ namespace StickmanIo.Runtime.UI
             pauseAction.action.performed += OnPauseActionPerformed;
         }
 
+        void OnDestroy()
+        {
+            pauseAction.action.performed -= OnPauseActionPerformed;
+        }
+
         void OnPauseActionPerformed(InputAction.CallbackContext context)
         {
             if (context.performed)
