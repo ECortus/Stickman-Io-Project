@@ -27,6 +27,8 @@ namespace StickmanIo.Runtime.UI
         bool equipped = false;
         bool isLocked = true;
 
+        RectTransform rect;
+
         SkinData skinData;
         SkinDataRuntime dataRuntime;
 
@@ -37,6 +39,7 @@ namespace StickmanIo.Runtime.UI
 
         public void SetupButton(SkinDataRuntime runtime)
         {
+            rect = GetComponent<RectTransform>();
             manager = GetComponentInParent<USkinButtonsManager>();
 
             dataRuntime = runtime;
@@ -52,6 +55,10 @@ namespace StickmanIo.Runtime.UI
             equipButton.onClick.AddListener(OnEquipButtonClick);
 
             InstantiatePreview();
+
+            var local = rect.localPosition;
+            local.z = 0f;
+            rect.localPosition = local;
 
             UpdateButton();
         }

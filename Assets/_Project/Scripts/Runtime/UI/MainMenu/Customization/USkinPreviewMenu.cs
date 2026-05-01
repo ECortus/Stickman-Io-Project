@@ -65,7 +65,7 @@ namespace StickmanIo.Runtime.UI
             previewInstance.transform.ResetAllLocalParameters();
 
             var materialController = previewInstance.GetComponentInChildren<ISkinMaterialController>();
-            materialController.SetNewMaterial(previewMaterial);
+            materialController.SetNewMaterialAsNonInstance(previewMaterial);
         }
     }
 }

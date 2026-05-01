@@ -127,6 +127,8 @@ namespace StickmanIo.Runtime.Player
             var current = CurrentHealth - damage;
             SetCurrentHealth(current);
 
+            Debug.LogWarning($"Health: {current}, Damage: {damage}, CurrentVar: {CurrentHealth}");
+
             rig = Rig;
 
             if (current <= 0f)

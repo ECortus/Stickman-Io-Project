@@ -1,4 +1,6 @@
+using SaveableExtension.Runtime;
 using SettingsMenu.Runtime;
+using StickmanProject.Runtime.SavePrefs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +50,8 @@ namespace StickmanIo.Runtime.UI
         {
             CloseAll();
             SetMainMenuPanelActive(true);
+
+            SaveablePrefs.Save<ProjectSavePrefs>(true);
         }
 
         void OpenStartLobbyPanel()

@@ -6,7 +6,9 @@ namespace StickmanIo.Runtime.Units
 {
     public interface ISkinMaterialController
     {
+        void SetNewMaterialAsNonInstance(Material material);
         void SetNewMaterial(Material material, Color? color = null);
+        
         void SetDefaultMaterial(Color? color = null);
 
         void SetNewColor(Color color);
@@ -16,6 +18,11 @@ namespace StickmanIo.Runtime.Units
     {
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         [SerializeField] private Material defaultMaterial;
+
+        public void SetNewMaterialAsNonInstance(Material material)
+        {
+            skinnedMeshRenderer.materials = new Material[] { material };
+        }
 
         public void SetNewMaterial(Material material, Color? color = null)
         {

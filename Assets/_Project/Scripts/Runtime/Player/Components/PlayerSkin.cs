@@ -83,7 +83,7 @@ namespace StickmanIo.Runtime.Player
             skinMaterialController.SetDefaultMaterial();
             skinMaterialController.SetNewColor(color);
 
-            /* Debug.LogWarning($"PlayerSkin: Color changed to {color} on {gameObject.name}"); */
+            Debug.LogWarning($"PlayerSkin: Color changed to {color} on {gameObject.name}");
         }
 
         protected override void OnDestroyed()
