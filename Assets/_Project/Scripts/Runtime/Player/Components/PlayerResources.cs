@@ -11,7 +11,12 @@ namespace StickmanIo.Runtime.Player
     public interface IResources : IRigInterface
     {
         int Score { get; }
-        void AddScore(IPlayerRig killedRig);
+
+        int CalculateScore(IPlayerRig killedRig);
+
+        int CalculateScore(int lvl);
+
+        void AddScore(int add);
 
         void AddCoins(int coins);
     }
@@ -47,16 +52,25 @@ namespace StickmanIo.Runtime.Player
             base.OnDestroyed();
         }
 
-        public void AddScore(IPlayerRig killedRig)
+        public int CalculateScore(IPlayerRig killedRig)
+        {
+            return CalculateScore(killedRig.Level.Level);
+        }
+
+        public int CalculateScore(int lvl)
         {
             var settings = Data.Settings;
 
             var baseScore = settings.BaseScorePerKill;
             var multiplierPerLevel = settings.ScoreMultiplierPerEachLevelPerKill;
 
-            var plusScore = baseScore + multiplierPerLevel * killedRig.Level.Level;
-            score += plusScore;
+            var calculated = baseScore + multiplierPerLevel * lvl;
+            return calculated;
+        }
 
+        public void AddScore(int add)
+        {
+            score += add;
             if (score > maximumScore)
             {
                 playerSaveable.TrySavePrefs();

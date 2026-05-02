@@ -74,7 +74,9 @@ namespace StickmanIo.Runtime.Player
 
             if (isKilled)
             {
-                resources.AddScore(rig);
+                var score = Rig.Resources.Score;
+                resources.AddScore(score);
+                
                 level.AddLevel();
             }
         }

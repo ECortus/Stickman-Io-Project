@@ -14,15 +14,14 @@ namespace StickmanIo.Runtime.UI
         protected override void OnStart()
         {
             unitsManager = UnitsManager.GetInstance;
+            unitsManager.OnOwnerRigChanged += SetPlayerRig;
+
             base.OnStart();
         }
 
-        protected override void OnUpdate()
+        void SetPlayerRig()
         {
-            if (rig == null && unitsManager.OwnerRig != null)
-            {
-                rig = unitsManager.OwnerRig;
-            }
+            rig = unitsManager.OwnerRig;
         }
 
         protected override float GetTargetValue()

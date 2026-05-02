@@ -1,3 +1,4 @@
+using System;
 using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Player;
 
@@ -6,6 +7,8 @@ namespace StickmanIo.Runtime.Units
     public class UnitsManager : AbstractComponentManager<UnitRig, UnitsManager>
     {
         public PlayerRig OwnerRig { get; private set; }
+
+        public event Action OnOwnerRigChanged;
 
         public override void Register(UnitRig element)
         {
@@ -19,6 +22,7 @@ namespace StickmanIo.Runtime.Units
                     }
 
                     OwnerRig = playerRig;
+                    OnOwnerRigChanged?.Invoke();
                 }
             }
 
@@ -37,6 +41,7 @@ namespace StickmanIo.Runtime.Units
                     }
 
                     OwnerRig = null;
+                    OnOwnerRigChanged?.Invoke();
                 }
             }
 

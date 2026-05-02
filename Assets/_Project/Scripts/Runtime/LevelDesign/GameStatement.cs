@@ -11,12 +11,14 @@ namespace StickmanIo.Runtime.LevelDesign
             None,
             Playing,
             Paused,
+            Dead
         }
 
         State state = State.None;
 
         public bool IsPlaying => state == State.Playing;
         public bool IsPaused => state == State.Paused;
+        public bool IsDead => state == State.Dead;
 
         void Start()
         {
@@ -36,6 +38,9 @@ namespace StickmanIo.Runtime.LevelDesign
                 case State.Paused:
                     OnPaused();
                     break;
+                case State.Dead:
+                    OnDead();
+                    break;
                 default:
                     break;
             }
@@ -45,6 +50,7 @@ namespace StickmanIo.Runtime.LevelDesign
 
         public void SetPlay() => SetState(State.Playing);
         public void SetPause() => SetState(State.Paused);
+        public void SetDead() => SetState(State.Dead);
 
         void OnPlaying()
         {
@@ -52,6 +58,11 @@ namespace StickmanIo.Runtime.LevelDesign
         }
 
         void OnPaused()
+        {
+            CursorViewController.Enable();
+        }
+
+        void OnDead()
         {
             CursorViewController.Enable();
         }

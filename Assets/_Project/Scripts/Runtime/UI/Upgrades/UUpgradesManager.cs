@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player;
 using StickmanIo.Runtime.Units;
 using TMPro;
@@ -34,46 +36,56 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private InputActionReference inputKey7;
         [SerializeField] private InputActionReference inputKey8;
 
-        List<UUpgradeButton> buttons = new List<UUpgradeButton>();
+        GameStatement gameStatement;
 
         UnitsManager unitsManager;
         PlayerRig ownerRig;
 
-        bool initialized = false;
-
         int previousAvailableUpgrades = -1;
+
+        CancellationTokenSource cs;
 
         void Start()
         {
+            gameStatement = GameStatement.GetInstance;
+
             unitsManager = UnitsManager.GetInstance;
-            AsyncTaskHelper.CreateTask(ScheduleStart);
+            unitsManager.OnOwnerRigChanged += OnOwnerRigChanged;
         }
 
-        async UniTask ScheduleStart()
+        void OnOwnerRigChanged()
         {
-            while (!unitsManager.OwnerRig)
+            if (cs != null)
             {
-                await UniTask.Yield();
+                cs.Cancel();
+                cs.Dispose();
+
+                cs = null;
             }
 
+            cs = new CancellationTokenSource();
+
+            AsyncTaskHelper.CreateTask(SetPlayerRig);
+        }
+
+        async UniTask SetPlayerRig()
+        {
             ownerRig = unitsManager.OwnerRig;
 
             var upgrades = ownerRig.Upgrades;
 
             while (!upgrades.UpgradesInitialized)
             {
-                await UniTask.Yield();
+                await UniTask.Yield(cancellationToken: cs.Token);
             }
 
             var runtimeUpgrades = upgrades.RuntimeUpgrades;
             ReinstantiateAllButtons(runtimeUpgrades);
-
-            initialized = true;
         }
 
         void Update()
         {
-            if (!initialized)
+            if (!ownerRig)
             {
                 return;
             }
@@ -105,6 +117,11 @@ namespace StickmanIo.Runtime.UI
 
         void ReduceAvailableUpgrades()
         {
+            if (!ownerRig)
+            {
+                return;
+            }
+
             var upgrades = ownerRig.Upgrades;
             upgrades.ReduceAvailableUpgrades();
 
@@ -189,6 +206,16 @@ namespace StickmanIo.Runtime.UI
 
             void OnKeyPerformed(InputAction.CallbackContext context)
             {
+                if (!gameStatement.IsPlaying)
+                {
+                    return;
+                }
+
+                if (!ownerRig)
+                {
+                    return;
+                }
+
                 var upgrades = ownerRig.Upgrades;
                 if (upgrades.HasAvailableUpgrade())
                 {

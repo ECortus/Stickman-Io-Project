@@ -1,6 +1,7 @@
 using GameDevUtils.Runtime.UI;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Units;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.UI.Debug
 {
@@ -14,6 +15,7 @@ namespace StickmanIo.Runtime.UI.Debug
 
             RegisterGoldPlusButton();
             RegisterLevelUpButton();
+            RegisterScoreAddButton();
         }
 
         void RegisterGoldPlusButton()
@@ -26,9 +28,29 @@ namespace StickmanIo.Runtime.UI.Debug
             FieldManager.RegisterButton("Level Up", () =>
             {
                 var unitsManager = UnitsManager.GetInstance;
-                if (unitsManager.OwnerRig != null)
+                var owner = unitsManager.OwnerRig;
+
+                if (owner != null)
                 {
-                    unitsManager.OwnerRig.Level.AddLevel();
+                    owner.Level.AddLevel();
+                }
+            });
+        }
+
+        void RegisterScoreAddButton()
+        {
+            FieldManager.RegisterButton("Score Add Random", () =>
+            {
+                var unitsManager = UnitsManager.GetInstance;
+                var owner = unitsManager.OwnerRig;
+
+                if (owner != null)
+                {
+                    var min = 100;
+                    var max = 1000;
+
+                    var score = Random.Range(min, max + 1);
+                    owner.Resources.AddScore(score);
                 }
             });
         }

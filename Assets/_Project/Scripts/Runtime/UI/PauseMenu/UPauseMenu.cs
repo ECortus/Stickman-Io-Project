@@ -50,6 +50,11 @@ namespace StickmanIo.Runtime.UI
 
         void OnPauseActionPerformed(InputAction.CallbackContext context)
         {
+            if (gameStatement.IsDead)
+            {
+                return;
+            }
+
             if (context.performed)
             {
                 isOpened = !isOpened;
