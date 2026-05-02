@@ -1,3 +1,4 @@
+using PurrNet;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player;
 using StickmanIo.Runtime.SceneManagement;
@@ -20,9 +21,9 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private Button mainMenuButton;
 
         GameStatement gameStatement;
-
         UnitsManager unitsManager;
-        PlayerRig rig;
+
+        PlayerID? playerID;
 
         void Start()
         {
@@ -54,13 +55,13 @@ namespace StickmanIo.Runtime.UI
             SetActive(true);
             gameStatement.SetDead();
 
-            rig = player;
+            playerID = player.localPlayer;
 
-            SetupTexts();
+            SetupTexts(player);
             SetupButtons();
         }
 
-        void SetupTexts()
+        void SetupTexts(PlayerRig rig)
         {
             var score = rig.Resources.Score;
             var kills = rig.Level.Level;
@@ -77,7 +78,8 @@ namespace StickmanIo.Runtime.UI
 
         void OnRespawnButtonClicked()
         {
-            // TODO: Respawn
+            var respawner = PlayerRespawner.GetInstance;
+            respawner.RespawnPlayer(playerID);
             
             gameStatement.SetPlay();
             SetActive(false);

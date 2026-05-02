@@ -62,6 +62,8 @@ namespace StickmanIo.Runtime.Player
 
         public float ActualSpeed => CalculatedSpeed;
 
+        bool initialized = false;
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -78,6 +80,8 @@ namespace StickmanIo.Runtime.Player
             var inputEvents = Rig.InputEvents;
             inputEvents.OnMoveAction += UpdateMoveDirection;
             inputEvents.OnJumpTriggered += Jump;
+
+            initialized = true;
         }
 
         protected override void OnDestroyed()
@@ -99,6 +103,11 @@ namespace StickmanIo.Runtime.Player
 
         private void Update()
         {
+            if (!initialized)
+            {
+                return;
+            }
+
             var delta = Time.deltaTime;
 
             WriteCurrentPosition();

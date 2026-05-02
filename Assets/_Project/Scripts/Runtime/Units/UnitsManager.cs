@@ -1,13 +1,15 @@
 using System;
 using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Player;
+using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
 {
     public class UnitsManager : AbstractComponentManager<UnitRig, UnitsManager>
     {
-        public PlayerRig OwnerRig { get; private set; }
+        [SerializeField] private PlayerRig ownerRig;
 
+        public PlayerRig OwnerRig => ownerRig;
         public event Action OnOwnerRigChanged;
 
         public override void Register(UnitRig element)
@@ -16,12 +18,13 @@ namespace StickmanIo.Runtime.Units
             {
                 if (playerRig.IsOwner)
                 {
-                    if (OwnerRig != null)
+                    if (OwnerRig && OwnerRig != playerRig)
                     {
-                        throw new System.Exception("OwnerRig already set, it can be only ONE owner on scene.");
+                        Debug.LogWarning($"OwnerRig already set as {OwnerRig.name}, it can be only ONE owner on scene. Another os {element.name}");
+                        /* throw new System.Exception("OwnerRig already set, it can be only ONE owner on scene."); */
                     }
 
-                    OwnerRig = playerRig;
+                    ownerRig = playerRig;
                     OnOwnerRigChanged?.Invoke();
                 }
             }
@@ -40,7 +43,7 @@ namespace StickmanIo.Runtime.Units
                         throw new System.Exception("OwnerRig can be only ONE owner on scene.");
                     }
 
-                    OwnerRig = null;
+                    ownerRig = null;
                     OnOwnerRigChanged?.Invoke();
                 }
             }

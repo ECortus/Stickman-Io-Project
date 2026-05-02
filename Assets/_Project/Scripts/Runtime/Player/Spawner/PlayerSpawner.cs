@@ -18,6 +18,8 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] private Transform dotsParent;
         [SerializeField] private Transform playersParent;
 
+        Dictionary<PlayerID, NetworkIdentity> spawnedPlayers = new Dictionary<PlayerID, NetworkIdentity>();
+
         List<Transform> spawnPoints = new List<Transform>();
         private int _currentSpawnPoint;
 
@@ -150,37 +152,82 @@ namespace StickmanIo.Runtime.Player
 
         private void OnPlayerLoadedScene(PlayerID player, SceneID scene, bool asServer)
         {
+            
+
             var main = NetworkManager.main;
-
-            if (!main || !main.TryGetModule(out ScenesModule scenes, true))
+            if (!main)
+            {
                 return;
-
-            var unityScene = gameObject.scene;
-
-            if (!scenes.TryGetSceneID(unityScene, out var sceneID))
-                return;
-
+            }
+            
+            var sceneID = GetCurrentSceneID();
             if (sceneID != scene)
+            {
                 return;
+            }
 
             if (!asServer)
+            {
                 return;
+            }
 
             bool isDestroyOnDisconnectEnabled = main.networkRules.ShouldDespawnOnOwnerDisconnect();
             if (!_ignoreNetworkRules && !isDestroyOnDisconnectEnabled && main.TryGetModule(out GlobalOwnershipModule ownership, true) &&
                 ownership.PlayerOwnsSomething(player))
+            {
                 return;
+            }
+
+            CleanupSpawnPoints();
+
+            SpawnPlayer(player, sceneID);
+        }
+
+        SceneID? GetCurrentSceneID()
+        {
+            var main = NetworkManager.main;
+
+            if (!main || !main.TryGetModule(out ScenesModule scenes, true))
+            {
+                return null;
+            }
+
+            var unityScene = gameObject.scene;
+
+            if (!scenes.TryGetSceneID(unityScene, out var sceneID))
+            {
+                return null;
+            }
+
+            return sceneID;
+        }
+
+        public void SpawnPlayer(PlayerID player, SceneID? scene = null)
+        {
+            if (spawnedPlayers.ContainsKey(player))
+            {
+                var instance = spawnedPlayers[player];
+                if (instance)
+                {
+                    instance.Despawn();
+                }
+
+                spawnedPlayers.Remove(player);
+            }
 
             GameObject newPlayer;
 
-            CleanupSpawnPoints();
+            if (scene == null)
+            {
+                scene = GetCurrentSceneID();
+            }
 
             Vector3 position;
             Quaternion rotation;
 
             if (_spawnPointProvider != null)
             {
-                var point = _spawnPointProvider.NextSpawnPoint(player, scene);
+                var point = _spawnPointProvider.NextSpawnPoint(player, scene.Value);
 
                 position = point.position;
                 rotation = point.rotation;
@@ -198,16 +245,21 @@ namespace StickmanIo.Runtime.Player
                 _playerPrefab.transform.GetPositionAndRotation(out position, out rotation);
             }
 
-            /* newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene); */
-            newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation);
+            /* var unityScene = gameObject.scene;
 
+            newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene);
             newPlayer.transform.SetParent(playersParent);
-            newPlayer.name = newPlayer.name + $"_({player.id})";
+ */
+            newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation, playersParent);
+            newPlayer.name = newPlayer.name + $"_(id-{player.id})_(spawned-at-{Time.time})";
 
-            _prefabInstantiatedProvider?.OnPrefabInstantiated(newPlayer, player, scene);
+            _prefabInstantiatedProvider?.OnPrefabInstantiated(newPlayer, player, scene.Value);
 
             if (newPlayer.TryGetComponent(out NetworkIdentity identity))
+            {
                 identity.GiveOwnership(player);
+                spawnedPlayers.Add(player, identity);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GameDevUtils.Runtime;
+using GameDevUtils.Runtime.Extensions;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
@@ -22,6 +23,8 @@ namespace StickmanIo.Runtime.Player
         GlobalPlayerSettings settings;
 
         UnitView view;
+
+        bool initialized = false;
         
         public float RotationHorizontalAngle
         {
@@ -63,6 +66,8 @@ namespace StickmanIo.Runtime.Player
             
             var inputEvents = Rig.InputEvents;
             inputEvents.OnLookAction += UpdateLookDirection;
+
+            initialized = true;
         }
         
         protected override void OnDestroyed()
@@ -72,8 +77,7 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
-            var parent = view.transform.GetChild(0);
-            cameraTarget.SetParent(parent);
+            ObjectHelper.Destroy(cameraTarget.gameObject);
         }
         
         void UpdateLookDirection(Vector2 dir)
@@ -83,6 +87,11 @@ namespace StickmanIo.Runtime.Player
         
         private void Update()
         {
+            if (!initialized)
+            {
+                return;
+            }
+
             var delta = Time.deltaTime;
             
             UpdateCameraTargetPosition();

@@ -32,15 +32,37 @@ namespace StickmanIo.Runtime.Units
 
         UnitsManager unitsManager;
 
+        bool destroyed = false;
+
         public virtual void Initialize()
         {
             unitsManager = UnitsManager.GetInstance;
             InitializeComponents();
         }
 
+        protected override void OnDespawned()
+        {
+            base.OnDespawned();
+
+            if (destroyed)
+            {
+                return;
+            }
+            destroyed = true;
+
+            unitsManager.Unregister(this);
+            DestroyComponents();
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();
+
+            if (destroyed)
+            {
+                return;
+            }
+            destroyed = true;
             
             unitsManager.Unregister(this);
             DestroyComponents();

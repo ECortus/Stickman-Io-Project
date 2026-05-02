@@ -36,6 +36,8 @@ namespace StickmanIo.Runtime.Player
 
         IPlayerWeaponController weaponController;
 
+        bool initialized = false;
+
         public bool IsAttacking => isAttacking;
 
         protected override void OnInitialize()
@@ -55,6 +57,8 @@ namespace StickmanIo.Runtime.Player
 
             var inputEvents = Rig.InputEvents;
             inputEvents.OnAttackAction += TryAttack;
+
+            initialized = true;
         }
 
         void UpdateWeaponController()
@@ -193,6 +197,11 @@ namespace StickmanIo.Runtime.Player
 
         void Update()
         {
+            if (!initialized)
+            {
+                return;
+            }
+
             if (weaponController.WeaponActive)
             {
                 if (Time.time - lastInputTime > weaponActiveDuration)

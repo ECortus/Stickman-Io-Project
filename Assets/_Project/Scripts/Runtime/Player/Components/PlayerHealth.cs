@@ -200,7 +200,8 @@ namespace StickmanIo.Runtime.Player
 
             gameObject.SetActive(false);
 
-            this.Invoke("OnDeathInvoke", 0.25f);
+            /* this.Invoke("OnDeathInvoke", 0.25f); */
+            OnDeathInvoke();
         }
 
         void SetIsDead(bool value)

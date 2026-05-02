@@ -28,6 +28,8 @@ namespace StickmanIo.Runtime.Player
 
         IPlayerGroundCheck groundCheck;
 
+        bool initialized = false;
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -43,12 +45,14 @@ namespace StickmanIo.Runtime.Player
             inputActions = new StickmanInputActions();
             playerActions = inputActions.Player;
 
-            playerActions.Enable();
-
             movement = Rig.Movement;
             attacker = Rig.Attacker;
 
             groundCheck = Rig.GroundCheck;
+
+            playerActions.Enable();
+
+            initialized = true;
         }
 
         protected override void OnDestroyed()
@@ -63,6 +67,16 @@ namespace StickmanIo.Runtime.Player
 
         private void LateUpdate()
         {
+            if (!initialized)
+            {
+                return;
+            }
+
+            if (!playerActions.enabled)
+            {
+                return;
+            }
+
             OnMoveUpdate();
 
             if (gameStatement.IsPaused)
