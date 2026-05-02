@@ -22,7 +22,7 @@ namespace StickmanIo.Runtime.Player
             InitRig();
         }
 
-        protected override void OnSpawned(bool asServer)
+        protected override void OnSpawned()
         {
             base.OnSpawned();
             InitComponents();

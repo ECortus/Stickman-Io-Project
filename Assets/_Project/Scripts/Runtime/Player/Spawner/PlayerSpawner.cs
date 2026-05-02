@@ -6,11 +6,19 @@ using UnityEngine.AI;
 using PurrNet;
 using PurrNet.Logging;
 using PurrNet.Modules;
+using System;
 
 namespace StickmanIo.Runtime.Player
 {
     public class PlayerSpawner : PurrMonoBehaviour
     {
+        [Serializable]
+        class SpawnedInstance
+        {
+            public PlayerID ID;
+            public NetworkIdentity Instance;
+        }
+
         [SerializeField, HideInInspector] private NetworkIdentity playerPrefab;
         [SerializeField] private GameObject _playerPrefab;
         [Tooltip("Even if rules are to not despawn on disconnect, this will ignore that and always spawn a player.")]
@@ -18,47 +26,13 @@ namespace StickmanIo.Runtime.Player
         [SerializeField] private Transform dotsParent;
         [SerializeField] private Transform playersParent;
 
-        Dictionary<PlayerID, NetworkIdentity> spawnedPlayers = new Dictionary<PlayerID, NetworkIdentity>();
+        [Space(10)]
+        [SerializeField] List<SpawnedInstance> spawnedPlayers = new List<SpawnedInstance>();
 
         List<Transform> spawnPoints = new List<Transform>();
         private int _currentSpawnPoint;
 
         private IProvideSpawnPoints _spawnPointProvider;
-        private IProvidePrefabInstantiated _prefabInstantiatedProvider;
-
-        /// <summary>
-        /// Sets a provider that will be used to provide spawn points for players.
-        /// Spawn points lists will be ignored.
-        /// </summary>
-        public void SetRespawnPointProvider(IProvideSpawnPoints provider)
-        {
-            _spawnPointProvider = provider;
-        }
-
-        /// <summary>
-        /// Resets the spawn point provider.
-        /// Uses the spawn points list instead.
-        /// </summary>
-        public void ResetSpawnPointProvider()
-        {
-            _spawnPointProvider = null;
-        }
-
-        /// <summary>
-        /// Sets a provider that will be used to notify when a player prefab has been instantiated.
-        /// </summary>
-        public void SetPrefabInstantiatedProvider(IProvidePrefabInstantiated provider)
-        {
-            _prefabInstantiatedProvider = provider;
-        }
-
-        /// <summary>
-        /// Resets the prefab instantiated provider.
-        /// </summary>
-        public void ResetPrefabInstantiatedProvider()
-        {
-            _prefabInstantiatedProvider = null;
-        }
 
         private void Awake()
         {
@@ -152,8 +126,6 @@ namespace StickmanIo.Runtime.Player
 
         private void OnPlayerLoadedScene(PlayerID player, SceneID scene, bool asServer)
         {
-            
-
             var main = NetworkManager.main;
             if (!main)
             {
@@ -202,18 +174,24 @@ namespace StickmanIo.Runtime.Player
             return sceneID;
         }
 
-        public void SpawnPlayer(PlayerID player, SceneID? scene = null)
+        public void RespawnPlayer(PlayerID player, SceneID? scene = null)
         {
-            if (spawnedPlayers.ContainsKey(player))
+            SpawnPlayer(player, scene);
+        }
+
+        void SpawnPlayer(PlayerID player, SceneID? scene = null)
+        {
+            /* var spawned = spawnedPlayers.Find(c => c.ID == player);
+            if (spawned != null)
             {
-                var instance = spawnedPlayers[player];
+                var instance = spawned.Instance;
                 if (instance)
                 {
                     instance.Despawn();
                 }
 
-                spawnedPlayers.Remove(player);
-            }
+                spawnedPlayers.Remove(spawned);
+            } */
 
             GameObject newPlayer;
 
@@ -245,20 +223,32 @@ namespace StickmanIo.Runtime.Player
                 _playerPrefab.transform.GetPositionAndRotation(out position, out rotation);
             }
 
-            /* var unityScene = gameObject.scene;
+            var unityScene = gameObject.scene;
 
             newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene);
             newPlayer.transform.SetParent(playersParent);
- */
-            newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation, playersParent);
-            newPlayer.name = newPlayer.name + $"_(id-{player.id})_(spawned-at-{Time.time})";
 
-            _prefabInstantiatedProvider?.OnPrefabInstantiated(newPlayer, player, scene.Value);
+            /* newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation, playersParent); */
+            newPlayer.name = newPlayer.name + $"_(id-{player.id})_(spawned-at-{Time.time})";
 
             if (newPlayer.TryGetComponent(out NetworkIdentity identity))
             {
                 identity.GiveOwnership(player);
-                spawnedPlayers.Add(player, identity);
+
+                var spawned = new SpawnedInstance()
+                {
+                    ID = player,
+                    Instance = identity
+                };
+
+                spawnedPlayers.Add(spawned);
+                if (newPlayer.TryGetComponent(out IHealth health))
+                {
+                    health.OnDied += () =>
+                    {
+                        spawnedPlayers.Remove(spawned);
+                    };
+                }
             }
         }
     }

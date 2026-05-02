@@ -11,12 +11,12 @@ namespace StickmanIo.Runtime.Player
         public void RespawnPlayer(NetworkIdentity player)
         {
             var id = player.localPlayer;
-            playerSpawner.SpawnPlayer(id.Value);
+            playerSpawner.RespawnPlayer(id.Value);
         }
 
         public void RespawnPlayer(PlayerID? playerID)
         {
-            playerSpawner.SpawnPlayer(playerID.Value);
+            playerSpawner.RespawnPlayer(playerID.Value);
         }
     }
 }

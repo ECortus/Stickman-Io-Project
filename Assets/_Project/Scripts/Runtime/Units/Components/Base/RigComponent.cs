@@ -28,6 +28,7 @@ namespace StickmanIo.Runtime.Units
         public void OnRigDestroy()
         {
             OnDestroyed();
+            /* Despawn(); */
         }
         
         protected virtual void OnDestroyed()

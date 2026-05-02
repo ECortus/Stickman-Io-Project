@@ -72,12 +72,10 @@ namespace StickmanIo.Runtime.Player
         
         protected override void OnDestroyed()
         {
-            if (!Rig.IsOwner)
+            if (cameraTarget)
             {
-                return;
+                ObjectHelper.Destroy(cameraTarget.gameObject);
             }
-
-            ObjectHelper.Destroy(cameraTarget.gameObject);
         }
         
         void UpdateLookDirection(Vector2 dir)
