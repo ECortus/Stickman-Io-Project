@@ -175,22 +175,31 @@ namespace StickmanIo.Runtime.Player
 
             CleanupSpawnPoints();
 
+            Vector3 position;
+            Quaternion rotation;
+
             if (_spawnPointProvider != null)
             {
                 var point = _spawnPointProvider.NextSpawnPoint(player, scene);
-                newPlayer = UnityProxy.Instantiate(_playerPrefab, point.position, point.rotation, unityScene);
+
+                position = point.position;
+                rotation = point.rotation;
             }
             else if (spawnPoints.Count > 0)
             {
                 var spawnPoint = spawnPoints[_currentSpawnPoint];
                 _currentSpawnPoint = (_currentSpawnPoint + 1) % spawnPoints.Count;
-                newPlayer = UnityProxy.Instantiate(_playerPrefab, spawnPoint.position, spawnPoint.rotation, unityScene);
+
+                position = spawnPoint.position;
+                rotation = spawnPoint.rotation;
             }
             else
             {
-                _playerPrefab.transform.GetPositionAndRotation(out var position, out var rotation);
-                newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene);
+                _playerPrefab.transform.GetPositionAndRotation(out position, out rotation);
             }
+
+            /* newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene); */
+            newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation);
 
             newPlayer.transform.SetParent(playersParent);
             newPlayer.name = newPlayer.name + $"_({player.id})";

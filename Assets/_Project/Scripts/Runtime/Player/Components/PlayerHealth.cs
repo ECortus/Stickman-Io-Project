@@ -47,8 +47,11 @@ namespace StickmanIo.Runtime.Player
             currentHealthVar.onChanged += OnCurrentHealthChanged;
             maximumHealthVar.onChanged += OnManHealthChanged;
 
-            UpdateMaxHealth();
-            Resurrect();
+            if (isOwner)
+            {
+                UpdateMaxHealth();
+                Resurrect();
+            }
         }
 
         protected override void OnDestroyed()
@@ -113,7 +116,13 @@ namespace StickmanIo.Runtime.Player
             var value = CurrentHealth + amount;
             value = Mathf.Clamp(value, 0f, MaxHealth);
 
-            SetCurrentHealth(value);
+            Health_Rpc(value);
+        }
+
+        [ServerRpc]
+        void Health_Rpc(float amount)
+        {
+            SetCurrentHealth(amount);
         }
 
         void TakeDamage_Internal(float damage, out bool isKilled, out IPlayerRig rig)
@@ -126,10 +135,11 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
+            rig = Rig;
+
             var current = CurrentHealth - damage;
             if (current <= 0f)
             {
-                current = 0f;
                 isKilled = true;
             }
             else
@@ -137,7 +147,13 @@ namespace StickmanIo.Runtime.Player
                 isKilled = false;
             }
 
-            rig = Rig;
+            TakeDamage_Rpc(damage);
+        }
+
+        [ServerRpc]
+        void TakeDamage_Rpc(float damage)
+        {
+            var current = CurrentHealth - damage;
             SetCurrentHealth(current);
         }
 
@@ -147,7 +163,6 @@ namespace StickmanIo.Runtime.Player
             SetMaxHealth(value);
         }
 
-        [ServerRpc]
         void SetCurrentHealth(float value)
         {
             currentHealthVar.value = value;

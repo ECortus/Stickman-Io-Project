@@ -77,7 +77,10 @@ namespace StickmanIo.Runtime.UI
 
         void OnRespawnButtonClicked()
         {
-            //TODO: Respawn player
+            // TODO: Respawn
+            
+            gameStatement.SetPlay();
+            SetActive(false);
         }
 
         void OnMainMenuButtonClicked()
