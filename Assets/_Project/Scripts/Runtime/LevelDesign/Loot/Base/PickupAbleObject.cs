@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
+using PurrNet;
 using StickmanIo.Runtime.Player;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.LevelDesign
 {
-    public abstract class PickupAbleObject : MonoBehaviour
+    public abstract class PickupAbleObject : NetworkIdentity
     {
         [SerializeField] private LayerMask layerMask;
 

@@ -4934,6 +4934,7 @@ MonoBehaviour:
   _ignoreNetworkRules: 0
   dotsParent: {fileID: 1329281126}
   playersParent: {fileID: 1931169675}
+  spawnedPlayers: []
 --- !u!1 &513175155
 GameObject:
   m_ObjectHideFlags: 0
@@ -13139,6 +13140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Units.UnitsManager
   <AllComponents>k__BackingField: []
+  ownerRig: {fileID: 0}
 --- !u!1 &1675312582
 GameObject:
   m_ObjectHideFlags: 0
