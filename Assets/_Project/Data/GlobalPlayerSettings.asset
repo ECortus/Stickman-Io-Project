@@ -34,6 +34,62 @@ MonoBehaviour:
     AttackDuration: 0.15
     PostDuration: 0.05
     DamageModificator: 1.35
+  cameraShakeOnAttack:
+    duration: 0.1
+    force: 0.15
+    decreaseFactor: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.8
+        inSlope: 0.8357101
+        outSlope: 0.8357101
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.07114677
+      - serializedVersion: 3
+        time: 1
+        value: 0.5
+        inSlope: -1.8614783
+        outSlope: -1.8614783
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.033195082
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  cameraShakeOnHit:
+    duration: 0.15
+    force: 0.1
+    decreaseFactor: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.8
+        inSlope: 0.8357101
+        outSlope: 0.8357101
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.07114677
+      - serializedVersion: 3
+        time: 1
+        value: 0.5
+        inSlope: -1.8614783
+        outSlope: -1.8614783
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.033195082
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   BaseScorePerKill: 100
   ScoreMultiplierPerEachLevelPerKill: 200
   MinCoinsCount: 10

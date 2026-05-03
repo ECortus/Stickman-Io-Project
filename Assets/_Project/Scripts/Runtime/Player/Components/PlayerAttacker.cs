@@ -33,6 +33,7 @@ namespace StickmanIo.Runtime.Player
         ILevel level;
         IResources resources;
         ISkin skin;
+        ICamera cam;
 
         IPlayerWeaponController weaponController;
 
@@ -43,11 +44,16 @@ namespace StickmanIo.Runtime.Player
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
+            
             movement = Rig.Movement;
             level = Rig.Level;
             resources = Rig.Resources;
             skin = Rig.Skin;
+
+            if (Rig.IsOwner)
+            {
+                cam = Rig.Camera;
+            }
 
             movement.OnJump += ResetAttack;
 
@@ -74,7 +80,7 @@ namespace StickmanIo.Runtime.Player
         public void DamageUnit(IHitBoxReceiver unit)
         {
             var dmg = damage * damageMod;
-            unit.Damage(dmg, out bool isKilled, out var rig);
+            unit.Damage(dmg, out bool isKilled, out IPlayerRig rig);
 
             if (isKilled)
             {
@@ -83,6 +89,8 @@ namespace StickmanIo.Runtime.Player
                 
                 level.AddLevel();
             }
+
+            ShakeCamera();
         }
 
         void TryAttack()
@@ -180,6 +188,16 @@ namespace StickmanIo.Runtime.Player
         void OnAttack()
         {
             weaponController.SetCollidersActive(true);
+        }
+
+        void ShakeCamera()
+        {
+            if (!Rig.IsOwner)
+            {
+                return;
+            }
+
+            cam.ShakeOnAttack();
         }
 
         void PostAttack()

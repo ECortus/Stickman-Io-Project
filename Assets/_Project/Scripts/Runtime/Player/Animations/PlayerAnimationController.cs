@@ -183,6 +183,8 @@ namespace StickmanIo.Runtime.Player
             this.enabled = false;
 
             ragdoll.SetToRagdoll();
+
+            Debug.LogWarning("DIEEEEED " + gameObject.name);
         }
     }
 }

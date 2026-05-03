@@ -35,6 +35,8 @@ namespace StickmanIo.Runtime.Player
 
         [SerializeField, NonSerialized] SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f, ownerAuth: true);
 
+        ICamera cam;
+
         bool isDead = false;
 
         bool IsDead => isDead;
@@ -50,28 +52,26 @@ namespace StickmanIo.Runtime.Player
 
             playerSaveable = Rig.Saveable;
 
-            currentHealthVar.onChanged += OnCurrentHealthChanged;
             maximumHealthVar.onChanged += OnManHealthChanged;
 
             if (isOwner)
             {
+                cam = Rig.Camera;
+
                 UpdateMaxHealth();
                 Resurrect();
             }
         }
 
-        protected override void OnDestroyed()
+        protected override void OnDespawned()
         {
-            currentHealthVar.onChanged -= OnCurrentHealthChanged;
-            maximumHealthVar.onChanged -= OnManHealthChanged;
+            base.OnDespawned();
+            OnDeath();
         }
 
-        void OnCurrentHealthChanged(float value)
+        protected override void OnDestroyed()
         {
-            if (value <= 0f)
-            {
-                OnDeath();
-            }
+            maximumHealthVar.onChanged -= OnManHealthChanged;
         }
 
         void OnManHealthChanged(float value)
@@ -159,6 +159,16 @@ namespace StickmanIo.Runtime.Player
         {
             var current = CurrentHealth - damage;
             SetCurrentHealth(current);
+
+            if (isOwner)
+            {
+                cam.ShakeOnHit();
+            }
+
+            if (current <= 0f)
+            {
+                OnDeath();
+            }
         }
 
         void UpdateMaxHealth()
@@ -199,26 +209,20 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
+            Debug.Log("OnDeath() called by " + gameObject.name);
+
             SetIsDead(true);
             OnDied?.Invoke();
 
-            gameObject.SetActive(false);
+            playerSaveable.TrySavePrefs(true);
 
-            this.Invoke("OnDeathInvoke", 0.25f);
-            /* OnDeathInvoke(); */
+            Despawn();
+            ObjectHelper.Destroy(this.gameObject);
         }
 
         void SetIsDead(bool value)
         {
             isDead = value;
-        }
-
-        void OnDeathInvoke()
-        {
-            playerSaveable.TrySavePrefs(true);
-
-            Despawn();
-            ObjectHelper.Destroy(this.gameObject);
         }
 
         public event Action OnDied;

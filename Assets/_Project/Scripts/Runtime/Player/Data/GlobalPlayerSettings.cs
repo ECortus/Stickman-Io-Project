@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player.Data
@@ -34,6 +35,19 @@ namespace StickmanIo.Runtime.Player.Data
         public float BaseAttackDamage = 0.5f;
         public float AttackInputsDelay = 0.4f;
         public AttackData[] AttacksData;
+
+        [Serializable]
+        public struct ShakeData
+        {
+            public float duration;
+            public float force;
+            public float decreaseFactor;
+            public AnimationCurve curve;
+        }
+
+        [Space(5)]
+        public ShakeData cameraShakeOnAttack;
+        public ShakeData cameraShakeOnHit;
 
         [System.Serializable]
         public struct AttackData

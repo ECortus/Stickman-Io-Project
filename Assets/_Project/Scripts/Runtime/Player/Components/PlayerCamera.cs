@@ -1,16 +1,21 @@
-﻿using GameDevUtils.Runtime;
+﻿using System;
+using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
 using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
 using Unity.Cinemachine;
 using UnityEngine;
+using static StickmanIo.Runtime.Player.Data.GlobalPlayerSettings;
 
 namespace StickmanIo.Runtime.Player
 {
     public interface ICamera : IRigInterface
     {
-        public float RotationHorizontalAngle { get; }   
+        float RotationHorizontalAngle { get; }   
+
+        void ShakeOnAttack();
+        void ShakeOnHit();
     }
     
     public class PlayerCamera : PlayerRigComponent, ICamera
@@ -67,6 +72,8 @@ namespace StickmanIo.Runtime.Player
             var inputEvents = Rig.InputEvents;
             inputEvents.OnLookAction += UpdateLookDirection;
 
+            shakeOffset = Vector3.zero;
+
             initialized = true;
         }
         
@@ -91,6 +98,8 @@ namespace StickmanIo.Runtime.Player
             }
 
             var delta = Time.deltaTime;
+
+            UpdateShakeCamera(delta);
             
             UpdateCameraTargetPosition();
             UpdateCameraRotation(delta);
@@ -98,7 +107,7 @@ namespace StickmanIo.Runtime.Player
 
         void UpdateCameraTargetPosition()
         {
-            var pos = Rig.transform.position + settings.CameraPositionOffset;
+            var pos = Rig.transform.position + settings.CameraPositionOffset + shakeOffset;
             SetCameraTargetPosition(pos);
         }
 
@@ -146,6 +155,51 @@ namespace StickmanIo.Runtime.Player
             angles.z = angles.z > 180f ? angles.z - 360f : angles.z;
             
             return angles;
+        }
+
+        float duration = 1f;
+        float force = 0.7f;
+        float decreaseFactor = 1.0f;
+        AnimationCurve shakeCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        
+        Vector3 shakeOffset;
+
+        float time;
+
+        public void ShakeOnAttack()
+        {
+            Shake(settings.cameraShakeOnAttack);
+        }
+
+        public void ShakeOnHit()
+        {
+            Shake(settings.cameraShakeOnHit);
+        }
+
+        void Shake(ShakeData data)
+        {
+            duration = data.duration;
+            force = data.force;
+            decreaseFactor = data.decreaseFactor;
+            shakeCurve = data.curve;
+
+            time = duration;
+        }
+
+        void UpdateShakeCamera(float delta)
+        {
+            if (time > 0)
+            {
+                var process = 1f - time / duration;
+                var value = shakeCurve.Evaluate(process);
+
+                shakeOffset = UnityEngine.Random.insideUnitSphere * force * value;
+                time -= delta * decreaseFactor;
+            }
+            else
+            {
+                shakeOffset = Vector3.zero;
+            }
         }
     }
 }
