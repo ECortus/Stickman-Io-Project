@@ -133,15 +133,13 @@ namespace StickmanIo.Runtime.Player
 
         void TakeDamage_Internal(float damage, out bool isKilled, out IPlayerRig rig)
         {
+            rig = Rig;
+
             if (IsDead)
             {
-                isKilled = false;
-                rig = null;
-
+                isKilled = true;
                 return;
             }
-
-            rig = Rig;
 
             var current = CurrentHealth - damage;
             if (current <= 0f)

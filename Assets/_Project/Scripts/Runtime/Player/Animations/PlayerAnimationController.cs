@@ -39,20 +39,22 @@ namespace StickmanIo.Runtime.Player
         void Initialize()
         {
             header = GetComponentInParent<PlayerHeader>();
-            if (!header)
-            {
-                enabled = false;
-                return;
-            }
-
+            
             animator = GetComponent<Animator>();
             networkAnimator = GetComponent<NetworkAnimator>();
 
             ragdoll = GetComponent<RagdollController>();
+            ragdoll.OffRagdoll();
+
+            if (!header)
+            {
+                enabled = false;
+
+                OnDied();
+                return;
+            }
 
             body = GetComponentInParent<Rigidbody>();
-
-            ragdoll.OffRagdoll();
 
             header.OnRigInitialize.AddListener(OnRigInitialize);
         }

@@ -354,8 +354,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!135 &8978696795679338121
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.5
+  m_Radius: 2.75
   m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &338787068779343136
 MonoBehaviour:
@@ -406,7 +406,7 @@ MonoBehaviour:
   speedMove: 9
   speedRotate: 180
   minDistance: 0.5
-  delayBeforeCanPickup: 0.85
+  delayBeforeCanPickup: 0.9
 --- !u!114 &1071079939123882232
 MonoBehaviour:
   m_ObjectHideFlags: 0

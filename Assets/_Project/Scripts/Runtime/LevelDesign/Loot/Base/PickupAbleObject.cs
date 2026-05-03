@@ -33,12 +33,15 @@ namespace StickmanIo.Runtime.LevelDesign
         float delay = 0;
         bool disabled = false;
 
+        public void SetDelayBeforeCanPickup()
+        {
+            delay = delayBeforeCanPickup;
+        }
+
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = false;
-
-            delay = delayBeforeCanPickup;
         }
 
         void OnTriggerStay(Collider other)

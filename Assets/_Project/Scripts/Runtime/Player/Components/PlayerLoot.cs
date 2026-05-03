@@ -14,6 +14,11 @@ namespace StickmanIo.Runtime.Player
         {
             base.OnInitialize();
 
+            if (!Rig.IsOwner)
+            {
+                return;
+            }
+
             health = Rig.Health;
             level = Rig.Level;
 
@@ -55,6 +60,7 @@ namespace StickmanIo.Runtime.Player
                 randomDirection.y = Mathf.Abs(randomDirection.y);
 
                 instance.Throw(randomDirection, throwForce);
+                instance.SetDelayBeforeCanPickup();
             }
         }
     }

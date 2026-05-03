@@ -74,11 +74,11 @@ namespace StickmanIo.Runtime.Player
         public void DamageUnit(IHitBoxReceiver unit)
         {
             var dmg = damage * damageMod;
-            unit.Damage(dmg, out bool isKilled, out IPlayerRig rig);
+            unit.Damage(dmg, out bool isKilled, out var rig);
 
             if (isKilled)
             {
-                var score = Rig.Resources.Score;
+                var score = Rig.Resources.CalculateScore(rig);
                 resources.AddScore(score);
                 
                 level.AddLevel();

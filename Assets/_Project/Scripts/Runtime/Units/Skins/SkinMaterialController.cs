@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using PurrNet;
+using StickmanIo.Runtime.Player;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Units
@@ -18,6 +19,24 @@ namespace StickmanIo.Runtime.Units
     {
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         [SerializeField] private Material defaultMaterial;
+
+        SyncVar<Color> ownerColor = new SyncVar<Color>(Color.white);
+
+        protected override void OnSpawned()
+        {
+            base.OnSpawned();
+
+            if (!isOwner)
+            {
+                var header = GetComponentInParent<PlayerHeader>();
+                if (header)
+                {
+                    return;
+                }
+
+                SetNewColor(ownerColor.value);
+            }
+        }
 
         public void SetNewMaterialAsNonInstance(Material material)
         {
@@ -38,11 +57,22 @@ namespace StickmanIo.Runtime.Units
 
         public void SetNewColor(Color color)
         {
+            if (isOwner)
+            {
+                SetOwnerColor(color);
+            }
+
             SetColor(skinnedMeshRenderer.material, color);
             for (var i = 1; i < skinnedMeshRenderer.materials.Length; i++)
             {
                 SetColor(skinnedMeshRenderer.materials[i], color);
             }
+        }
+
+        [ServerRpc]
+        void SetOwnerColor(Color color)
+        {
+            ownerColor.value = color;
         }
 
         void SetMaterial(Material material)

@@ -30,16 +30,6 @@ namespace StickmanIo.Runtime.Player
             animator = GetComponent<Animator>();
         }
 
-        void Start()
-        {
-            if (!alreadyBaked)
-            {
-                BakeRigidbodiesAndColliders();
-            }
-
-            OffRagdoll();
-        }
-
         [ContextMenu("Bake Rigidbodies and Colliders")]
         public void BakeRigidbodiesAndColliders()
         {
@@ -72,9 +62,20 @@ namespace StickmanIo.Runtime.Player
 #endif
         }
 
+        void TryBakeRigidbodiesAndColliders()
+        {
+            if (!alreadyBaked)
+            {
+                BakeRigidbodiesAndColliders();
+            }
+        }
+
         public void SetToRagdoll()
         {
-            animator.enabled = false;
+            TryBakeRigidbodiesAndColliders();
+
+            if (animator)
+                animator.enabled = false;
 
             for (int i = 0; i < rigidbodies.Length; i++)
             {
@@ -96,6 +97,8 @@ namespace StickmanIo.Runtime.Player
 
         public void OffRagdoll()
         {
+            TryBakeRigidbodiesAndColliders();
+
             for (int i = 0; i < rigidbodies.Length; i++)
             {
                 rigidbodies[i].isKinematic = true;
