@@ -13,7 +13,7 @@ namespace StickmanIo.Runtime.Player
         event PlayerSerializeAction OnSerialize;
         event PlayerDeserializeAction OnDeserialize;
 
-        void TrySavePrefs();
+        void TrySavePrefs(bool immediately = false);
     }
 
     public class PlayerSaveableBehaviour : PlayerRigComponent, IPlayerSaveable, ISaveableBehaviour<ProjectSavePrefs>
@@ -72,20 +72,23 @@ namespace StickmanIo.Runtime.Player
             SaveableSupervisor.RemoveBehaviour(this);
         }
 
-        public void TrySavePrefs()
+        public void TrySavePrefs(bool immediately = false)
         {
             if (!Rig.IsOwner)
             {
                 return;
             }
 
-            if (lastSaveTime + maxDelayBetweenSaves > Time.time)
+            if (!immediately)
             {
-                return;
+                if (lastSaveTime + maxDelayBetweenSaves > Time.time)
+                {
+                    return;
+                }
             }
 
             lastSaveTime = Time.time;
-            SaveablePrefs.Save<ProjectSavePrefs>();
+            SaveablePrefs.Save<ProjectSavePrefs>(immediately);
         }
 
         public void Serialize(ref ProjectSavePrefs savePrefs)

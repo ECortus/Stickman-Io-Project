@@ -20,8 +20,7 @@ namespace StickmanIo.Runtime.Units
                 {
                     if (OwnerRig != null)
                     {
-                        Debug.LogWarning($"OwnerRig already set as {OwnerRig.name}, it can be only ONE owner on scene. Another os {element.name}");
-                        /* throw new System.Exception("OwnerRig already set, it can be only ONE owner on scene."); */
+                        throw new System.Exception("OwnerRig already set, it can be only ONE owner on scene.");
                     }
 
                     ownerRig = playerRig;

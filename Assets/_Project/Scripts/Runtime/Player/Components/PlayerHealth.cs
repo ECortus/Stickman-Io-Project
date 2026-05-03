@@ -1,8 +1,10 @@
 ﻿using System;
 using GameDevUtils.Runtime;
 using PurrNet;
+using SaveableExtension.Runtime;
 using StickmanIo.Runtime.Player.Data;
 using StickmanIo.Runtime.Units;
+using StickmanProject.Runtime.SavePrefs;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -26,6 +28,8 @@ namespace StickmanIo.Runtime.Player
     {
         GlobalPlayerSettings settings;
 
+        IPlayerSaveable playerSaveable;
+
         [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f);
         [SerializeField, NonSerialized] SyncVar<float> maximumHealthVar = new SyncVar<float>(0f, ownerAuth: true);
 
@@ -43,6 +47,8 @@ namespace StickmanIo.Runtime.Player
             base.OnInitialize();
 
             settings = Data.Settings;
+
+            playerSaveable = Rig.Saveable;
 
             currentHealthVar.onChanged += OnCurrentHealthChanged;
             maximumHealthVar.onChanged += OnManHealthChanged;
@@ -211,6 +217,8 @@ namespace StickmanIo.Runtime.Player
 
         void OnDeathInvoke()
         {
+            playerSaveable.TrySavePrefs(true);
+
             Despawn();
             ObjectHelper.Destroy(this.gameObject);
         }

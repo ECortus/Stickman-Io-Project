@@ -181,17 +181,20 @@ namespace StickmanIo.Runtime.Player
 
         void SpawnPlayer(PlayerID player, SceneID? scene = null)
         {
-            /* var spawned = spawnedPlayers.Find(c => c.ID == player);
+            var spawned = spawnedPlayers.Find(c => c.ID == player);
             if (spawned != null)
             {
                 var instance = spawned.Instance;
                 if (instance)
                 {
-                    instance.Despawn();
+                    DebugHelper.LogWarning($"Player {player} is already spawned. Decline to spawn.");
+                    return;
+
+                    /* instance.Despawn(); */
                 }
 
                 spawnedPlayers.Remove(spawned);
-            } */
+            }
 
             GameObject newPlayer;
 
@@ -235,18 +238,18 @@ namespace StickmanIo.Runtime.Player
             {
                 identity.GiveOwnership(player);
 
-                var spawned = new SpawnedInstance()
+                var spawnedInstance = new SpawnedInstance()
                 {
                     ID = player,
                     Instance = identity
                 };
 
-                spawnedPlayers.Add(spawned);
+                spawnedPlayers.Add(spawnedInstance);
                 if (newPlayer.TryGetComponent(out IHealth health))
                 {
                     health.OnDied += () =>
                     {
-                        spawnedPlayers.Remove(spawned);
+                        spawnedPlayers.Remove(spawnedInstance);
                     };
                 }
             }
