@@ -209,7 +209,7 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
-            Debug.Log("OnDeath() called by " + gameObject.name);
+            PlayersLogger.LogKilled($"{Rig.localPlayer.Value}");
 
             SetIsDead(true);
             OnDied?.Invoke();

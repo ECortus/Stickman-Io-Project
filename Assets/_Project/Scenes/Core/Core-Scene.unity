@@ -328,6 +328,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: multiscenevontroller.runtime::MultiSceneController.Runtime.Input.InputDeviceManager
   m_ActiveGameDevice: 0
+--- !u!1 &995701826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995701827}
+  m_Layer: 0
+  m_Name: ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995701827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995701826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081597296
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +680,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7581488752490461365, guid: 217898753170dd04385f2e26e932ba2e, type: 3}
   m_PrefabInstance: {fileID: 1291841031}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1328078692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328078694}
+  - component: {fileID: 1328078693}
+  m_Layer: 0
+  m_Name: --Load Gameplay Scene--
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1328078693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328078692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9c4488eecf491a985c1f555e3477d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: multiscenevontroller.runtime::MultiSceneController.Runtime.LoadPrimaryScene
+  overlay: 1
+  sectionName: Gameplay
+  sceneName: GameplayScene
+--- !u!4 &1328078694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328078692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391651180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,8 +1111,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1834071111}
+  - {fileID: 1328078694}
   - {fileID: 1838173811}
   - {fileID: 135788082}
   - {fileID: 1176170790}
   - {fileID: 1391651181}
   - {fileID: 1212560460}
+  - {fileID: 995701827}
