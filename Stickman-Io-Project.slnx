@@ -156,6 +156,7 @@
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="Unity.Services.Core.Networking.csproj" />
   <Project Path="Boxophobic.SkyboxCubemapExtended.Editor.csproj" />
+  <Project Path="PurrNet.Purrnity.Runtime.csproj" />
   <Project Path="PurrNet.UTP.Runtime.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
@@ -172,6 +173,7 @@
   <Project Path="Unity.InternalAPIEngineBridge.013.csproj" />
   <Project Path="saveableextension.editor.csproj" />
   <Project Path="virtualmouse.editor.csproj" />
+  <Project Path="PurrNet.MultiplayerServices.Runtime.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.Services.Core.Environments.Internal.csproj" />
   <Project Path="Unity.Services.Core.Threading.csproj" />

@@ -412,6 +412,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "dev.purrnet.multiplayerservices": {
+      "version": "https://github.com/youngwoocho02/PurrNetMultiplayerServicesHandler.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "db57b06cda1f991dd89e694123a0bb2dbf40c94d"
+    },
     "dev.purrnet.purrnet": {
       "version": "https://github.com/PurrNet/PurrNet.git?path=/Assets/PurrNet#release",
       "depth": 0,
@@ -422,6 +429,15 @@
         "com.unity.collections": "2.6.2"
       },
       "hash": "266cb63efd3d858d6d2fce68c2b0b2364ca78c24"
+    },
+    "dev.purrnet.purrnity": {
+      "version": "https://github.com/youngwoocho02/PurrnityTransport.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.transport": "2.0.0"
+      },
+      "hash": "c2f65ba34dc440b63d948845d5427e737f7624e3"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
