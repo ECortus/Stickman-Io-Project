@@ -53,7 +53,7 @@ namespace StickmanIo.Runtime.UI
                 return;
             }
 
-            var skinPrefab = runtimeData.SkinData.SkinPrefab;
+            var skinPrefab = runtimeData.SkinData.PreviewPrefab;
             InstantiatePreview(skinPrefab);
         }
 

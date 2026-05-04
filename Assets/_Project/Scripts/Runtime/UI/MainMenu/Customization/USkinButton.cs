@@ -104,7 +104,7 @@ namespace StickmanIo.Runtime.UI
         {
             previewTransform.DestroyAllChildren();
 
-            var skinPrefab = skinData.SkinPrefab;
+            var skinPrefab = skinData.PreviewPrefab;
 
             var previewInstance = ObjectInstantiator.InstantiatePrefab(skinPrefab, previewTransform);
             previewInstance.transform.ResetAllLocalParameters();

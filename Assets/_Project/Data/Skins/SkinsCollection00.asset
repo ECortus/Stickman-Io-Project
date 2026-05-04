@@ -15,13 +15,13 @@ MonoBehaviour:
   skins:
   - id: default
     skinPrefab: {fileID: 4499269816549463390, guid: 752a3a6182125564fb88deb219ff5813, type: 3}
-    isLocked: 1
+    previewPrefab: {fileID: 4499269816549463390, guid: 286f12b34afe9f44db059ec6bf601fcb, type: 3}
     price: 0
   - id: skin1
     skinPrefab: {fileID: 4640969436183557306, guid: 313b8202795b2ea45bf795fd1b4d0c94, type: 3}
-    isLocked: 1
+    previewPrefab: {fileID: 4640969436183557306, guid: 158e6a869544d2a4580a9f8a844ceb5c, type: 3}
     price: 100
   - id: skin2
     skinPrefab: {fileID: 5153027460563248033, guid: 0c2bd7d6c403cb040a6f793220467271, type: 3}
-    isLocked: 1
+    previewPrefab: {fileID: 5153027460563248033, guid: 55ca0fd040d99854e9fa077f4384b79e, type: 3}
     price: 500
