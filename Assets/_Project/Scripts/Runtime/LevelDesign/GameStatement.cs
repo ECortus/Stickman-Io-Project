@@ -1,3 +1,4 @@
+using System;
 using GameDevUtils.Runtime;
 using StickmanIo.Runtime.Input;
 using UnityEngine;
@@ -6,39 +7,40 @@ namespace StickmanIo.Runtime.LevelDesign
 {
     public class GameStatement : SingletonMonoBehaviour<GameStatement>
     {
-        public enum State
+        [Serializable]
+        public enum EState
         {
             None,
+            Loading,
             Playing,
             Paused,
             Dead
         }
 
-        State state = State.None;
+        [SerializeField, ReadOnly] EState state = EState.None;
 
-        public bool IsPlaying => state == State.Playing;
-        public bool IsPaused => state == State.Paused;
-        public bool IsDead => state == State.Dead;
+        public bool IsLoading => state == EState.Loading;
+        public bool IsPlaying => state == EState.Playing;
+        public bool IsPaused => state == EState.Paused;
+        public bool IsDead => state == EState.Dead;
 
-        void Start()
-        {
-            SetPlay();
-        }
-
-        void SetState(State newState)
+        void SetState(EState newState)
         {
             if (state == newState)
                 return;
 
             switch (newState)
             {
-                case State.Playing:
+                case EState.Loading:
+                    OnLoading();
+                    break;
+                case EState.Playing:
                     OnPlaying();
                     break;
-                case State.Paused:
+                case EState.Paused:
                     OnPaused();
                     break;
-                case State.Dead:
+                case EState.Dead:
                     OnDead();
                     break;
                 default:
@@ -48,9 +50,15 @@ namespace StickmanIo.Runtime.LevelDesign
             state = newState;
         }
 
-        public void SetPlay() => SetState(State.Playing);
-        public void SetPause() => SetState(State.Paused);
-        public void SetDead() => SetState(State.Dead);
+        public void SetLoading() => SetState(EState.Loading);
+        public void SetPlay() => SetState(EState.Playing);
+        public void SetPause() => SetState(EState.Paused);
+        public void SetDead() => SetState(EState.Dead);
+
+        void OnLoading()
+        {
+            CursorViewController.Enable();
+        }
 
         void OnPlaying()
         {
