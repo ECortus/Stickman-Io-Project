@@ -522,14 +522,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.UCurrentSession
   sessionLabel: {fileID: 4474688034910485485}
   defaultSessionLabel: No Session Joined
-  sessionOwnerLabel: {fileID: 7131779611602277072}
+  sessionCurrentPlayerLabel: {fileID: 7131779611602277072}
   defaultSessionOwnerLabel: No Player Joined
   sessionPlayersCountLabel: {fileID: 4545454356403113582}
   defaultSessionPlayersCountLabel: -/- players
   sessionCodeLabel: {fileID: 5249503998867083035}
   copySessionCodeButton: {fileID: 4904434277554071629}
   defaultSessionCodeLabel: No Session Code
-  playerListElementPrefab: {fileID: 2170902256810565665, guid: 18f69e086e2a47f4c99565a48396bcd2, type: 3}
+  playerListElementPrefab: {fileID: 1846922368905417290, guid: 18f69e086e2a47f4c99565a48396bcd2, type: 3}
   playersListParent: {fileID: 3457280358138363316}
   leaveSessionButton: {fileID: 8467517662068057610}
   sessionStatusLabel: {fileID: 6184731471837795146}
@@ -1039,8 +1039,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290756543
-  m_fontColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 2370397370361921596}
   - component: {fileID: 7131779611602277072}
   m_Layer: 5
-  m_Name: Session Owner
+  m_Name: Current Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

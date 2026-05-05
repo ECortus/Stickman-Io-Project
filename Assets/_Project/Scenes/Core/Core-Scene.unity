@@ -453,6 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.MainMenu.Lobby.SessionProvider
   settings: {fileID: 11400000, guid: f408450a772590e40b50f80f84bea1ce, type: 2}
+  SessionName: 
+  SessionCode: 
 --- !u!4 &1087093755
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,7 +1155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1834071111
 Transform:
   m_ObjectHideFlags: 0
@@ -1363,7 +1365,7 @@ SceneRoots:
   - {fileID: 1176170790}
   - {fileID: 1391651181}
   - {fileID: 1212560460}
+  - {fileID: 1646964377}
   - {fileID: 1262517127}
   - {fileID: 1087093755}
-  - {fileID: 1646964377}
   - {fileID: 995701827}

@@ -19,7 +19,7 @@ namespace StickmanIo.Runtime.UI
             mainMenu = GetComponentInParent<IMainMenu>();
             sessionProvider = SessionProvider.GetInstance;
 
-            sessionProvider.OnSessionStarted += OnStartedSession;
+            sessionProvider.OnSessionAdded += (e) => OnStartedSession();
             sessionProvider.OnSessionLeaved += OnLeavedSession;
 
             SetupButtons();

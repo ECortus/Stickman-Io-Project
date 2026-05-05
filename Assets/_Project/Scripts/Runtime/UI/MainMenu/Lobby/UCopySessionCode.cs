@@ -21,16 +21,18 @@ namespace StickmanIo.Runtime.UI
         {
             provider = SessionProvider.GetInstance;
 
-            provider.OnSessionCreated += OnCreatedSession;
+            provider.OnSessionAdded += (e) => OnStartedSession();
+
+            provider.OnAddingSessionFailed += (e, t) => OnLeavedSession();
             provider.OnSessionLeaved += OnLeavedSession;
 
+            inputField.interactable = false;
             copyButton.onClick.AddListener(OnCopyButton);
 
-            inputField.text = "";
-            copyButton.interactable = false;
+            OnLeavedSession();
         }
 
-        void OnCreatedSession()
+        void OnStartedSession()
         {
             inputField.text = provider.GetSessionCode();
             copyButton.interactable = true;

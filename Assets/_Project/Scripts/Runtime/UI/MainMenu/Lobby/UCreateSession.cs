@@ -24,23 +24,27 @@ namespace StickmanIo.Runtime.UI
             provider = SessionProvider.GetInstance;
             nameInput.onValueChanged.AddListener(OnUpdateField);
 
-            provider.OnSessionCreated += () => SetInteractable(false);
+            provider.OnAddingSessionStarted += (e) => OnStartedSession();
+            provider.OnSessionAdded += (e) => OnStartedSession();
+
+            provider.OnAddingSessionFailed += (e, t) => OnLeavedSession();
+            provider.OnSessionLeaved += OnLeavedSession;
 
             createButton.onClick.AddListener(OnButtonClicked);
 
             var initizialSessionName = provider.GetSessionName();
             nameInput.text = initizialSessionName;
 
-            OnUpdateField(initizialSessionName);
+            SetInteractable(true);
         }
 
         void OnUpdateField(string value)
         {
             sessionName = value;
-            if (!sessionName.IsEmpty())
+            if (sessionName != null && sessionName.Length > 0)
             {
                 provider.SetSessionName(sessionName);
-                createButton.interactable = true;
+                createButton.interactable = nameInput.interactable;
             }
             else
             {
@@ -53,10 +57,22 @@ namespace StickmanIo.Runtime.UI
             await provider.CreateSessionAsync();
         }
 
+        void OnStartedSession()
+        {
+            SetInteractable(false);
+        }
+
+        void OnLeavedSession()
+        {
+            SetInteractable(true);
+        }
+
         void SetInteractable(bool value)
         {
-            nameInput.interactable = false;
-            createButton.interactable = false;
+            nameInput.interactable = value;
+            createButton.interactable = value;
+
+            OnUpdateField(sessionName);
         }
     }
 }

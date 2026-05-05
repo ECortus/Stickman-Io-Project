@@ -22,23 +22,29 @@ namespace StickmanIo.Runtime.UI
         {
             provider = SessionProvider.GetInstance;
 
+            provider.OnAddingSessionStarted += (e) => OnStartedSession();
+            provider.OnSessionAdded += (e) => OnStartedSession();
+
+            provider.OnAddingSessionFailed += (e, t) => OnLeavedSession();
+            provider.OnSessionLeaved += OnLeavedSession;
+
             inputField.onValueChanged.AddListener(OnUpdateField);
             enterButton.onClick.AddListener(OnEnterButtonClicked);
 
+            OnLeavedSession();
             OnUpdateField();
         }
 
         void OnUpdateField(string value = "")
         {
-            if (value.IsEmpty())
-            {
-                enterButton.interactable = false;
-                return;
-            }
-            else
+            if (value != null && value.Length > 0)
             {
                 provider.SetSessionCode(value);
                 enterButton.interactable = true;
+            }
+            else
+            {
+                enterButton.interactable = false;
             }
         }
 
@@ -46,6 +52,17 @@ namespace StickmanIo.Runtime.UI
         {
             await provider.JoinSessionAsync();
         }
-        
+
+        void OnStartedSession()
+        {
+            inputField.interactable = false;
+            enterButton.interactable = false;
+        }
+
+        void OnLeavedSession()
+        {
+            inputField.interactable = true;
+            OnUpdateField(inputField.text);
+        }
     }
 }
