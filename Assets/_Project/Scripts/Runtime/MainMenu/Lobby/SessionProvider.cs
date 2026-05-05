@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Blocks.Sessions.Common;
 using GameDevUtils.Runtime;
 using PurrNet.MultiplayerServices;
+using PurrNet.Purrnity;
+using Unity.Services.Authentication;
 using Unity.Services.Multiplayer;
 using UnityEngine;
 
@@ -12,18 +14,21 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
     {
         [SerializeField] private SessionSettings settings;
 
-        public bool SessionStarted { get; private set; }
-
         [Space(10)]
         [SerializeField, ReadOnly] string SessionName = "";
         [SerializeField, ReadOnly] string SessionCode = "";
 
+        ServicesInitializationProvider servicesInitializationProvider;
+
         SessionObserver m_SessionObserver;
         ISession m_Session;
 
-        void Awake() 
+        protected override void OnAwake() 
         {
-            Initialize();
+            base.OnAwake();
+
+            servicesInitializationProvider = ServicesInitializationProvider.GetInstance;
+            servicesInitializationProvider.OnInitialized.AddListener(Initialize);
         }
 
         void Initialize() 
@@ -131,6 +136,8 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
         async Task<ISession> JoinSessionByCodeAsync(JoinSessionOptions joinSessionOptions)
         {
+            joinSessionOptions.WithPurrHandler();
+            
             return await MultiplayerService.Instance.JoinSessionByCodeAsync(SessionCode, joinSessionOptions);
         }
 

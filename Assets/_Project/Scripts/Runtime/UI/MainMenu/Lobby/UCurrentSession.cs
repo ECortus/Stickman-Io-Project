@@ -92,6 +92,10 @@ namespace StickmanIo.Runtime.UI
             var instance = ObjectInstantiator.InstantiatePrefabForComponent(playerListElementPrefab, playersListParent);
             instance.text = player;
 
+            var local = instance.transform.localPosition;
+            local.z = 0f;
+            instance.transform.localPosition = local;
+
             playerList.Add(instance);
         }
 
@@ -104,14 +108,15 @@ namespace StickmanIo.Runtime.UI
 
             for (var i = 0; i < playerList.Count; i++)
             {
-                if (playerList[i] && playerList[i].text == player)
+                var item = playerList[i];
+                if (item && item.text == player)
                 {
                     playerList.RemoveAt(i);
-                    ObjectHelper.Destroy(playerList[i].gameObject);
+                    ObjectHelper.Destroy(item.gameObject);
 
                     break;
                 }
-                else if (!playerList[i])
+                else if (!item)
                 {
                     playerList.RemoveAt(i);
                     break;
