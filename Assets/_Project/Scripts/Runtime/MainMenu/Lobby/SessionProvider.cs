@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Blocks.Sessions.Common;
 using GameDevUtils.Runtime;
@@ -36,7 +37,48 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             return SessionCode;
         }
 
-        public async Task<IHostSession> CreateSessionAsync(SessionOptions sessionOptions)
+        bool AreMultiplayerServicesInitialized()
+        {
+            return MultiplayerService.Instance != null;
+        }
+
+        public async Task CreateSessionAsync()
+        {
+            if (AreMultiplayerServicesInitialized())
+            {
+                OnSessionCreated?.Invoke();
+            }
+            else
+            {
+                OnSessionCreatedFailed?.Invoke();
+                return;
+            }
+
+            var sessionOptions = settings.ToSessionOptions();
+            var session = await CreateSessionAsync(sessionOptions);
+
+            OnSessionStarted?.Invoke();
+        }
+
+        public async Task JoinSessionAsync()
+        {
+            if (AreMultiplayerServicesInitialized())
+            {
+                OnSessionJoined?.Invoke();
+            }
+            else
+            {
+                OnSessionJoinedFailed?.Invoke();
+                return;
+            }
+
+            var joinSessionOptions = settings.ToJoinSessionOptions();
+            var session = await JoinSessionByCodeAsync(joinSessionOptions);
+
+            OnSessionStarted?.Invoke();
+        }
+
+        async Task<IHostSession> CreateSessionAsync(SessionOptions sessionOptions)
         {
             sessionOptions.Name = SessionName;
             sessionOptions = sessionOptions.WithPurrRelay();
@@ -44,9 +86,22 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             return await MultiplayerService.Instance.CreateSessionAsync(sessionOptions);
         }
 
-        public async Task<ISession> JoinSessionByCodeAsync(JoinSessionOptions joinSessionOptions)
+        async Task<ISession> JoinSessionByCodeAsync(JoinSessionOptions joinSessionOptions)
         {
             return await MultiplayerService.Instance.JoinSessionByCodeAsync(SessionCode, joinSessionOptions);
         }
+
+        #region Events
+        
+        public event Action OnSessionCreated;
+        public event Action OnSessionCreatedFailed;
+
+        public event Action OnSessionJoined;
+        public event Action OnSessionJoinedFailed;
+
+        public event Action OnSessionStarted;
+        public event Action OnSessionLeaved;
+
+        #endregion
     }
 }

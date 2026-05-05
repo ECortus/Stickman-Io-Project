@@ -1,3 +1,4 @@
+using StickmanIo.Runtime.MainMenu.Lobby;
 using StickmanIo.Runtime.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +12,16 @@ namespace StickmanIo.Runtime.UI
 
         IMainMenu mainMenu;
 
+        SessionProvider sessionProvider;
+
         void Awake()
         {
             mainMenu = GetComponentInParent<IMainMenu>();
+            sessionProvider = SessionProvider.GetInstance;
+
+            sessionProvider.OnSessionStarted += OnStartedSession;
+            sessionProvider.OnSessionLeaved += OnLeavedSession;
+
             SetupButtons();
         }
 
@@ -21,6 +29,8 @@ namespace StickmanIo.Runtime.UI
         {
             startPlayButton.onClick.AddListener(OnStartPlayButton);
             toMainMenuButton.onClick.AddListener(OnToMainMenuButton);
+
+            startPlayButton.interactable = false;
         }
 
         void OnStartPlayButton()
@@ -31,6 +41,16 @@ namespace StickmanIo.Runtime.UI
         void OnToMainMenuButton()
         {
             mainMenu.OpenMainMenuPanel();
+        }
+
+        void OnStartedSession()
+        {
+            startPlayButton.interactable = true;
+        }
+
+        void OnLeavedSession()
+        {
+            startPlayButton.interactable = false;
         }
     }
 }

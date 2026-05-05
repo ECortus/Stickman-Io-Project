@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 2028627186955283654}
   - component: {fileID: 8315007079979565790}
   - component: {fileID: 5657977277174981649}
+  - component: {fileID: 7481975572935834953}
   m_Layer: 5
   m_Name: Enter Session Name
   m_TagString: Untagged
@@ -367,6 +368,20 @@ MonoBehaviour:
   isAlert: 0
   m_InputValidator: {fileID: 0}
   m_ShouldActivateOnSelect: 1
+--- !u!114 &7481975572935834953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089710936685808269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ef8c8792e84b54699c12a62a3166bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.UCreateSession
+  nameInput: {fileID: 5657977277174981649}
+  createButton: {fileID: 7216146992521908188}
 --- !u!1 &2418022935805642162
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +469,7 @@ GameObject:
   - component: {fileID: 8010726738386287716}
   - component: {fileID: 2296203565043022478}
   - component: {fileID: 3695692377345993075}
+  - component: {fileID: 7528843099843520281}
   m_Layer: 5
   m_Name: Session Code
   m_TagString: Untagged
@@ -620,6 +636,20 @@ MonoBehaviour:
   isAlert: 0
   m_InputValidator: {fileID: 0}
   m_ShouldActivateOnSelect: 1
+--- !u!114 &7528843099843520281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797987162673971821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73094f1dbe68b8344a065405fab3404c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.UCopyCode
+  inputField: {fileID: 3695692377345993075}
+  copyButton: {fileID: 6487965658196302187}
 --- !u!1 &3032528726181534240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,6 +1284,7 @@ GameObject:
   - component: {fileID: 5425065655790746343}
   - component: {fileID: 5700867049000079367}
   - component: {fileID: 7029418523133726515}
+  - component: {fileID: 3081542648084685202}
   m_Layer: 5
   m_Name: Join via Session Code
   m_TagString: Untagged
@@ -1420,6 +1451,20 @@ MonoBehaviour:
   isAlert: 0
   m_InputValidator: {fileID: 0}
   m_ShouldActivateOnSelect: 1
+--- !u!114 &3081542648084685202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308555077197867367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc05ae6e2ace58e4484821809b19b24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.UEnterSessionCode
+  inputField: {fileID: 7029418523133726515}
+  enterButton: {fileID: 637380356561839488}
 --- !u!1 &6611281986299424319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,6 +2102,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
+--- !u!114 &637380356561839488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4313686129589719884, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
+  m_PrefabInstance: {fileID: 3676384943536584396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &8939885745251077628 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5698740286756453168, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
@@ -2164,6 +2220,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5698740286756453168, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
   m_PrefabInstance: {fileID: 6915749858560973968}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7216146992521908188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4313686129589719884, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
+  m_PrefabInstance: {fileID: 6915749858560973968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &7049444902832228903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2270,3 +2337,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5698740286756453168, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
   m_PrefabInstance: {fileID: 7049444902832228903}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6487965658196302187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4313686129589719884, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
+  m_PrefabInstance: {fileID: 7049444902832228903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button

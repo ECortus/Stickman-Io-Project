@@ -473,6 +473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3982355362625837116}
+  - component: {fileID: 3390460562480542556}
   m_Layer: 5
   m_Name: Current Session
   m_TagString: Untagged
@@ -497,9 +498,9 @@ RectTransform:
   - {fileID: 8697001716794876115}
   - {fileID: 450953270607736452}
   - {fileID: 197725932842311653}
+  - {fileID: 1542344425967279024}
   - {fileID: 92920575936384630}
   - {fileID: 2765131072220777621}
-  - {fileID: 1542344425967279024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -507,6 +508,32 @@ RectTransform:
   m_AnchoredPosition: {x: -450, y: 100}
   m_SizeDelta: {x: 770, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3390460562480542556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651488767845599080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b53e20f268a2d4cb11ee1eb1889c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime.ui::StickmanIo.Runtime.UI.UCurrentSession
+  sessionLabel: {fileID: 4474688034910485485}
+  defaultSessionLabel: No Session Joined
+  sessionOwnerLabel: {fileID: 7131779611602277072}
+  defaultSessionOwnerLabel: No Player Joined
+  sessionPlayersCountLabel: {fileID: 4545454356403113582}
+  defaultSessionPlayersCountLabel: -/- players
+  sessionCodeLabel: {fileID: 5249503998867083035}
+  copySessionCodeButton: {fileID: 4904434277554071629}
+  defaultSessionCodeLabel: No Session Code
+  playerListElementPrefab: {fileID: 2170902256810565665, guid: 18f69e086e2a47f4c99565a48396bcd2, type: 3}
+  playersListParent: {fileID: 3457280358138363316}
+  leaveSessionButton: {fileID: 8467517662068057610}
+  sessionStatusLabel: {fileID: 6184731471837795146}
+  defaultSessionStatusLabel: 'In Session: No'
 --- !u!1 &5379486694247794007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In session: Test'
+  m_text: 'In session: No'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1333,7 +1360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1542344425967279024}
   m_Layer: 5
-  m_Name: players list
+  m_Name: Players
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1398,7 @@ GameObject:
   - component: {fileID: 2370397370361921596}
   - component: {fileID: 7131779611602277072}
   m_Layer: 5
-  m_Name: Last Joined Player
+  m_Name: Session Owner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1685,6 +1712,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5698740286756453168, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
   m_PrefabInstance: {fileID: 5647479699590362438}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8467517662068057610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4313686129589719884, guid: 575186a5cb086374d97d79d84f5a324b, type: 3}
+  m_PrefabInstance: {fileID: 5647479699590362438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &8786536530187391381
 PrefabInstance:
   m_ObjectHideFlags: 0

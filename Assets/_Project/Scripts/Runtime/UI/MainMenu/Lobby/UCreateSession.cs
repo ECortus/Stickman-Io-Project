@@ -16,22 +16,22 @@ namespace StickmanIo.Runtime.UI
 
         void Awake() 
         {
+            Initialize();
+        }
+
+        void Initialize()
+        {
             provider = SessionProvider.GetInstance;
             nameInput.onValueChanged.AddListener(OnUpdateField);
 
+            provider.OnSessionCreated += () => SetInteractable(false);
+
+            createButton.onClick.AddListener(OnButtonClicked);
+
             var initizialSessionName = provider.GetSessionName();
             nameInput.text = initizialSessionName;
-            OnUpdateField(initizialSessionName);
-        }
 
-        void Update()
-        {
-            if (provider.SessionStarted)
-            {
-                nameInput.interactable = false;
-                createButton.interactable = false;
-                return;
-            }
+            OnUpdateField(initizialSessionName);
         }
 
         void OnUpdateField(string value)
@@ -48,9 +48,15 @@ namespace StickmanIo.Runtime.UI
             }
         }
 
-        void OnButtonClicked()
+        async void OnButtonClicked()
         {
-            
+            await provider.CreateSessionAsync();
+        }
+
+        void SetInteractable(bool value)
+        {
+            nameInput.interactable = false;
+            createButton.interactable = false;
         }
     }
 }

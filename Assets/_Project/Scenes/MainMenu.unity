@@ -5419,26 +5419,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4269999685795442907, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269999685795442907, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269999685795442907, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269999685795442907, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269999685795442907, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4651488767845599080, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
       propertyPath: m_Name
       value: Current Session
@@ -5475,18 +5455,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7191607338060990841, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191607338060990841, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191607338060990841, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7480642198620975540, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5506,10 +5474,6 @@ PrefabInstance:
     - target: {fileID: 7480642198620975540, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9013043491260529116, guid: 0178592f53974c5409c4ce30f7fd7df0, type: 3}
-      propertyPath: m_HorizontalScrollbar
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
