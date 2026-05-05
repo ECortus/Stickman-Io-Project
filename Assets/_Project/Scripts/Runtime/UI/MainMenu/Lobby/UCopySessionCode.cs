@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace StickmanIo.Runtime.UI
 {
-    public class UCopyCode : MonoBehaviour
+    public class UCopySessionCode : MonoBehaviour
     {
         [SerializeField] TMP_InputField inputField;
         [SerializeField] Button copyButton;

@@ -36,12 +36,23 @@ namespace StickmanIo.Runtime.UI
 
         void Awake()
         {
-            Initialize();   
+            Initialize();
         }
 
         void Initialize()
         {
             provider = SessionProvider.GetInstance;
+            copySessionCodeButton.onClick.AddListener(OnCopySessionCodeButton);
+        }
+
+        void OnCopySessionCodeButton()
+        {
+            if (string.IsNullOrEmpty(sessionCodeLabel.text) || sessionCodeLabel.text == defaultSessionCodeLabel)
+            {
+                return;
+            }
+
+            GUIUtility.systemCopyBuffer = sessionCodeLabel.text;
         }
     }
 }
