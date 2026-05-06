@@ -87,12 +87,13 @@ namespace StickmanIo.Runtime.UI
 
             playersListParent.DestroyAllChildren();
 
-            session.PlayerJoined += OnPlayerAdded;
+            session.PlayerJoined += OnPlayerAddedByID;
             session.PlayerLeaving += OnPlayerRemoved;
 
             foreach (var player in session.Players)
             {
-                OnPlayerAdded(player.GetPlayerName());
+                var playerName = player.GetPlayerName();
+                OnPlayerAddedByName(playerName);
             }
 
             sessionCodeLabel.text = $"{provider.GetSessionCode()}";
@@ -103,34 +104,57 @@ namespace StickmanIo.Runtime.UI
             update = true;
         }
 
-        void OnPlayerAdded(string player)
+        void OnPlayerAddedByID(string playerID)
         {
             var session = provider.GetSession();
+            if (session == null)
+            {
+                return;
+            }
 
-            sessionCurrentPlayerLabel.text = session.CurrentPlayer.GetPlayerName();
-            sessionPlayersCountLabel.text = $"{session.PlayerCount}/{session.MaxPlayers} players";
+            var player = session.GetPlayer(playerID);
+            var playerName = player.GetPlayerName();
 
+            OnPlayerAdded(playerName);
+        }
+
+        void OnPlayerAddedByName(string playerName)
+        {
+            OnPlayerAdded(playerName);
+        }
+
+        void OnPlayerAdded(string playerName)
+        {
             var instance = ObjectInstantiator.InstantiatePrefabForComponent(playerListElementPrefab, playersListParent);
-            instance.text = player;
+            instance.text = playerName;
 
             var local = instance.transform.localPosition;
             local.z = 0f;
             instance.transform.localPosition = local;
 
             playerList.Add(instance);
+
+            UpdateDynamicFields();
         }
 
-        void OnPlayerRemoved(string player)
+        void OnPlayerRemoved(string playerID)
         {
             if (playerList.Count == 0)
             {
                 return;
             }
 
+            var session = provider.GetSession();
+            if (session == null)
+            {
+                return;
+            }
+
+            var player = session.GetPlayer(playerID);
             for (var i = 0; i < playerList.Count; i++)
             {
                 var item = playerList[i];
-                if (item && item.text == player)
+                if (item && item.text == player.GetPlayerName())
                 {
                     playerList.RemoveAt(i);
                     ObjectHelper.Destroy(item.gameObject);
@@ -143,6 +167,22 @@ namespace StickmanIo.Runtime.UI
                     break;
                 }
             }
+
+            UpdateDynamicFields();
+        }
+
+        void UpdateDynamicFields()
+        {
+            var session = provider.GetSession();
+            if (session == null)
+            {
+                sessionCurrentPlayerLabel.text = defaultSessionOwnerLabel;
+                sessionPlayersCountLabel.text = defaultSessionPlayersCountLabel;
+                return;
+            }
+
+            sessionCurrentPlayerLabel.text = session.CurrentPlayer == null ? defaultSessionOwnerLabel : session.CurrentPlayer.GetPlayerName();
+            sessionPlayersCountLabel.text = $"{playerList.Count}/{session.MaxPlayers} players";
         }
 
         void OnFailedSession(AddingSessionOptions sessionOptions, SessionException exception)

@@ -129,6 +129,8 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
             OnSessionLeavedMethod();
             await m_Session.LeaveAsync();
+
+            SetSession(null);
         }
 
         async Task<IHostSession> CreateSessionAsync(SessionOptions sessionOptions)
@@ -174,7 +176,6 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
         void OnSessionLeavedMethod()
         {
-            SetSession(null);
             OnSessionLeaved?.Invoke();
         }
 
