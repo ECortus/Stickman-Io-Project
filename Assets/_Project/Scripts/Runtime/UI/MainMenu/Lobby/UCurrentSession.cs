@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GameDevUtils.Runtime;
 using GameDevUtils.Runtime.Extensions;
+using PurrNet;
 using StickmanIo.Runtime.MainMenu.Lobby;
 using TMPro;
 using Unity.Services.Multiplayer;
@@ -37,7 +38,6 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private string defaultSessionStatusLabel = "In Session: No";
 
         SessionProvider provider;
-
         List<TMP_Text> playerList = new List<TMP_Text>();
 
         void Awake()
@@ -61,15 +61,29 @@ namespace StickmanIo.Runtime.UI
             OnLeavedSession();
         }
 
+        bool update = false;
+
+        void Update()
+        {
+            if (!update)
+            {
+                return;
+            }
+
+            var manager = NetworkManager.main;
+            if (manager == null)
+            {
+                return;
+            }
+
+            sessionStatusLabel.text = $"Server: {manager.serverState}, Client: {manager.clientState}";
+        }
+
         void OnStartedSession()
         {
             var session = provider.GetSession();
 
             sessionLabel.text = session.Name;
-            sessionCurrentPlayerLabel.text = session.CurrentPlayer.GetPlayerName();
-            sessionPlayersCountLabel.text = $"{session.PlayerCount}/{session.MaxPlayers} players";
-
-            sessionStatusLabel.text = "In Session: Connected";
 
             playersListParent.DestroyAllChildren();
 
@@ -85,10 +99,17 @@ namespace StickmanIo.Runtime.UI
 
             copySessionCodeButton.interactable = true;
             leaveSessionButton.interactable = true;
+
+            update = true;
         }
 
         void OnPlayerAdded(string player)
         {
+            var session = provider.GetSession();
+
+            sessionCurrentPlayerLabel.text = session.CurrentPlayer.GetPlayerName();
+            sessionPlayersCountLabel.text = $"{session.PlayerCount}/{session.MaxPlayers} players";
+
             var instance = ObjectInstantiator.InstantiatePrefabForComponent(playerListElementPrefab, playersListParent);
             instance.text = player;
 
@@ -142,6 +163,8 @@ namespace StickmanIo.Runtime.UI
 
             copySessionCodeButton.interactable = false;
             leaveSessionButton.interactable = false;
+
+            update = false;
         }
 
         void OnCopySessionCodeButton()

@@ -2,16 +2,20 @@ using System;
 using System.Threading.Tasks;
 using Blocks.Sessions.Common;
 using GameDevUtils.Runtime;
+using PurrNet;
 using PurrNet.MultiplayerServices;
 using PurrNet.Purrnity;
 using Unity.Services.Authentication;
 using Unity.Services.Multiplayer;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.MainMenu.Lobby
 {
     public class SessionProvider : SingletonMonoBehaviour<SessionProvider>
     {
+        [SerializeField] private PurrnityTransport transport;
         [SerializeField] private SessionSettings settings;
 
         [Space(10)]
@@ -101,6 +105,7 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
             var sessionOptions = settings.ToSessionOptions();
             await CreateSessionAsync(sessionOptions);
+            NetworkManager.main.StartClient();
         }
 
         public async Task JoinSessionAsync()
