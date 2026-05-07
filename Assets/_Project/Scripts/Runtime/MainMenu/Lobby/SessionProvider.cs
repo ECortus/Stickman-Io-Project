@@ -15,7 +15,6 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 {
     public class SessionProvider : SingletonMonoBehaviour<SessionProvider>
     {
-        [SerializeField] private PurrnityTransport transport;
         [SerializeField] private SessionSettings settings;
 
         [Space(10)]
@@ -105,7 +104,6 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
             var sessionOptions = settings.ToSessionOptions();
             await CreateSessionAsync(sessionOptions);
-            NetworkManager.main.StartClient();
         }
 
         public async Task JoinSessionAsync()
@@ -138,14 +136,17 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             sessionOptions.Name = SessionName;
             sessionOptions.WithPurrRelay();
 
-            return await MultiplayerService.Instance.CreateSessionAsync(sessionOptions);
+            var session = await MultiplayerService.Instance.CreateSessionAsync(sessionOptions);
+            await MultiplayerService.Instance.ReconnectToSessionAsync(session.Id);
+            return session;
         }
 
         async Task<ISession> JoinSessionByCodeAsync(JoinSessionOptions joinSessionOptions)
         {
             joinSessionOptions.WithPurrHandler();
             
-            return await MultiplayerService.Instance.JoinSessionByCodeAsync(SessionCode, joinSessionOptions);
+            var session = await MultiplayerService.Instance.JoinSessionByCodeAsync(SessionCode, joinSessionOptions);
+            return session;
         }
 
         #region Events

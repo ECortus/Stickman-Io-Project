@@ -34,10 +34,17 @@ namespace StickmanIo.Runtime.Player
 
         private IProvideSpawnPoints _spawnPointProvider;
 
+        bool subscribedToNetwork = false;
+
         private void Awake()
         {
             CleanupSpawnPoints();
             CreateDotsList();
+        }
+
+        void Start()
+        {
+            SpawnPlayers();
         }
 
         private void CleanupSpawnPoints()
@@ -97,6 +104,18 @@ namespace StickmanIo.Runtime.Player
             {
                 scenePlayersModule.onPlayerLoadedScene += OnPlayerLoadedScene;
 
+                SpawnPlayers();
+                subscribedToNetwork = true;
+            }
+        }
+
+        void SpawnPlayers()
+        {
+            NetworkManager manager = NetworkManager.main; 
+            bool asServer = true;
+
+            if (asServer && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
+            {
                 if (!manager.TryGetModule(out ScenesModule scenes, true))
                     return;
 
@@ -108,20 +127,28 @@ namespace StickmanIo.Runtime.Player
                     foreach (var player in players)
                         OnPlayerLoadedScene(player, sceneID, true);
                 }
+
+                DebugHelper.Log($"Spawned players on start.");
             }
         }
 
         public override void Unsubscribe(NetworkManager manager, bool asServer)
         {
             if (asServer && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
+            {
                 scenePlayersModule.onPlayerLoadedScene -= OnPlayerLoadedScene;
+                subscribedToNetwork = false;
+            }
         }
 
         private void OnDestroy()
         {
             if (NetworkManager.main &&
                 NetworkManager.main.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
+            {
                 scenePlayersModule.onPlayerLoadedScene -= OnPlayerLoadedScene;
+                subscribedToNetwork = false;
+            }
         }
 
         private void OnPlayerLoadedScene(PlayerID player, SceneID scene, bool asServer)

@@ -82,18 +82,17 @@ namespace StickmanIo.Runtime.UI
         void OnStartedSession()
         {
             var session = provider.GetSession();
-
             sessionLabel.text = session.Name;
 
             playersListParent.DestroyAllChildren();
 
             session.PlayerJoined += OnPlayerAddedByID;
-            session.PlayerLeaving += OnPlayerRemoved;
+            session.PlayerLeaving += OnPlayerRemovedByID;
 
             foreach (var player in session.Players)
             {
-                var playerName = player.GetPlayerName();
-                OnPlayerAddedByName(playerName);
+                var playerID = player.Id;
+                OnPlayerAddedByID(playerID);
             }
 
             sessionCodeLabel.text = $"{provider.GetSessionCode()}";
@@ -137,13 +136,8 @@ namespace StickmanIo.Runtime.UI
             UpdateDynamicFields();
         }
 
-        void OnPlayerRemoved(string playerID)
+        void OnPlayerRemovedByID(string playerID)
         {
-            if (playerList.Count == 0)
-            {
-                return;
-            }
-
             var session = provider.GetSession();
             if (session == null)
             {
@@ -151,10 +145,31 @@ namespace StickmanIo.Runtime.UI
             }
 
             var player = session.GetPlayer(playerID);
+            if (player == null)
+            {
+                return;
+            }
+
+            var playerName = player.GetPlayerName();
+            OnPlayerRemoved(playerName);
+        } 
+
+        void OnPlayerRemovedByName(string playerName)
+        {
+            OnPlayerRemoved(playerName);
+        }
+
+        void OnPlayerRemoved(string playerName)
+        {
+            if (playerList.Count == 0)
+            {
+                return;
+            }
+
             for (var i = 0; i < playerList.Count; i++)
             {
                 var item = playerList[i];
-                if (item && item.text == player.GetPlayerName())
+                if (item && item.text == playerName)
                 {
                     playerList.RemoveAt(i);
                     ObjectHelper.Destroy(item.gameObject);
