@@ -19,6 +19,11 @@ namespace StickmanIo.Runtime.LevelDesign
 
         [SerializeField, ReadOnly] EState state = EState.None;
 
+        void Awake()
+        {
+            SetLoading();
+        }
+
         public bool IsLoading => state == EState.Loading;
         public bool IsPlaying => state == EState.Playing;
         public bool IsPaused => state == EState.Paused;

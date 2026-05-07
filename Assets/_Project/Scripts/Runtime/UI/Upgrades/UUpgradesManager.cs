@@ -51,6 +51,8 @@ namespace StickmanIo.Runtime.UI
 
             unitsManager = UnitsManager.GetInstance;
             unitsManager.OnOwnerRigChanged += OnOwnerRigChanged;
+
+            OnOwnerRigChanged();
         }
 
         void OnOwnerRigChanged()
@@ -71,6 +73,10 @@ namespace StickmanIo.Runtime.UI
         async UniTask SetPlayerRig()
         {
             ownerRig = unitsManager.OwnerRig;
+            if (ownerRig == null)
+            {
+                return;
+            }
 
             var upgrades = ownerRig.Upgrades;
 

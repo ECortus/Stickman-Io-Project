@@ -123,7 +123,7 @@ namespace StickmanIo.Runtime.UI
                 return;
             }
 
-            sessionCurrentPlayerLabel.text = session.LobbyId;
+            sessionCurrentPlayerLabel.text = provider.GetPlayerName();
             sessionPlayersCountLabel.text = $"{session.Members.Count}/{session.MaxPlayers} players";
         }
 

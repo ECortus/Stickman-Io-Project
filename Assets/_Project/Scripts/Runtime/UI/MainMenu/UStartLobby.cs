@@ -1,5 +1,6 @@
 using StickmanIo.Runtime.MainMenu.Lobby;
 using StickmanIo.Runtime.SceneManagement;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private Button startPlayButton;
         [SerializeField] private Button toMainMenuButton;
 
+        TMP_Text isReadyText;
+
         IMainMenu mainMenu;
 
         SessionProvider sessionProvider;
@@ -18,6 +21,8 @@ namespace StickmanIo.Runtime.UI
         {
             mainMenu = GetComponentInParent<IMainMenu>();
             sessionProvider = SessionProvider.GetInstance;
+
+            isReadyText = startPlayButton.GetComponentInChildren<TMP_Text>();
 
             sessionProvider.OnSessionAdded += (e) => OnStartedSession();
             sessionProvider.OnSessionLeaved += OnLeavedSession;
@@ -30,12 +35,16 @@ namespace StickmanIo.Runtime.UI
             startPlayButton.onClick.AddListener(OnStartPlayButton);
             toMainMenuButton.onClick.AddListener(OnToMainMenuButton);
 
+            isReadyText.text = "Start Play";
             startPlayButton.interactable = false;
         }
 
         void OnStartPlayButton()
         {
-            ProjectSceneLoader.LoadGameplayScene();
+            isReadyText.text = "Wait all ready...";
+            startPlayButton.interactable = false;
+
+            sessionProvider.SetIsReady();
         }
 
         void OnToMainMenuButton()
@@ -50,6 +59,7 @@ namespace StickmanIo.Runtime.UI
 
         void OnLeavedSession()
         {
+            isReadyText.text = "Start Play";
             startPlayButton.interactable = false;
         }
     }

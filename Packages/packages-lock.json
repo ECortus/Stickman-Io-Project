@@ -20,7 +20,7 @@
         "com.unity.inputsystem": "1.18.0",
         "com.unity.localization": "1.5.9"
       },
-      "hash": "bf0a11af1a7d75711867e65476d6a0db45e1f8f3"
+      "hash": "e02703ef72b45a1c2104526379b44c02f1d3ba51"
     },
     "com.rlabrecque.steamworks.net": {
       "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#2024.8.0",

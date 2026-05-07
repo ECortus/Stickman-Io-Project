@@ -7,6 +7,7 @@ using PurrLobby.Providers;
 using PurrNet;
 using PurrNet.MultiplayerServices;
 using PurrNet.Purrnity;
+using StickmanIo.Runtime.SceneManagement;
 using Unity.Services.Authentication;
 using Unity.Services.Multiplayer;
 using Unity.Services.Relay;
@@ -43,6 +44,8 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             lobbyManager.OnRoomJoinFailed.AddListener(OnAddingSessionFailedMethod);
             lobbyManager.OnRoomJoined.AddListener(OnSessionAddedMethod);
 
+            lobbyManager.OnAllReady.AddListener(OnAllReady);
+
             username = defaultUserName;
             await UpdateUsername(username);
         }
@@ -64,6 +67,16 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
             lobbyManager.OnRoomJoinFailed.RemoveListener(OnAddingSessionFailedMethod);
             lobbyManager.OnRoomJoined.RemoveListener(OnSessionAddedMethod);
+        }
+
+        public Unity.Services.Lobbies.Models.Player GetLocalPlayer()
+        {
+            return lobbyProvider.LocalPlayer;
+        }
+
+        public string GetPlayerName()
+        {
+            return lobbyProvider.playerName;
         }
 
         public void SetSessionName(string sessionName)
@@ -122,6 +135,18 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             SetSession(default);
         }
 
+        public void SetIsReady()
+        {
+            var player = GetLocalPlayer();
+            lobbyManager.SetIsReady(player.Id, true);
+        }
+
+        public void LoadGameplayScene()
+        {
+            lobbyManager.SetLobbyStarted();
+            ProjectSceneLoader.LoadGameplayScene();
+        }
+
         #region Events
 
         public event Action OnAddingSessionStarted;
@@ -151,6 +176,11 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
         void OnSessionLeavedMethod()
         {
             OnSessionLeaved?.Invoke();
+        }
+
+        void OnAllReady()
+        {
+            LoadGameplayScene();
         }
 
         #endregion

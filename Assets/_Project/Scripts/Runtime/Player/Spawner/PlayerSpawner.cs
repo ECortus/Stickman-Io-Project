@@ -7,6 +7,7 @@ using PurrNet;
 using PurrNet.Logging;
 using PurrNet.Modules;
 using System;
+using StickmanIo.Runtime.LevelDesign;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -33,8 +34,6 @@ namespace StickmanIo.Runtime.Player
         private int _currentSpawnPoint;
 
         private IProvideSpawnPoints _spawnPointProvider;
-
-        bool subscribedToNetwork = false;
 
         private void Awake()
         {
@@ -103,9 +102,10 @@ namespace StickmanIo.Runtime.Player
             if (asServer && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
             {
                 scenePlayersModule.onPlayerLoadedScene += OnPlayerLoadedScene;
-
                 SpawnPlayers();
-                subscribedToNetwork = true;
+
+                GameStatement gameStatement = GameStatement.GetInstance;
+                gameStatement.SetPlay();
             }
         }
 
@@ -114,7 +114,7 @@ namespace StickmanIo.Runtime.Player
             NetworkManager manager = NetworkManager.main; 
             bool asServer = true;
 
-            if (asServer && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
+            if (asServer && manager && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
             {
                 if (!manager.TryGetModule(out ScenesModule scenes, true))
                     return;
@@ -127,8 +127,6 @@ namespace StickmanIo.Runtime.Player
                     foreach (var player in players)
                         OnPlayerLoadedScene(player, sceneID, true);
                 }
-
-                DebugHelper.Log($"Spawned players on start.");
             }
         }
 
@@ -137,7 +135,6 @@ namespace StickmanIo.Runtime.Player
             if (asServer && manager.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
             {
                 scenePlayersModule.onPlayerLoadedScene -= OnPlayerLoadedScene;
-                subscribedToNetwork = false;
             }
         }
 
@@ -147,7 +144,6 @@ namespace StickmanIo.Runtime.Player
                 NetworkManager.main.TryGetModule(out ScenePlayersModule scenePlayersModule, true))
             {
                 scenePlayersModule.onPlayerLoadedScene -= OnPlayerLoadedScene;
-                subscribedToNetwork = false;
             }
         }
 
@@ -179,6 +175,7 @@ namespace StickmanIo.Runtime.Player
 
             CleanupSpawnPoints();
 
+            PlayersLogger.LogAdded($"Player ID-{player}");
             SpawnPlayer(player, sceneID);
         }
 
@@ -257,6 +254,8 @@ namespace StickmanIo.Runtime.Player
 
             newPlayer = UnityProxy.Instantiate(_playerPrefab, position, rotation, unityScene);
             newPlayer.transform.SetParent(playersParent);
+
+            PlayersLogger.LogSpawned($"Player ID-{player.id}");
 
             /* newPlayer = ObjectInstantiator.InstantiatePrefab(_playerPrefab, position, rotation, playersParent); */
             newPlayer.name = newPlayer.name + $"_(id-{player.id})_(spawned-at-{Time.time})";

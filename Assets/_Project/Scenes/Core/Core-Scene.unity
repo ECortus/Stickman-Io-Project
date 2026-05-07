@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715786087}
   - component: {fileID: 715786088}
+  - component: {fileID: 715786089}
   m_Layer: 0
   m_Name: Scene Controller
   m_TagString: Untagged
@@ -396,6 +397,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: MultiSceneController.Runtime::MultiSceneController.Runtime.SceneController
   illustratedOverlay: {fileID: 1824008184}
   blackOverlay: {fileID: 1520549501}
+--- !u!114 &715786089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715786086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4d8e1620b18e34c8d9c62d5ed735f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: multiscenevontroller.runtime::MultiSceneController.Runtime.SceneManagementOperationProvider
 --- !u!1 &818156803
 GameObject:
   m_ObjectHideFlags: 0

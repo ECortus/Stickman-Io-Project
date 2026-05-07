@@ -8,9 +8,21 @@ namespace StickmanIo.Runtime
     {
         public event Action<string> OnLogInstantiated;
 
-        public static void LogKilled(string killed)
+        public static void LogAdded(string message)
         {
-            var message = $"{killed} is dead";
+            message = $"{message} added";
+            GetInstance.OnLogInstantiated?.Invoke(message);
+        }
+
+        public static void LogSpawned(string message)
+        {
+            message = $"{message} spawned";
+            GetInstance.OnLogInstantiated?.Invoke(message);
+        }
+
+        public static void LogKilled(string message)
+        {
+            message = $"{message} is dead";
             GetInstance.OnLogInstantiated?.Invoke(message);
         }
     }

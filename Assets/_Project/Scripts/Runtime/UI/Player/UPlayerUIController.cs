@@ -6,6 +6,7 @@ namespace StickmanIo.Runtime.UI
     public class UPlayerUIController : MonoBehaviour
     {
         [SerializeField] private GameObject[] uiObjects;
+        [SerializeField] private GameObject[] onLoading;
         
         UnitsManager unitsManager;
 
@@ -35,6 +36,11 @@ namespace StickmanIo.Runtime.UI
             foreach (var obj in uiObjects)
             {
                 obj.SetActive(state);
+            }
+
+            foreach (var obj in onLoading)
+            {
+                obj.SetActive(!state);
             }
         }
     }
