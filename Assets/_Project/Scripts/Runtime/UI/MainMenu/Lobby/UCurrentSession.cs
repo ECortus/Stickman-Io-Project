@@ -50,7 +50,7 @@ namespace StickmanIo.Runtime.UI
             provider = SessionProvider.GetInstance;
 
             provider.OnSessionAdded += (e) => OnStartedSession();
-            provider.OnAddingSessionFailed += (e, t) => OnFailedSession(e, t);
+            provider.OnAddingSessionFailed += (e) => OnFailedSession(e);
 
             provider.OnSessionLeaved += OnLeavedSession;
 
@@ -85,14 +85,15 @@ namespace StickmanIo.Runtime.UI
             sessionLabel.text = session.Name;
 
             playersListParent.DestroyAllChildren();
+            playerList.Clear();
+            
+            var lobbyManager = provider.LobbyManager;
+            lobbyManager.OnPlayerListUpdated.AddListener(OnPlayersUpdated);
 
-            session.PlayerJoined += OnPlayerAddedByID;
-            session.PlayerLeaving += OnPlayerRemovedByID;
-
-            foreach (var player in session.Players)
+            foreach (var player in session.Members)
             {
                 var playerID = player.Id;
-                OnPlayerAddedByID(playerID);
+                OnPlayerAdded(playerID);
             }
 
             sessionCodeLabel.text = $"{provider.GetSessionCode()}";
@@ -103,23 +104,16 @@ namespace StickmanIo.Runtime.UI
             update = true;
         }
 
-        void OnPlayerAddedByID(string playerID)
+        void OnPlayersUpdated(List<PurrLobby.LobbyUser> users)
         {
+            playersListParent.DestroyAllChildren();
+            playerList.Clear();
+
             var session = provider.GetSession();
-            if (session == null)
+            foreach (var player in session.Members)
             {
-                return;
+                OnPlayerAdded(player.DisplayName);
             }
-
-            var player = session.GetPlayer(playerID);
-            var playerName = player.GetPlayerName();
-
-            OnPlayerAdded(playerName);
-        }
-
-        void OnPlayerAddedByName(string playerName)
-        {
-            OnPlayerAdded(playerName);
         }
 
         void OnPlayerAdded(string playerName)
@@ -136,74 +130,25 @@ namespace StickmanIo.Runtime.UI
             UpdateDynamicFields();
         }
 
-        void OnPlayerRemovedByID(string playerID)
-        {
-            var session = provider.GetSession();
-            if (session == null)
-            {
-                return;
-            }
-
-            var player = session.GetPlayer(playerID);
-            if (player == null)
-            {
-                return;
-            }
-
-            var playerName = player.GetPlayerName();
-            OnPlayerRemoved(playerName);
-        } 
-
-        void OnPlayerRemovedByName(string playerName)
-        {
-            OnPlayerRemoved(playerName);
-        }
-
-        void OnPlayerRemoved(string playerName)
-        {
-            if (playerList.Count == 0)
-            {
-                return;
-            }
-
-            for (var i = 0; i < playerList.Count; i++)
-            {
-                var item = playerList[i];
-                if (item && item.text == playerName)
-                {
-                    playerList.RemoveAt(i);
-                    ObjectHelper.Destroy(item.gameObject);
-
-                    break;
-                }
-                else if (!item)
-                {
-                    playerList.RemoveAt(i);
-                    break;
-                }
-            }
-
-            UpdateDynamicFields();
-        }
-
         void UpdateDynamicFields()
         {
             var session = provider.GetSession();
-            if (session == null)
+            if (session.Equals(default))
             {
                 sessionCurrentPlayerLabel.text = defaultSessionOwnerLabel;
                 sessionPlayersCountLabel.text = defaultSessionPlayersCountLabel;
+
                 return;
             }
 
-            sessionCurrentPlayerLabel.text = session.CurrentPlayer == null ? defaultSessionOwnerLabel : session.CurrentPlayer.GetPlayerName();
-            sessionPlayersCountLabel.text = $"{playerList.Count}/{session.MaxPlayers} players";
+            sessionCurrentPlayerLabel.text = session.LobbyId;
+            sessionPlayersCountLabel.text = $"{session.Members.Count}/{session.MaxPlayers} players";
         }
 
-        void OnFailedSession(AddingSessionOptions sessionOptions, SessionException exception)
+        void OnFailedSession(string exception)
         {
             OnLeavedSession();
-            sessionStatusLabel.text = exception.Message;
+            sessionStatusLabel.text = exception;
         }
 
         void OnLeavedSession()

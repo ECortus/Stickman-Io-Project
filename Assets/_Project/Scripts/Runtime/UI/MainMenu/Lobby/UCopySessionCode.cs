@@ -49,7 +49,7 @@ namespace StickmanIo.Runtime.UI
 
             provider.OnSessionAdded += (e) => OnStartedSession();
 
-            provider.OnAddingSessionFailed += (e, t) => OnLeavedSession();
+            provider.OnAddingSessionFailed += (e) => OnLeavedSession();
             provider.OnSessionLeaved += OnLeavedSession;
 
             inputField.interactable = false;

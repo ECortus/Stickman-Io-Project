@@ -24,10 +24,10 @@ namespace StickmanIo.Runtime.UI
             provider = SessionProvider.GetInstance;
             nameInput.onValueChanged.AddListener(OnUpdateField);
 
-            provider.OnAddingSessionStarted += (e) => OnStartedSession();
+            provider.OnAddingSessionStarted += OnStartedSession;
             provider.OnSessionAdded += (e) => OnStartedSession();
 
-            provider.OnAddingSessionFailed += (e, t) => OnLeavedSession();
+            provider.OnAddingSessionFailed += (e) => OnLeavedSession();
             provider.OnSessionLeaved += OnLeavedSession;
 
             createButton.onClick.AddListener(OnButtonClicked);

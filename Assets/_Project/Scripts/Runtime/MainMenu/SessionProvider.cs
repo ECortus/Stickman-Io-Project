@@ -2,6 +2,8 @@ using System;
 using System.Threading.Tasks;
 using Blocks.Sessions.Common;
 using GameDevUtils.Runtime;
+using PurrLobby;
+using PurrLobby.Providers;
 using PurrNet;
 using PurrNet.MultiplayerServices;
 using PurrNet.Purrnity;
@@ -15,16 +17,18 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 {
     public class SessionProvider : SingletonMonoBehaviour<SessionProvider>
     {
-        [SerializeField] private SessionSettings settings;
+        [SerializeField] private LobbyManager lobbyManager;
+        [SerializeField] private UnityLobbyProvider lobbyProvider;
 
         [Space(10)]
         [SerializeField, ReadOnly] string SessionName = "";
-        [SerializeField, ReadOnly] string SessionCode = "";
+        [SerializeField, ReadOnly] string SessionID = "";
 
         ServicesInitializationProvider servicesInitializationProvider;
 
-        SessionObserver m_SessionObserver;
-        ISession m_Session;
+        PurrLobby.Lobby m_Session;
+
+        public LobbyManager LobbyManager => lobbyManager;
 
         protected override void OnAwake() 
         {
@@ -36,33 +40,22 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
         void Initialize() 
         {
-            var options = settings.ToSessionOptions();
-            m_SessionObserver = new SessionObserver(options.Type);
-
-            m_SessionObserver.AddingSessionStarted += OnAddingSessionStartedMethod;
-            m_SessionObserver.AddingSessionFailed += OnAddingSessionFailedMethod;
-            m_SessionObserver.SessionAdded += OnSessionAddedMethod;
+            lobbyManager.OnRoomJoinFailed.AddListener(OnAddingSessionFailedMethod);
+            lobbyManager.OnRoomJoined.AddListener(OnSessionAddedMethod);
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            if (m_SessionObserver == null)
-            {
-                return;
-            }
-
-            m_SessionObserver.AddingSessionStarted -= OnAddingSessionStartedMethod;
-            m_SessionObserver.AddingSessionFailed -= OnAddingSessionFailedMethod;
-            m_SessionObserver.SessionAdded -= OnSessionAddedMethod;
-
-            m_SessionObserver.Dispose();
+            lobbyManager.OnRoomJoinFailed.RemoveListener(OnAddingSessionFailedMethod);
+            lobbyManager.OnRoomJoined.RemoveListener(OnSessionAddedMethod);
         }
 
         public void SetSessionName(string sessionName)
         {
             SessionName = sessionName;
+            lobbyProvider.lobbyName = sessionName;
         }
 
         public string GetSessionName()
@@ -70,105 +63,71 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             return SessionName;
         }
 
-        public void SetSessionCode(string sessionCode)
+        public void SetSessionCode(string sessionID)
         {
-            SessionCode = sessionCode;
+            SessionID = sessionID;
         }
 
         public string GetSessionCode()
         {
-            return SessionCode;
+            return SessionID;
         }
 
-        public void SetSession(ISession session)
+        public void SetSession(PurrLobby.Lobby session)
         {
             m_Session = session;
         }
 
-        public ISession GetSession()
+        public PurrLobby.Lobby GetSession()
         {
             return m_Session;
         }
 
-        bool AreMultiplayerServicesInitialized()
-        {
-            return MultiplayerService.Instance != null;
-        }
-
         public async Task CreateSessionAsync()
         {
-            if (!AreMultiplayerServicesInitialized())
-            {
-                throw new Exception("Multiplayer services are not initialized.");
-            }
-
-            var sessionOptions = settings.ToSessionOptions();
-            await CreateSessionAsync(sessionOptions);
+            OnAddingSessionStartedMethod();
+            lobbyManager.CreateRoom(4, new System.Collections.Generic.Dictionary<string, string>() { { "LobbyName", SessionName } });
         }
 
         public async Task JoinSessionAsync()
         {
-            if (!AreMultiplayerServicesInitialized())
-            {
-                throw new Exception("Multiplayer services are not initialized.");
-            }
-
-            var joinSessionOptions = settings.ToJoinSessionOptions();
-            await JoinSessionByCodeAsync(joinSessionOptions);
+            lobbyManager.JoinLobby(SessionID);
         }
 
         public async Task LeaveSessionAsync()
         {
-            if (m_Session == null)
+            if (m_Session.Equals(default))
             {
                 DebugHelper.LogWarning("No session to leave.");
                 return;
             }
 
             OnSessionLeavedMethod();
-            await m_Session.LeaveAsync();
+            lobbyManager.LeaveLobby(m_Session.LobbyId);
 
-            SetSession(null);
-        }
-
-        async Task<IHostSession> CreateSessionAsync(SessionOptions sessionOptions)
-        {
-            sessionOptions.Name = SessionName;
-            sessionOptions.WithPurrRelay();
-
-            var session = await MultiplayerService.Instance.CreateSessionAsync(sessionOptions);
-            await MultiplayerService.Instance.ReconnectToSessionAsync(session.Id);
-            return session;
-        }
-
-        async Task<ISession> JoinSessionByCodeAsync(JoinSessionOptions joinSessionOptions)
-        {
-            joinSessionOptions.WithPurrHandler();
-            
-            var session = await MultiplayerService.Instance.JoinSessionByCodeAsync(SessionCode, joinSessionOptions);
-            return session;
+            SetSession(default);
         }
 
         #region Events
 
-        public event Action<AddingSessionOptions> OnAddingSessionStarted;
-        public event Action<AddingSessionOptions, SessionException> OnAddingSessionFailed;
-        public event Action<ISession> OnSessionAdded;
+        public event Action OnAddingSessionStarted;
+        public event Action<string> OnAddingSessionFailed;
+        public event Action<PurrLobby.Lobby> OnSessionAdded;
 
-        void OnAddingSessionStartedMethod(AddingSessionOptions sessionOptions)
+        void OnAddingSessionStartedMethod()
         {
-            OnAddingSessionStarted?.Invoke(sessionOptions);
+            OnAddingSessionStarted?.Invoke();
         }        
 
-        void OnAddingSessionFailedMethod(AddingSessionOptions sessionOptions, SessionException exception)
+        void OnAddingSessionFailedMethod(string exception)
         {
-            OnAddingSessionFailed?.Invoke(sessionOptions, exception);
+            OnAddingSessionFailed?.Invoke(exception);
         }
 
-        void OnSessionAddedMethod(ISession session)
+        void OnSessionAddedMethod(PurrLobby.Lobby session)
         {
             SetSession(session);
-            SetSessionCode(session.Code);
+            SetSessionCode(session.LobbyId);
 
             OnSessionAdded?.Invoke(session);
         }

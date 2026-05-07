@@ -450,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940418100}
-  - component: {fileID: 940418099}
+  - component: {fileID: 940418101}
   m_Layer: 0
   m_Name: Services Initialization
   m_TagString: Untagged
@@ -458,21 +458,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &940418099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940418098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c25d3652bdc7834abe03a85ebc48138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.ServicesInitialization
-  profileName: User01
-  defaultUserName: Toddler1234
-  username: Cheese1488
 --- !u!4 &940418100
 Transform:
   m_ObjectHideFlags: 0
@@ -488,6 +473,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940418101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940418098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104b69ba54c6cb448938c3169ab54d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.ServicesInitializationProvider
+  profileName: User01
+  defaultUserName: Toddler1234
+  username: Toddler1234
 --- !u!1 &995701826
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,9 +611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490f4a27288be2b45a2698ca98d718be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.MainMenu.Lobby.SessionProvider
-  settings: {fileID: 11400000, guid: f408450a772590e40b50f80f84bea1ce, type: 2}
+  lobbyManager: {fileID: 481787077}
+  lobbyProvider: {fileID: 481787076}
   SessionName: 
-  SessionCode: 
+  SessionID: 
 --- !u!4 &1087093755
 Transform:
   m_ObjectHideFlags: 0
