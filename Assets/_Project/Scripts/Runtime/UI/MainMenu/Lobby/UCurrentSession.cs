@@ -61,24 +61,6 @@ namespace StickmanIo.Runtime.UI
             OnLeavedSession();
         }
 
-        bool update = false;
-
-        void Update()
-        {
-            if (!update)
-            {
-                return;
-            }
-
-            var manager = NetworkManager.main;
-            if (manager == null)
-            {
-                return;
-            }
-
-            sessionStatusLabel.text = $"Server: {manager.serverState}, Client: {manager.clientState}";
-        }
-
         void OnStartedSession()
         {
             var session = provider.GetSession();
@@ -101,7 +83,7 @@ namespace StickmanIo.Runtime.UI
             copySessionCodeButton.interactable = true;
             leaveSessionButton.interactable = true;
 
-            update = true;
+            sessionStatusLabel.text = "In Lobby: Connected";
         }
 
         void OnPlayersUpdated(List<PurrLobby.LobbyUser> users)
@@ -163,8 +145,6 @@ namespace StickmanIo.Runtime.UI
 
             copySessionCodeButton.interactable = false;
             leaveSessionButton.interactable = false;
-
-            update = false;
         }
 
         void OnCopySessionCodeButton()

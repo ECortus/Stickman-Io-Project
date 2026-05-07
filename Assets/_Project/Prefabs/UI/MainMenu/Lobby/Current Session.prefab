@@ -533,7 +533,7 @@ MonoBehaviour:
   playersListParent: {fileID: 3457280358138363316}
   leaveSessionButton: {fileID: 8467517662068057610}
   sessionStatusLabel: {fileID: 6184731471837795146}
-  defaultSessionStatusLabel: 'In Session: No'
+  defaultSessionStatusLabel: 'In Lobby: Disconnected'
 --- !u!1 &5379486694247794007
 GameObject:
   m_ObjectHideFlags: 0

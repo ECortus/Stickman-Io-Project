@@ -24,7 +24,9 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
         [SerializeField, ReadOnly] string SessionName = "";
         [SerializeField, ReadOnly] string SessionID = "";
 
-        ServicesInitializationProvider servicesInitializationProvider;
+        [Space(5)]
+        [SerializeField] string defaultUserName = "Toddler1234";
+        [SerializeField, ReadOnly] string username = "Toddler1234";
 
         PurrLobby.Lobby m_Session;
 
@@ -33,15 +35,27 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
         protected override void OnAwake() 
         {
             base.OnAwake();
-
-            servicesInitializationProvider = ServicesInitializationProvider.GetInstance;
-            servicesInitializationProvider.OnInitialized.AddListener(Initialize);
+            lobbyManager.onInitialized.AddListener(Initialize);
         }
 
-        void Initialize() 
+        async void Initialize() 
         {
             lobbyManager.OnRoomJoinFailed.AddListener(OnAddingSessionFailedMethod);
             lobbyManager.OnRoomJoined.AddListener(OnSessionAddedMethod);
+
+            username = defaultUserName;
+            await UpdateUsername(username);
+        }
+
+        public string GetCurrentUsername() => username;
+
+        public async Task UpdateUsername(string newName)
+        {
+            var randomIndex = UnityEngine.Random.Range(0, 10000);
+            username = newName + $"#{randomIndex:0000}";
+
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
+            lobbyProvider.playerName = username;
         }
 
         protected override void OnDestroy()

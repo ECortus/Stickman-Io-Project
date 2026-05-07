@@ -10,7 +10,6 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private Button updateButton;
 
-        ServicesInitializationProvider initializationProvider;
         SessionProvider sessionProvider;
 
         string username;
@@ -23,13 +22,12 @@ namespace StickmanIo.Runtime.UI
 
         void Initialize()
         {
-            initializationProvider = ServicesInitializationProvider.GetInstance;
             sessionProvider = SessionProvider.GetInstance;
 
             sessionProvider.OnSessionAdded += (e) => OnSessionAdded();
             sessionProvider.OnSessionLeaved += OnSessionLeaved;
 
-            username = initializationProvider.GetCurrentUsername();   
+            username = sessionProvider.GetCurrentUsername();   
             savedUsername = username;
 
             inputField.text = username;
@@ -67,7 +65,7 @@ namespace StickmanIo.Runtime.UI
             inputField.interactable = false;
             updateButton.interactable = false;
             
-            await initializationProvider.UpdateUsername(inputField.text);
+            await sessionProvider.UpdateUsername(inputField.text);
 
             inputField.interactable = true;
         }

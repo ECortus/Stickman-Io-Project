@@ -190,7 +190,7 @@ MonoBehaviour:
   lobbyName: New Lobby
   lobbyType: 1
   lobbyPassword: 
-  maxLobbiesToFind: 10
+  maxLobbiesToFind: 4
   playerName: Player
   UseUnityRelayService: 1
   RegionId: 
@@ -441,53 +441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: multiscenevontroller.runtime::MultiSceneController.Runtime.Input.InputDeviceManager
   m_ActiveGameDevice: 0
---- !u!1 &940418098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 940418100}
-  - component: {fileID: 940418101}
-  m_Layer: 0
-  m_Name: Services Initialization
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &940418100
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940418098}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &940418101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940418098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 104b69ba54c6cb448938c3169ab54d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.ServicesInitializationProvider
-  profileName: User01
-  defaultUserName: Toddler1234
-  username: Toddler1234
 --- !u!1 &995701826
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +568,8 @@ MonoBehaviour:
   lobbyProvider: {fileID: 481787076}
   SessionName: 
   SessionID: 
+  defaultUserName: Toddler1234
+  username: Toddler1234
 --- !u!4 &1087093755
 Transform:
   m_ObjectHideFlags: 0
@@ -1379,7 +1334,6 @@ SceneRoots:
   - {fileID: 1176170790}
   - {fileID: 1391651181}
   - {fileID: 1212560460}
-  - {fileID: 940418100}
   - {fileID: 481787078}
   - {fileID: 1087093755}
   - {fileID: 995701827}
