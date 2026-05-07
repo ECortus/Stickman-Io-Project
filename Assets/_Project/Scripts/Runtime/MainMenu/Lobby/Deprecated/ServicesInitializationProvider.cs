@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -24,12 +25,17 @@ namespace StickmanIo.Runtime
 
         async void Initialize()
         {
-            var options = new InitializationOptions();
-            options.SetProfile(profileName);
+            /* if (UnityServices.State == ServicesInitializationState.Uninitialized)
+            {
+                var options = new InitializationOptions();
+                options.SetProfile(profileName);
 
-            await UnityServices.InitializeAsync(options);
+                await UnityServices.InitializeAsync(options);
 
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            } */
+
+            await UniTask.WaitUntil(() => UnityServices.State == ServicesInitializationState.Initialized && AuthenticationService.Instance.IsSignedIn);
 
             username = defaultUserName;
             await UpdateUsername(username);

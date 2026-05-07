@@ -31,6 +31,7 @@
   <Project Path="Unity.Searcher.Editor.csproj" />
   <Project Path="Unity.ResourceManager.csproj" />
   <Project Path="Unity.Services.Wire.Internal.csproj" />
+  <Project Path="com.rlabrecque.steamworks.net.csproj" />
   <Project Path="Unity.VisualScripting.Core.csproj" />
   <Project Path="Unity.Services.Core.Environments.Editor.csproj" />
   <Project Path="UnityEditor.TestRunner.csproj" />
@@ -49,6 +50,7 @@
   <Project Path="UnityEngine.TestRunner.csproj" />
   <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
+  <Project Path="PurrNetLobbySetup.csproj" />
   <Project Path="gamedevutils.runtime.csproj" />
   <Project Path="Unity.Netcode.Runtime.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />
@@ -86,6 +88,7 @@
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
+  <Project Path="com.rlabrecque.steamworks.net.editor.csproj" />
   <Project Path="LiteNetLib.csproj" />
   <Project Path="Unity.Services.Deployment.csproj" />
   <Project Path="Edgegap.csproj" />
@@ -106,6 +109,7 @@
   <Project Path="cachingobjectstool.tests.csproj" />
   <Project Path="Blocks.Sessions.Common.csproj" />
   <Project Path="Unity.Services.Core.Telemetry.csproj" />
+  <Project Path="PurrNetLobby_Editor.csproj" />
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="Boxophobic.Utils.Scripts.csproj" />
