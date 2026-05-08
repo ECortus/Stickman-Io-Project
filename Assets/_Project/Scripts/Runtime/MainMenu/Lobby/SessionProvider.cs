@@ -119,18 +119,18 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             return !m_Session.Equals(default);
         }
 
-        public async Task CreateSessionAsync()
+        public void CreateSessionAsync()
         {
             OnAddingSessionStartedMethod();
             lobbyManager.CreateRoom(4, new System.Collections.Generic.Dictionary<string, string>() { { "LobbyName", SessionName } });
         }
 
-        public async Task JoinSessionAsync()
+        public void JoinSessionAsync()
         {
             lobbyManager.JoinLobby(SessionID);
         }
 
-        public async Task LeaveSessionAsync()
+        public void LeaveSessionAsync()
         {
             if (!HasSession())
             {
@@ -144,11 +144,11 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             SetSession(default);
         }
 
-        public async Task LeaveSessionIfHasOne()
+        public void LeaveSessionIfHasOne()
         {
             if (HasSession())
             {
-                await LeaveSessionAsync();
+                LeaveSessionAsync();
             }
         }
 

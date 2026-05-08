@@ -1540,6 +1540,7 @@ MonoBehaviour:
   _directChildren: []
   skinnedMeshRenderer: {fileID: 4357467389564163896}
   defaultMaterial: {fileID: 2100000, guid: e0e1980bd5c79eb468beda1ead7b286f, type: 2}
+  blinkMaterial: {fileID: 2100000, guid: 5e97c50f11d04f1458e16b3dca4470f0, type: 2}
 --- !u!114 &648073630711546243
 MonoBehaviour:
   m_ObjectHideFlags: 0

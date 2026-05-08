@@ -1,35 +1,49 @@
 using System;
 using GameDevUtils.Runtime;
+using PurrNet;
 using StickmanIo.Runtime.Player;
 
 namespace StickmanIo.Runtime
 {
-    public class PlayersLogger : SingletonMonoBehaviour<PlayersLogger>
+    public class PlayersLogger : NetworkIdentity
     {
+        static PlayersLogger instance;
+
+        public static PlayersLogger GetInstance => instance;
+        public static bool HasInstance => instance;
+
         public event Action<string> OnLogInstantiated;
 
+        void Awake()
+        {
+            instance = this;
+        }
+
+        [ServerRpc]
         public static void LogAdded(string message)
         {
-            if (!HasOrFindInstance) return;
+            if (!instance) return;
 
             message = $"{message} added";
-            GetInstance.OnLogInstantiated?.Invoke(message);
+            instance.OnLogInstantiated?.Invoke(message);
         }
 
+        [ServerRpc]
         public static void LogSpawned(string message)
         {
-            if (!HasOrFindInstance) return;
+            if (!instance) return;
 
             message = $"{message} spawned";
-            GetInstance.OnLogInstantiated?.Invoke(message);
+            instance.OnLogInstantiated?.Invoke(message);
         }
 
+        [ServerRpc]
         public static void LogKilled(string message)
         {
-            if (!HasOrFindInstance) return;
+            if (!instance) return;
 
             message = $"{message} is dead";
-            GetInstance.OnLogInstantiated?.Invoke(message);
+            instance.OnLogInstantiated?.Invoke(message);
         }
     }
 }

@@ -45,5 +45,10 @@ namespace StickmanIo.Runtime.Units
         {
             material.SetColor("_BaseColor", color);
         }
+
+        public void BlinkAnimation(float duration, float frequency)
+        {
+            
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using GameDevUtils.Runtime;
 using PurrNet;
+using StickmanIo.Runtime.Units;
 using UnityEngine;
 
 namespace StickmanIo.Runtime.Player
@@ -28,6 +29,8 @@ namespace StickmanIo.Runtime.Player
         IAttacker attacker;
         IPlayerGroundCheck groundCheck;
 
+        ISkinMaterialController skinController;
+
         RagdollController ragdoll;
 
         protected override void OnSpawned()
@@ -39,7 +42,7 @@ namespace StickmanIo.Runtime.Player
         void Initialize()
         {
             header = GetComponentInParent<PlayerHeader>();
-            
+
             animator = GetComponent<Animator>();
             networkAnimator = GetComponent<NetworkAnimator>();
 
@@ -53,6 +56,8 @@ namespace StickmanIo.Runtime.Player
                 OnDied();
                 return;
             }
+
+            skinController = GetComponentInChildren<ISkinMaterialController>();
 
             body = GetComponentInParent<Rigidbody>();
 
@@ -68,6 +73,7 @@ namespace StickmanIo.Runtime.Player
             attacker = rig.Attacker;
             groundCheck = rig.GroundCheck;
 
+            health.OnHit += OnHit;
             health.OnDied += OnDied;
             movement.OnJump += TriggerJump;
             attacker.OnAttackStarted += OnAttack;
@@ -82,6 +88,7 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
+            health.OnHit -= OnHit;
             health.OnDied -= OnDied;
             movement.OnJump -= TriggerJump;
             attacker.OnAttackStarted -= OnAttack;
@@ -159,6 +166,12 @@ namespace StickmanIo.Runtime.Player
             }
         }
 
+        void OnHit()
+        {
+            var settings = header.Data.Settings;
+            skinController.BlinkAnimation(settings.blickDurationOnHit, settings.blickFrequencyOnHit);
+        }
+
         void SyncPositionsWithBody()
         {
             var bodyPosition = body.position;
@@ -183,8 +196,6 @@ namespace StickmanIo.Runtime.Player
             this.enabled = false;
 
             ragdoll.SetToRagdoll();
-
-            Debug.LogWarning("DIEEEEED " + gameObject.name);
         }
     }
 }

@@ -20,6 +20,10 @@ namespace StickmanIo.Runtime.UI
         void Initialize()
         {
             parentTransform.DestroyAllChildren();
+            if (!PlayersLogger.HasInstance)
+            {
+                return;
+            }
 
             logger = PlayersLogger.GetInstance;
             logger.OnLogInstantiated += AddNewText;

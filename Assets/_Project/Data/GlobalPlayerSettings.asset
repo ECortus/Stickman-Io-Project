@@ -95,3 +95,5 @@ MonoBehaviour:
   MinCoinsCount: 10
   MaxCoinsCount: 20
   throwForceOfCoin: 150
+  blickDurationOnHit: 1
+  blickFrequencyOnHit: 12

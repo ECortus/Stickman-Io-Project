@@ -24,6 +24,11 @@ namespace StickmanIo.Runtime
 
         void OnTriggerStay(Collider other)
         {
+            if (damageInStay <= 0f)
+            {
+                return;
+            }
+
             if (other.IsSameMask(hitBoxLayerMask))
             {
                 var hitBox = other.GetComponentInParent<IHitBox>();

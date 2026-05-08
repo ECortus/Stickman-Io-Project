@@ -21,6 +21,7 @@ namespace StickmanIo.Runtime.Player
         void TakeDamage(float damage, out bool isKilled);
         void TakeDamage(float damage, out bool isKilled, out IPlayerRig rig);
 
+        event Action OnHit;
         event Action OnDied;
     }
 
@@ -165,9 +166,10 @@ namespace StickmanIo.Runtime.Player
                 cam.ShakeOnHit();
             }
 
+            OnHit?.Invoke();
             if (current <= 0f)
             {
-                OnDeath();
+                Despawn();
             }
         }
 
@@ -232,6 +234,7 @@ namespace StickmanIo.Runtime.Player
             isDead = value;
         }
 
+        public event Action OnHit;
         public event Action OnDied;
     }
 }

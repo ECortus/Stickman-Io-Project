@@ -54,9 +54,9 @@ namespace StickmanIo.Runtime.UI
             }
         }
 
-        async void OnEnterButtonClicked()
+        void OnEnterButtonClicked()
         {
-            await provider.JoinSessionAsync();
+            provider.JoinSessionAsync();
         }
 
         void OnStartedSession(PurrLobby.Lobby lobby)

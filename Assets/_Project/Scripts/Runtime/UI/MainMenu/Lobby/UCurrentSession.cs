@@ -173,10 +173,10 @@ namespace StickmanIo.Runtime.UI
             GUIUtility.systemCopyBuffer = sessionCodeLabel.text;
         }
 
-        async void OnLeaveButtonClick()
+        void OnLeaveButtonClick()
         {
             leaveSessionButton.interactable = false;
-            await provider.LeaveSessionAsync();
+            provider.LeaveSessionAsync();
         }
     }
 }

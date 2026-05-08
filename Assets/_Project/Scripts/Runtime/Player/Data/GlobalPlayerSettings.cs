@@ -70,5 +70,9 @@ namespace StickmanIo.Runtime.Player.Data
 
         [Space(5)]
         public float throwForceOfCoin = 60f;
+
+        [Header("Animations parameters")]
+        public float blickDurationOnHit = 0.5f;
+        public float blickFrequencyOnHit = 1f;
     }
 }

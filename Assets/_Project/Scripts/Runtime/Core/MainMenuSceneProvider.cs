@@ -7,10 +7,10 @@ namespace StickmanIo.Runtime.Core
     {
         SessionProvider sessionProvider;
 
-        async void Awake()
+        void Awake()
         {
             sessionProvider = SessionProvider.GetInstance;
-            await sessionProvider.LeaveSessionIfHasOne();
+            sessionProvider.LeaveSessionIfHasOne();
         }
     }
 }
