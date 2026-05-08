@@ -81,7 +81,11 @@ namespace StickmanIo.Runtime.UI
             var respawner = PlayerRespawner.GetInstance;
             respawner.RespawnPlayer(playerID);
             
-            gameStatement.SetPlay();
+            if (gameStatement.IsDead)
+            {
+                gameStatement.SetPlay();
+            }
+            
             SetActive(false);
         }
 

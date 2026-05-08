@@ -9,7 +9,7 @@ namespace StickmanIo.Runtime.UI
 
         IMainMenu mainMenu;
 
-        void Awake()
+        void Start()
         {
             mainMenu = GetComponentInParent<IMainMenu>();
             SetupButtons();

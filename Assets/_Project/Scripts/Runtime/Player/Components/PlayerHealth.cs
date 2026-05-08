@@ -204,6 +204,13 @@ namespace StickmanIo.Runtime.Player
 
         void OnDeath()
         {
+            var networkManager = NetworkManager.main;
+            if (!networkManager || networkManager.serverState != PurrNet.Transports.ConnectionState.Connected
+            || networkManager.clientState != PurrNet.Transports.ConnectionState.Connected)
+            {
+                return;
+            }
+
             if (IsDead)
             {
                 return;

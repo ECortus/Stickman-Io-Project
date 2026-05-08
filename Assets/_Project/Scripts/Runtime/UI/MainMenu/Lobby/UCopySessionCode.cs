@@ -18,7 +18,7 @@ namespace StickmanIo.Runtime.UI
 
         float copiedTitleTime;
 
-        void Awake()
+        void Start()
         {
             Initialize();
         }
@@ -47,9 +47,8 @@ namespace StickmanIo.Runtime.UI
 
             copyButtonText = copyButton.GetComponentInChildren<TMP_Text>();
 
-            provider.OnSessionAdded += (e) => OnStartedSession();
-
-            provider.OnAddingSessionFailed += (e) => OnLeavedSession();
+            provider.OnSessionAdded += OnStartedSession;
+            provider.OnAddingSessionFailed += OnLeavedSession;
             provider.OnSessionLeaved += OnLeavedSession;
 
             inputField.interactable = false;
@@ -58,10 +57,27 @@ namespace StickmanIo.Runtime.UI
             OnLeavedSession();
         }
 
+        void OnDestroy()
+        {
+            provider.OnSessionAdded -= OnStartedSession;
+            provider.OnAddingSessionFailed -= OnLeavedSession;
+            provider.OnSessionLeaved -= OnLeavedSession;
+        }
+
+        void OnStartedSession(PurrLobby.Lobby lobby)
+        {
+            OnStartedSession();
+        }
+
         void OnStartedSession()
         {
             inputField.text = provider.GetSessionCode();
             copyButton.interactable = true;
+        }
+
+        void OnLeavedSession(string l)
+        {
+            OnLeavedSession();
         }
 
         void OnLeavedSession()

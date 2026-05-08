@@ -14,7 +14,7 @@ namespace StickmanIo.Runtime.UI
         SessionProvider provider;
         string sessionName;
 
-        void Awake() 
+        void Start()
         {
             Initialize();
         }
@@ -25,9 +25,8 @@ namespace StickmanIo.Runtime.UI
             nameInput.onValueChanged.AddListener(OnUpdateField);
 
             provider.OnAddingSessionStarted += OnStartedSession;
-            provider.OnSessionAdded += (e) => OnStartedSession();
-
-            provider.OnAddingSessionFailed += (e) => OnLeavedSession();
+            provider.OnSessionAdded += OnStartedSession;
+            provider.OnAddingSessionFailed += OnLeavedSession;
             provider.OnSessionLeaved += OnLeavedSession;
 
             createButton.onClick.AddListener(OnButtonClicked);
@@ -36,6 +35,14 @@ namespace StickmanIo.Runtime.UI
             nameInput.text = initizialSessionName;
 
             SetInteractable(true);
+        }
+
+        void OnDestroy()
+        {
+            provider.OnAddingSessionStarted -= OnStartedSession;
+            provider.OnSessionAdded -= OnStartedSession;
+            provider.OnAddingSessionFailed -= OnLeavedSession;
+            provider.OnSessionLeaved -= OnLeavedSession;
         }
 
         void OnUpdateField(string value)
@@ -57,9 +64,19 @@ namespace StickmanIo.Runtime.UI
             await provider.CreateSessionAsync();
         }
 
+        void OnStartedSession(PurrLobby.Lobby lobby)
+        {
+            OnStartedSession();
+        }
+
         void OnStartedSession()
         {
             SetInteractable(false);
+        }
+
+        void OnLeavedSession(string l)
+        {
+            OnLeavedSession();
         }
 
         void OnLeavedSession()

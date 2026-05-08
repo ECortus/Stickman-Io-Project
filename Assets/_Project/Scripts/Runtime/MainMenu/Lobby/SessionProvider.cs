@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using Blocks.Sessions.Common;
+using Cysharp.Threading.Tasks;
 using GameDevUtils.Runtime;
+using NUnit.Framework;
 using PurrLobby;
 using PurrLobby.Providers;
 using PurrNet;
@@ -57,6 +59,8 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             var randomIndex = UnityEngine.Random.Range(0, 10000);
             username = newName + $"#{randomIndex:0000}";
 
+            await UniTask.WaitUntil(() => AuthenticationService.Instance.IsSignedIn);
+
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
             lobbyProvider.playerName = username;
         }
@@ -110,6 +114,11 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             return m_Session;
         }
 
+        public bool HasSession()
+        {
+            return !m_Session.Equals(default);
+        }
+
         public async Task CreateSessionAsync()
         {
             OnAddingSessionStartedMethod();
@@ -123,7 +132,7 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
 
         public async Task LeaveSessionAsync()
         {
-            if (m_Session.Equals(default))
+            if (!HasSession())
             {
                 DebugHelper.LogWarning("No session to leave.");
                 return;
@@ -133,6 +142,14 @@ namespace StickmanIo.Runtime.MainMenu.Lobby
             lobbyManager.LeaveLobby(m_Session.LobbyId);
 
             SetSession(default);
+        }
+
+        public async Task LeaveSessionIfHasOne()
+        {
+            if (HasSession())
+            {
+                await LeaveSessionAsync();
+            }
         }
 
         public void SetIsReady()

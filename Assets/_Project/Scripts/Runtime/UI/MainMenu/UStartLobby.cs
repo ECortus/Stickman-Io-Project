@@ -17,17 +17,23 @@ namespace StickmanIo.Runtime.UI
 
         SessionProvider sessionProvider;
 
-        void Awake()
+        void Start()
         {
             mainMenu = GetComponentInParent<IMainMenu>();
             sessionProvider = SessionProvider.GetInstance;
 
             isReadyText = startPlayButton.GetComponentInChildren<TMP_Text>();
 
-            sessionProvider.OnSessionAdded += (e) => OnStartedSession();
+            sessionProvider.OnSessionAdded += OnStartedSession;
             sessionProvider.OnSessionLeaved += OnLeavedSession;
 
             SetupButtons();
+        }
+
+        void OnDestroy()
+        {
+            sessionProvider.OnSessionAdded -= OnStartedSession;
+            sessionProvider.OnSessionLeaved -= OnLeavedSession;
         }
 
         void SetupButtons()
@@ -52,9 +58,19 @@ namespace StickmanIo.Runtime.UI
             mainMenu.OpenMainMenuPanel();
         }
 
+        void OnStartedSession(PurrLobby.Lobby lobby)
+        {
+            OnStartedSession();
+        }
+
         void OnStartedSession()
         {
             startPlayButton.interactable = true;
+        }
+
+        void OnLeavedSession(string l)
+        {
+            OnLeavedSession();
         }
 
         void OnLeavedSession()

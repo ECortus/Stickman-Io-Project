@@ -23,7 +23,7 @@ namespace StickmanIo.Runtime.UI
 
         bool isOpened = false;
 
-        void Awake()
+        void Start()
         {
             gameStatement = GameStatement.GetInstance;
 
@@ -50,7 +50,17 @@ namespace StickmanIo.Runtime.UI
 
         void OnPauseActionPerformed(InputAction.CallbackContext context)
         {
+            if (gameStatement.IsNone)
+            {
+                return;
+            }
+
             if (gameStatement.IsDead)
+            {
+                return;
+            }
+
+            if (gameStatement.IsLoading)
             {
                 return;
             }
@@ -74,7 +84,10 @@ namespace StickmanIo.Runtime.UI
             isOpened = true;
             SetMenuRootActive(isOpened);
 
-            gameStatement.SetPause();
+            if (gameStatement.IsPlaying)
+            {
+                gameStatement.SetPause();
+            }
         }
 
         void OnResumeButtonClicked()
@@ -82,7 +95,10 @@ namespace StickmanIo.Runtime.UI
             isOpened = false;
             SetMenuRootActive(false);
 
-            gameStatement.SetPlay();
+            if (gameStatement.IsPaused)
+            {
+                gameStatement.SetPlay();
+            }
         }
 
         void SetMenuRootActive(bool active)

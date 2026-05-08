@@ -28,13 +28,9 @@ namespace StickmanIo.Runtime.UI
 
         SettingsMenuManager settingsMenuManager;
 
-        void Awake()
-        {
-            SetupButtons();
-        }
-
         void Start()
         {
+            SetupButtons();
             OpenMainMenuPanel();
         }
 

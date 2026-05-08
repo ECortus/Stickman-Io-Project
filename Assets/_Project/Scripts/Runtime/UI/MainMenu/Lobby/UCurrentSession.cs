@@ -40,7 +40,7 @@ namespace StickmanIo.Runtime.UI
         SessionProvider provider;
         List<TMP_Text> playerList = new List<TMP_Text>();
 
-        void Awake()
+        void Start()
         {
             Initialize();
         }
@@ -49,16 +49,30 @@ namespace StickmanIo.Runtime.UI
         {
             provider = SessionProvider.GetInstance;
 
-            provider.OnSessionAdded += (e) => OnStartedSession();
-            provider.OnAddingSessionFailed += (e) => OnFailedSession(e);
-
+            provider.OnSessionAdded += OnStartedSession;
+            provider.OnAddingSessionFailed += OnFailedSession;
             provider.OnSessionLeaved += OnLeavedSession;
 
-            leaveSessionButton.onClick.AddListener(OnLeaveButtonClick);
+            provider.LobbyManager.OnPlayerListUpdated.AddListener(OnPlayersUpdated);
 
+            leaveSessionButton.onClick.AddListener(OnLeaveButtonClick);
             copySessionCodeButton.onClick.AddListener(OnCopySessionCodeButton);
 
             OnLeavedSession();
+        }
+
+        void OnDestroy()
+        {
+            provider.OnSessionAdded -= OnStartedSession;
+            provider.OnAddingSessionFailed -= OnFailedSession;
+            provider.OnSessionLeaved -= OnLeavedSession;
+
+            provider.LobbyManager.OnPlayerListUpdated.RemoveListener(OnPlayersUpdated);
+        }
+
+        void OnStartedSession(PurrLobby.Lobby lobby)
+        {
+            OnStartedSession();
         }
 
         void OnStartedSession()
@@ -68,9 +82,6 @@ namespace StickmanIo.Runtime.UI
 
             playersListParent.DestroyAllChildren();
             playerList.Clear();
-            
-            var lobbyManager = provider.LobbyManager;
-            lobbyManager.OnPlayerListUpdated.AddListener(OnPlayersUpdated);
 
             foreach (var player in session.Members)
             {
@@ -131,6 +142,11 @@ namespace StickmanIo.Runtime.UI
         {
             OnLeavedSession();
             sessionStatusLabel.text = exception;
+        }
+
+        void OnLeavedSession(string l)
+        {
+            OnLeavedSession();
         }
 
         void OnLeavedSession()

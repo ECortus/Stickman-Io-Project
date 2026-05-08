@@ -7610,6 +7610,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2807449429036539767, guid: f0c16f0ea935ea64297ca1d4d55d9746, type: 3}
   m_PrefabInstance: {fileID: 835565330}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &847520370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847520372}
+  - component: {fileID: 847520371}
+  m_Layer: 0
+  m_Name: Gameplay Scene Provider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &847520371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847520370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9402538172fe041880f13f2cc440e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.Core.GameplaySceneProvider
+--- !u!4 &847520372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847520370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &868420399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10765,50 +10809,6 @@ Transform:
   m_GameObject: {fileID: 1253949768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1262302612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1262302614}
-  - component: {fileID: 1262302613}
-  m_Layer: 0
-  m_Name: Players Logger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1262302613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262302612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eae1440a02e14447a48060dd63cc243, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.PlayersLogger
---- !u!4 &1262302614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262302612}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15142,8 +15142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkManager
   _stopPlayingOnDisconnect: 0
-  _startServerFlags: 0
-  _startClientFlags: 0
+  _startServerFlags: 5
+  _startClientFlags: 7
   _cookieScope: 1
   _dontDestroyOnLoad: 0
   _transport: {fileID: 1850211604}
@@ -18344,13 +18344,13 @@ SceneRoots:
   - {fileID: 1125391}
   - {fileID: 1806150640}
   - {fileID: 592870142}
+  - {fileID: 847520372}
   - {fileID: 1850211603}
   - {fileID: 1063332662}
   - {fileID: 285756958}
   - {fileID: 513175157}
   - {fileID: 1669357419}
   - {fileID: 1703835020}
-  - {fileID: 1262302614}
   - {fileID: 508974388}
   - {fileID: 1902460564}
   - {fileID: 1253949769}

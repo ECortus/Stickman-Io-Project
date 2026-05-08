@@ -19,11 +19,7 @@ namespace StickmanIo.Runtime.LevelDesign
 
         [SerializeField, ReadOnly] EState state = EState.None;
 
-        void Awake()
-        {
-            SetLoading();
-        }
-
+        public bool IsNone => state == EState.None;
         public bool IsLoading => state == EState.Loading;
         public bool IsPlaying => state == EState.Playing;
         public bool IsPaused => state == EState.Paused;
@@ -62,21 +58,25 @@ namespace StickmanIo.Runtime.LevelDesign
 
         void OnLoading()
         {
+            DebugHelper.Log("OnLoading");
             CursorViewController.Enable();
         }
 
         void OnPlaying()
         {
+            DebugHelper.Log("OnPlaying");
             CursorViewController.Disable();
         }
 
         void OnPaused()
         {
+            DebugHelper.Log("OnPaused");
             CursorViewController.Enable();
         }
 
         void OnDead()
         {
+            DebugHelper.Log("OnDead");
             CursorViewController.Enable();
         }
     }

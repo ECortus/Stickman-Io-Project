@@ -1,6 +1,7 @@
 ﻿using System;
 using GameDevUtils.Runtime;
 using PurrNet;
+using StickmanIo.Runtime.LevelDesign;
 using StickmanIo.Runtime.Player.Data;
 using UnityEngine;
 
@@ -25,6 +26,13 @@ namespace StickmanIo.Runtime.Player
         protected override void OnSpawned()
         {
             base.OnSpawned();
+
+            GameStatement gameStatement = GameStatement.GetInstance;
+            if (gameStatement.IsNone || gameStatement.IsLoading)
+            {
+                gameStatement.SetPlay();
+            }
+
             InitComponents();
         }
 

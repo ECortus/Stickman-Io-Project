@@ -17,6 +17,8 @@ namespace StickmanIo.Runtime.UI
             unitsManager.OnOwnerRigChanged += SetPlayerRig;
 
             base.OnStart();
+
+            SetPlayerRig();
         }
 
         void SetPlayerRig()

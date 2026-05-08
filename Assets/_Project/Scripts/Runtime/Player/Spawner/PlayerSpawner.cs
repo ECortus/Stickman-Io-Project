@@ -103,9 +103,6 @@ namespace StickmanIo.Runtime.Player
             {
                 scenePlayersModule.onPlayerLoadedScene += OnPlayerLoadedScene;
                 SpawnPlayers();
-
-                GameStatement gameStatement = GameStatement.GetInstance;
-                gameStatement.SetPlay();
             }
         }
 

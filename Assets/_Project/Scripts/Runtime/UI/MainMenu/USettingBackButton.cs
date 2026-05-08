@@ -11,7 +11,7 @@ namespace StickmanIo.Runtime.UI
         
         Button button;
 
-        private void Awake()
+        private void Start()
         {
             layersController = FindAnyObjectByType<USettingsLayersController>();
             

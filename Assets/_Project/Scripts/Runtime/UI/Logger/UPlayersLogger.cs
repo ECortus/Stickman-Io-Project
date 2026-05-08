@@ -10,7 +10,9 @@ namespace StickmanIo.Runtime.UI
         [SerializeField] private TMP_Text textPrefab;
         [SerializeField] private RectTransform parentTransform;
 
-        void Awake() 
+        private PlayersLogger logger;
+
+        void Start() 
         {
             Initialize();
         }
@@ -19,8 +21,13 @@ namespace StickmanIo.Runtime.UI
         {
             parentTransform.DestroyAllChildren();
 
-            var logger = PlayersLogger.GetInstance;
+            logger = PlayersLogger.GetInstance;
             logger.OnLogInstantiated += AddNewText;
+        }
+
+        void OnDestroy() 
+        {
+            logger.OnLogInstantiated -= AddNewText;
         }
 
         void AddNewText(string value)
