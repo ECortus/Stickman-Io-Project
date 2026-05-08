@@ -195,6 +195,10 @@ namespace StickmanIo.Runtime.Player
 
             this.enabled = false;
 
+            this.RemoveOwnership(true);
+            ragdoll.RemoveOwnership(true);
+            networkAnimator.RemoveOwnership(true);
+
             ragdoll.SetToRagdoll();
         }
     }

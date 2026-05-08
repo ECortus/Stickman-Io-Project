@@ -31,7 +31,7 @@ namespace StickmanIo.Runtime.Player
 
         IPlayerSaveable playerSaveable;
 
-        [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f);
+        [SerializeField, NonSerialized] SyncVar<float> currentHealthVar = new SyncVar<float>(0f, ownerAuth: true);
         [SerializeField, NonSerialized] SyncVar<float> maximumHealthVar = new SyncVar<float>(0f, ownerAuth: true);
 
         [SerializeField, NonSerialized] SyncVar<float> upgradeableMaxHealthModifierVar = new SyncVar<float>(0f, ownerAuth: true);
@@ -126,7 +126,7 @@ namespace StickmanIo.Runtime.Player
             Health_Rpc(value);
         }
 
-        [ServerRpc]
+        [ObserversRpc(runLocally: true)]
         void Health_Rpc(float amount)
         {
             SetCurrentHealth(amount);
@@ -153,9 +153,11 @@ namespace StickmanIo.Runtime.Player
             }
 
             TakeDamage_Rpc(damage);
+
+            TryDespawnRpc(damage);
         }
 
-        [ServerRpc]
+        [ObserversRpc(runLocally: true)]
         void TakeDamage_Rpc(float damage)
         {
             var current = CurrentHealth - damage;
@@ -167,6 +169,12 @@ namespace StickmanIo.Runtime.Player
             }
 
             OnHit?.Invoke();
+        }
+
+        [ServerRpc]
+        void TryDespawnRpc(float damage)
+        {
+            var current = CurrentHealth - damage;
             if (current <= 0f)
             {
                 Despawn();
@@ -179,8 +187,14 @@ namespace StickmanIo.Runtime.Player
             SetMaxHealth(value);
         }
 
+        [ObserversRpc(runLocally: true)]
         void SetCurrentHealth(float value)
         {
+            if (!isOwner)
+            {
+                return;
+            }
+
             currentHealthVar.value = value;
         }
 
@@ -224,8 +238,6 @@ namespace StickmanIo.Runtime.Player
             OnDied?.Invoke();
 
             playerSaveable.TrySavePrefs(true);
-
-            Despawn();
             ObjectHelper.Destroy(this.gameObject);
         }
 

@@ -19,7 +19,7 @@ namespace StickmanIo.Runtime
             instance = this;
         }
 
-        [ServerRpc]
+        [ServerRpc(runLocally: true, requireOwnership: false)]
         public static void LogAdded(string message)
         {
             if (!instance) return;
@@ -28,7 +28,7 @@ namespace StickmanIo.Runtime
             instance.OnLogInstantiated?.Invoke(message);
         }
 
-        [ServerRpc]
+        [ServerRpc(runLocally: true, requireOwnership: false)]
         public static void LogSpawned(string message)
         {
             if (!instance) return;
@@ -37,7 +37,7 @@ namespace StickmanIo.Runtime
             instance.OnLogInstantiated?.Invoke(message);
         }
 
-        [ServerRpc]
+        [ServerRpc(runLocally: true, requireOwnership: false)]
         public static void LogKilled(string message)
         {
             if (!instance) return;

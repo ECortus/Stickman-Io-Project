@@ -46,6 +46,12 @@ namespace StickmanIo.Runtime.Units
             }
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            CancelBlink();
+        }
+
         public void SetNewMaterialAsNonInstance(Material material)
         {
             skinnedMeshRenderer.materials = new Material[] { material };
@@ -77,7 +83,7 @@ namespace StickmanIo.Runtime.Units
             }
         }
 
-        [ServerRpc]
+        [ServerRpc()]
         void SetOwnerColor(Color color)
         {
             ownerColor.value = color;
@@ -85,12 +91,15 @@ namespace StickmanIo.Runtime.Units
 
         void SetMaterial(Material material)
         {
+            if (!skinnedMeshRenderer) return;
+
             var newMat = new Material(material);
             skinnedMeshRenderer.SetMaterials(new List<Material> { newMat });
         }
 
         void SetMaterialAsNonInstance(Material material)
         {
+            if (!skinnedMeshRenderer) return;
             skinnedMeshRenderer.materials = new Material[] { material };
         }
 
@@ -102,15 +111,12 @@ namespace StickmanIo.Runtime.Units
         Material standardMaterialInstanceBeforeBlink;
         CancellationTokenSource blinkToken;
 
-        [ServerRpc]
         public void BlinkAnimation(float duration, float frequency)
         {
             if (blinkToken != null)
             {
                 CancelBlink();
             }
-
-            Debug.Log("prepare blink");
 
             blinkToken = new CancellationTokenSource();
             standardMaterialInstanceBeforeBlink = skinnedMeshRenderer.materials[0];
@@ -120,8 +126,6 @@ namespace StickmanIo.Runtime.Units
 
         async UniTask BlinkAnimationAsync(float duration, float frequency)
         {
-            Debug.Log("start blink");
-
             float blinkFrequency = 1f / frequency;
             float startTime = Time.time;
 
@@ -154,8 +158,6 @@ namespace StickmanIo.Runtime.Units
 
         void CancelBlink()
         {
-            Debug.Log("cancel blink");
-
             blinkToken?.Cancel();
             blinkToken?.Dispose();
 
@@ -163,7 +165,7 @@ namespace StickmanIo.Runtime.Units
 
             if (standardMaterialInstanceBeforeBlink != null)
             {
-                skinnedMeshRenderer.SetMaterials(new List<Material> { standardMaterialInstanceBeforeBlink });
+                SetMaterialAsNonInstance(standardMaterialInstanceBeforeBlink);
                 standardMaterialInstanceBeforeBlink = null;
             }
         }
