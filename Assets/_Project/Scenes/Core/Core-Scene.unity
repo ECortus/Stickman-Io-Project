@@ -1137,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1834071111
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,6 +1260,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eae1440a02e14447a48060dd63cc243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.PlayersLogger
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
 --- !u!4 &2145603344
 Transform:
   m_ObjectHideFlags: 0

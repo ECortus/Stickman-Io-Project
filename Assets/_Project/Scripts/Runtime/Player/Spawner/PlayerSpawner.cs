@@ -8,6 +8,7 @@ using PurrNet.Logging;
 using PurrNet.Modules;
 using System;
 using StickmanIo.Runtime.LevelDesign;
+using StickmanIo.Runtime.Units;
 
 namespace StickmanIo.Runtime.Player
 {
@@ -18,6 +19,7 @@ namespace StickmanIo.Runtime.Player
         {
             public PlayerID ID;
             public NetworkIdentity Instance;
+            public SkinMaterialController SkinInstance;
         }
 
         [SerializeField, HideInInspector] private NetworkIdentity playerPrefab;
@@ -214,6 +216,12 @@ namespace StickmanIo.Runtime.Player
                     /* instance.Despawn(); */
                 }
 
+                var animator = spawned.SkinInstance;
+                if (animator)
+                {
+                    animator.Despawn();
+                }
+
                 spawnedPlayers.Remove(spawned);
             }
 
@@ -270,9 +278,10 @@ namespace StickmanIo.Runtime.Player
                 spawnedPlayers.Add(spawnedInstance);
                 if (newPlayer.TryGetComponent(out IHealth health))
                 {
-                    health.OnDied += () =>
+                    health.OnDiedRig += (rig) =>
                     {
-                        spawnedPlayers.Remove(spawnedInstance);
+                        int index = spawnedPlayers.IndexOf(spawnedInstance);
+                        spawnedPlayers[index].SkinInstance = rig.GetComponentInChildren<SkinMaterialController>();
                     };
                 }
             }

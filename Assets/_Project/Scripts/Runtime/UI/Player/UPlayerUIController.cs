@@ -18,6 +18,11 @@ namespace StickmanIo.Runtime.UI
             OnPlayerChanged();
         }
 
+        void OnDestroy()
+        {
+            unitsManager.OnOwnerRigChanged -= OnPlayerChanged;
+        }
+
         void OnPlayerChanged()
         {
             var owner = unitsManager.OwnerRig;

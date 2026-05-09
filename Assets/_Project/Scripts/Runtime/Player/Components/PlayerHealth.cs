@@ -23,6 +23,7 @@ namespace StickmanIo.Runtime.Player
 
         event Action OnHit;
         event Action OnDied;
+        event Action<PlayerRig> OnDiedRig;
     }
 
     public class PlayerHealth : PlayerRigComponent, IHealth
@@ -38,7 +39,7 @@ namespace StickmanIo.Runtime.Player
 
         ICamera cam;
 
-        bool isDead = false;
+        [SerializeField] bool isDead = false;
 
         bool IsDead => isDead;
 
@@ -53,7 +54,7 @@ namespace StickmanIo.Runtime.Player
 
             playerSaveable = Rig.Saveable;
 
-            maximumHealthVar.onChanged += OnManHealthChanged;
+            maximumHealthVar.onChanged += OnMaxHealthChanged;
 
             if (isOwner)
             {
@@ -67,15 +68,12 @@ namespace StickmanIo.Runtime.Player
         protected override void OnDespawned()
         {
             base.OnDespawned();
+
+            maximumHealthVar.onChanged -= OnMaxHealthChanged;
             OnDeath();
         }
 
-        protected override void OnDestroyed()
-        {
-            maximumHealthVar.onChanged -= OnManHealthChanged;
-        }
-
-        void OnManHealthChanged(float value)
+        void OnMaxHealthChanged(float value)
         {
             UpdateMaxHealth();
         }
@@ -142,19 +140,18 @@ namespace StickmanIo.Runtime.Player
                 return;
             }
 
+            TakeDamage_Rpc(damage);
+
             var current = CurrentHealth - damage;
             if (current <= 0f)
             {
+                Despawn();
                 isKilled = true;
             }
             else
             {
                 isKilled = false;
             }
-
-            TakeDamage_Rpc(damage);
-
-            TryDespawnRpc(damage);
         }
 
         [ObserversRpc(runLocally: true)]
@@ -169,16 +166,6 @@ namespace StickmanIo.Runtime.Player
             }
 
             OnHit?.Invoke();
-        }
-
-        [ServerRpc]
-        void TryDespawnRpc(float damage)
-        {
-            var current = CurrentHealth - damage;
-            if (current <= 0f)
-            {
-                Despawn();
-            }
         }
 
         void UpdateMaxHealth()
@@ -220,9 +207,21 @@ namespace StickmanIo.Runtime.Player
 
         void OnDeath()
         {
+            if (!isOwner)
+            {
+                return;
+            }
+
             var networkManager = NetworkManager.main;
-            if (!networkManager || networkManager.serverState != PurrNet.Transports.ConnectionState.Connected
-            || networkManager.clientState != PurrNet.Transports.ConnectionState.Connected)
+            if (!networkManager)
+            {
+                return;
+            }
+            else if (isServer && networkManager.serverState != PurrNet.Transports.ConnectionState.Connected)
+            {
+                return;
+            }
+            else if (!isServer && networkManager.clientState != PurrNet.Transports.ConnectionState.Connected)
             {
                 return;
             }
@@ -235,6 +234,8 @@ namespace StickmanIo.Runtime.Player
             PlayersLogger.LogKilled($"Player ID-{Rig.localPlayer.Value.id}");
 
             SetIsDead(true);
+
+            OnDiedRig?.Invoke(Rig);
             OnDied?.Invoke();
 
             playerSaveable.TrySavePrefs(true);
@@ -248,5 +249,6 @@ namespace StickmanIo.Runtime.Player
 
         public event Action OnHit;
         public event Action OnDied;
+        public event Action<PlayerRig> OnDiedRig;
     }
 }

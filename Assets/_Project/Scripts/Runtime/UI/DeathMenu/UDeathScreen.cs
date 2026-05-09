@@ -46,7 +46,7 @@ namespace StickmanIo.Runtime.UI
             var player = unitsManager.OwnerRig;
             if (player != null)
             {
-                player.Health.OnDied += () => OnDied(player);
+                player.Health.OnDiedRig += OnDied;
             }
         }
 

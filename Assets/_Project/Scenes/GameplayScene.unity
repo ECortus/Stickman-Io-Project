@@ -9337,7 +9337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e975ccf4e95770048aaae39d37c2f01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: stickman-io.runtime::StickmanIo.Runtime.HitBoxDamageDealerSimple
-  damageInEnter: 5
+  damageInEnter: 1000
   damageInStay: 0
   hitBoxLayerMask:
     serializedVersion: 2
@@ -15087,6 +15087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1850211603}
   - component: {fileID: 1850211605}
+  - component: {fileID: 1850211607}
   - component: {fileID: 1850211606}
   m_Layer: 0
   m_Name: Network Manager
@@ -15123,11 +15124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.NetworkManager
   _stopPlayingOnDisconnect: 0
-  _startServerFlags: 5
-  _startClientFlags: 7
+  _startServerFlags: 0
+  _startClientFlags: 0
   _cookieScope: 1
   _dontDestroyOnLoad: 0
-  _transport: {fileID: 1850211606}
+  _transport: {fileID: 1850211607}
   _networkPrefabs: {fileID: 11400000, guid: a3e421e440c6da541adb5cccc2d1c6b7, type: 2}
   _addressableNetworkPrefabs: {fileID: 0}
   _networkAssets: {fileID: 11400000, guid: 3df426442ecfd014f8f59ae1a5a66b36, type: 2}
@@ -15145,14 +15146,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1850211602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc64ff707d914a64e95f2ac0bf554c09, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c476fd9733ed148b4631bd99c76108, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.Transports.UDPTransport
-  _automaticCloudSetups:
-    _adaptToEdgegap: 1
-  _serverPort: 5000
-  _maxConnections: 100
-  _address: 127.0.0.1
+  m_EditorClassIdentifier: PurrNetLobbySetup::PurrLobby.ConnectionStarter
+--- !u!114 &1850211607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850211602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332e746c3c3253246aacad4d5559f1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PurrNet.Runtime::PurrNet.Transports.PurrTransport
+  _masterServer: https://purrtransport.purrservers.com/
+  _roomName: d389b1fd8a7c45daa8247444649e01a5
+  _region: australia
+  _host: purrtransport-australia.purrservers.com
   _timeoutInSeconds: 5
   _pollEventsInUpdate: 0
 --- !u!1 &1850239301
@@ -15170,7 +15182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1850239302
 Transform:
   m_ObjectHideFlags: 0
